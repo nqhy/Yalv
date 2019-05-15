@@ -11,7 +11,7 @@ export default class Database {
   _connect() {
     mongoose.connect(`mongodb://${server}/${database}`)
     .then(() => {
-      console.log('Database connection successful')
+      console.log('Database connection succesful')
     })
     .catch(err => {
       console.error('Database connection error')
