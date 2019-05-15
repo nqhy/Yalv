@@ -529,7 +529,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Database; });
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}var server='127.0.0.1:27017';var database='YalvDb';var Database=function(){function Database(){_classCallCheck(this,Database);this._connect();}_createClass(Database,[{key:"_connect",value:function _connect(){mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(server,"/").concat(database)).then(function(){console.log('Database connection successful');})["catch"](function(err){console.error('Database connection error');});}}]);return Database;}();
+const server='127.0.0.1:27017';const database='YalvDb';class Database{constructor(){this._connect();}_connect(){mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(server,"/").concat(database)).then(()=>{console.log('Database connection succesful');}).catch(err=>{console.error('Database connection error');});}}
 
 /***/ }),
 
@@ -549,7 +549,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _webpack_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../webpack.config */ "./webpack.config.js");
 /* harmony import */ var _webpack_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_webpack_config__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _db_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../db/config */ "./src/db/config/index.js");
-var app=express__WEBPACK_IMPORTED_MODULE_0___default()(),DIST_DIR=__dirname,compiler=webpack__WEBPACK_IMPORTED_MODULE_1___default()(_webpack_config__WEBPACK_IMPORTED_MODULE_2___default.a);var port=process.env.PORT||8080;app.listen(port,function(){console.log("Server started at port ".concat(port));var db=new _db_config__WEBPACK_IMPORTED_MODULE_3__["default"]();});
+const app=express__WEBPACK_IMPORTED_MODULE_0___default()(),DIST_DIR=__dirname,compiler=webpack__WEBPACK_IMPORTED_MODULE_1___default()(_webpack_config__WEBPACK_IMPORTED_MODULE_2___default.a);const port=process.env.PORT||8080;app.listen(port,()=>{console.log("Server started at port ".concat(port));const db=new _db_config__WEBPACK_IMPORTED_MODULE_3__["default"]();});
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
@@ -561,7 +561,7 @@ var app=express__WEBPACK_IMPORTED_MODULE_0___default()(),DIST_DIR=__dirname,comp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path=__webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");var webpack=__webpack_require__(/*! webpack */ "webpack");var nodeExternals=__webpack_require__(/*! webpack-node-externals */ "webpack-node-externals");module.exports={entry:{server:'./src/server/server-dev.js'},output:{path:path.join(__dirname,'dist'),publicPath:'/',filename:'[name].js'},mode:'development',target:'web',devtool:'source-map',node:{__dirname:false,__filename:false},externals:[nodeExternals()],module:{rules:[{test:/\.js$/,exclude:/node_modules/,use:{loader:"babel-loader"}}]},plugins:[],watch:true,watchOptions:{poll:1000,aggregateTimeout:300}};
+const path=__webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");const webpack=__webpack_require__(/*! webpack */ "webpack");const nodeExternals=__webpack_require__(/*! webpack-node-externals */ "webpack-node-externals");module.exports={entry:{server:'./src/server/server-dev.js'},output:{path:path.join(__dirname,'dist'),publicPath:'/',filename:'[name].js'},mode:'development',target:'web',devtool:'source-map',node:{__dirname:false,__filename:false},externals:[nodeExternals()],module:{rules:[{test:/\.js$/,exclude:/node_modules/,use:{loader:"babel-loader"}}]},plugins:[],watch:true,watchOptions:{poll:1000,aggregateTimeout:300}};
 
 /***/ }),
 
