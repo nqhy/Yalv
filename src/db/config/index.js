@@ -9,12 +9,20 @@ export default class Database {
   }
 
   _connect() {
-    mongoose.connect(`mongodb://${server}/${database}`)
+    mongoose.connect(`mongodb://${server}/${database}`, {
+      useNewUrlParser: true,
+      reconnectTries: Number.MAX_VALUE,
+      reconnectInterval: 500,
+      poolSize: 10,
+      bufferMaxEntries: 0,
+      connectTimeoutMS: 10000,
+      family: 4,
+    })
     .then(() => {
       console.log('Database connection succesful')
     })
     .catch(err => {
-      console.error('Database connection error')
+      console.error(`Database connection error => ${err}`)
     })
   }
 }
