@@ -529,7 +529,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Database; });
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-const server='127.0.0.1:27017';const database='YalvDb';class Database{constructor(){this._connect();}_connect(){mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(server,"/").concat(database)).then(()=>{console.log('Database connection succesful');}).catch(err=>{console.error('Database connection error');});}}
+const server='127.0.0.1:27017';const database='YalvDb';class Database{constructor(){this._connect();}_connect(){mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(server,"/").concat(database),{useNewUrlParser:true,reconnectTries:Number.MAX_VALUE,reconnectInterval:500,poolSize:10,bufferMaxEntries:0,connectTimeoutMS:10000,family:4}).then(()=>{console.log('Database connection succesful');}).catch(err=>{console.error("Database connection error => ".concat(err));});}}
 
 /***/ }),
 
