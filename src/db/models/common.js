@@ -6,8 +6,8 @@ export const ObjectId = mongoose.Schema.Types.ObjectId;
 export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 //Common Validator
-export const validateLength = (schema, attribute) => {
-  schema.path(attribute).validate((value) => {
+export const validateLength = (name, attribute) => {
+  name.schema.path(attribute).validate((value) => {
     return value && value.length < 100;
   }, 'Lenght must be less than 100 characters');
 }

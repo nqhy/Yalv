@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 import { validateLength } from './common';
 import i18next from 'i18next';
 
-export const nameSchema = new Schema({
+export const name= new Schema({
 	first: {
 		type: String,
     lowercase: true,
@@ -22,5 +22,5 @@ export const nameSchema = new Schema({
 	},
 })
 
-validateLength(nameSchema, 'first');
-validateLength(nameSchema, 'last');
+validateLength(name, 'first');
+validateLength(name, 'last');
