@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-export const commonButton = StyleSheet.create({
-  containner: {
+export default buttonStyle = StyleSheet.create({
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
