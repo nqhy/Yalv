@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { commonButton } from '../../styles/common';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { buttonSty } from '../../styles/common';
 
 export default class CommonButton extends React.Component {
   render() {
@@ -8,14 +9,14 @@ export default class CommonButton extends React.Component {
       style: {
         styleText = {},
         styleButton = {},
-        styleContainner = {},
+        styleContainer = {},
       } = {},
 
     } = this.props;
     return (
-      <View style={[commonButton.containner, styleContainner]}>
-        <TouchableOpacity style={[commonButton.button, styleButton]}>
-          <Text style={[commonButton.text, styleText]}>{this.props.children}</Text>
+      <View style={[buttonSty.container, styleContainer]}>
+        <TouchableOpacity style={[buttonSty.button, styleButton]}>
+          <Text style={[buttonSty.text, styleText]}>{this.props.children}</Text>
         </TouchableOpacity>
       </View>
     )

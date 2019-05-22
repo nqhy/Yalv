@@ -19,10 +19,10 @@ const userSchema = new Schema({
 		lowercase: true,
 		index: true,
 		unique: true,
-		validate: [
+		validate: {
 			validateEmail,
 			message: p => `${p.value} is not a valid email Address`,
-		]
+		}
 	},
 	emailConfirmationToken: { type: String, default: uuid },
 	phone: { type: Number, min: 10, max: 11 },
