@@ -1,6 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: {
@@ -9,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].js',
   },
   mode: 'development',
   target: 'web',
@@ -22,12 +21,12 @@ module.exports = {
   module: {
     rules: [
       {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader"
-      }
-    }]
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      }],
   },
   plugins: [
   ],
@@ -35,5 +34,5 @@ module.exports = {
   watchOptions: {
     poll: 1000,
     aggregateTimeout: 300,
-  }
-}
+  },
+};

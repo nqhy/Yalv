@@ -1,7 +1,7 @@
 export const localesEn = {
   validate: {
-    blank: "Can not be blank",
-    invalid: "is Invalid",
-    taken: 'is already taken. '
- }
-}
+    blank: 'Can not be blank',
+    invalid: 'is Invalid',
+    taken: 'is already taken. ',
+  },
+};

@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { nameRegExp, emailRegExp } from '../constant/regexp';
 import { i18n, secret } from '../../config';
 
-//Schema Defining
+// Schema Defining
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -19,28 +19,28 @@ const UserSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     required: [true, i18n('validate.blank')],
-    match: [emailRegExp,i18n('validate.invalid')]
+    match: [emailRegExp, i18n('validate.invalid')],
   },
   bio: String,
   image: String,
   hash: String,
   salt: String,
-}, { timestamps: true});
+}, { timestamps: true });
 
-UserSchema.plugin(uniqueValidator, { message: i18n('validate.taken') })
+UserSchema.plugin(uniqueValidator, { message: i18n('validate.taken') });
 
-//Methods Defining
+// Methods Defining
 const encryPassword = (password, salt) => crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512').toString('hex');
 
 UserSchema.methods.setPassword = (password) => {
   this.salt = crypto.randomBytes(16).toString('hex');
   this.halt = encryPassword(password, this.salt);
-}
+};
 
 UserSchema.methods.validPassword = (password) => {
   const hash = encryPassword(password, this.salt);
   return this.hash === hash;
-}
+};
 
 UserSchema.methods.generateJWT = () => {
   const today = new Date();
@@ -50,9 +50,9 @@ UserSchema.methods.generateJWT = () => {
   return jwt.sign({
     id: this._id,
     username: this.username,
-    exp: parseInt(exp.getTime() / 1000)
-  }, secret)
-}
+    exp: parseInt(exp.getTime() / 1000, 10),
+  }, secret);
+};
 
 UserSchema.methods.toAuthJSON = () => ({
   username: this.username,
@@ -60,6 +60,6 @@ UserSchema.methods.toAuthJSON = () => ({
   token: this.generateJWT(),
   bio: this.bio,
   image: this.image,
-})
+});
 
-export const User = mongoose.model('User', UserSchema)
+export const User = mongoose.model('User', UserSchema);
