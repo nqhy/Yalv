@@ -62,4 +62,4 @@ UserSchema.methods.toAuthJSON = () => ({
   image: this.image,
 })
 
-export const UserModel = mongoose.model('User', UserSchema)
+export const User = mongoose.model('User', UserSchema)

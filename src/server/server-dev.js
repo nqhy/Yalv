@@ -14,7 +14,7 @@ routes.forEach((route, index) => [
 ])
 
 //Config Swagger
-fastify.register(require('fastify-swagger'), swagger.options)
+fastify.register(swaggerFastify, swagger.options)
 
 
 // Start Server
