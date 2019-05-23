@@ -5,6 +5,7 @@ import { User } from '../db/models/User';
 export const getUsers = async(req, reply) => {
   try {
     const users = await User.find()
+    return users
   } catch (err) {
     throw boom.boomify(err)
   }

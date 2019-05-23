@@ -15,9 +15,9 @@ export default class CommonInput extends React.Component {
       placeholderText = "Common Input ..."
     } = this.props;
     return (
-      <View style={[inputSty.container, styleContainer]}>
+      <View style={[inputStyle.container, styleContainer]}>
         <TextInput
-          style={[inputSty.input, styleInput]}
+          style={[inputStyle.input, styleInput]}
           selectionColor={selectionColor}
           placeholderTextColor={placeholderTextColor}
           placeholder={placeholderText}

@@ -13,9 +13,9 @@ export default class CommonButton extends React.Component {
       } = {},
     } = this.props;
     return (
-      <View style={[buttonSty.container, styleContainer]}>
-        <TouchableOpacity style={[buttonSty.button, styleButton]}>
-          <Text style={[buttonSty.text, styleText]}>{this.props.children}</Text>
+      <View style={[buttonStyle.container, styleContainer]}>
+        <TouchableOpacity style={[buttonStyle.button, styleButton]}>
+          <Text style={[buttonStyle.text, styleText]}>{this.props.children}</Text>
         </TouchableOpacity>
       </View>
     )

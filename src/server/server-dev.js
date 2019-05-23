@@ -16,7 +16,6 @@ routes.forEach((route, index) => [
 //Config Swagger
 fastify.register(swaggerFastify, swagger.options)
 
-
 // Start Server
 const start = async () => {
   try {

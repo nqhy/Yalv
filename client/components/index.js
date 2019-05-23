@@ -7,21 +7,18 @@ import CommonButton from './common/CommonButton';
 export default class Components extends React.Component {
   render() {
     return(
-      <View style={styles.container}>
-        <CommonInput />
+      <View style={styles.styleContainer}>
+        <CommonInput style={styles}/>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
+const styles = {
+  styleContainer: {
     flex: 1,
-    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black',
   },
-  textStyle: {
-    color: 'white'
-  }
-})
+}

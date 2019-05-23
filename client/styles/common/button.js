@@ -3,8 +3,6 @@ import { StyleSheet } from 'react-native';
 export const buttonStyle = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     borderColor: 'white',
