@@ -11,7 +11,6 @@ export default class CommonButton extends React.Component {
         styleButton = {},
         styleContainer = {},
       } = {},
-
     } = this.props;
     return (
       <View style={[buttonSty.container, styleContainer]}>
