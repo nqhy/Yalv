@@ -19,5 +19,5 @@ export const buttonStyle = StyleSheet.create({
     fontSize: 16,
     color: 'pink',
     fontWeight: 'bold',
-  }
-})
+  },
+});

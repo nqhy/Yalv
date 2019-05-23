@@ -10,6 +10,6 @@ export default class YalvApp extends React.Component {
       <Provider store={store}>
         <Components />
       </Provider>
-    )
+    );
   }
 }

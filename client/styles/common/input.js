@@ -15,4 +15,4 @@ export const inputStyle = StyleSheet.create({
     padding: 10,
     color: 'orange',
   },
-})
+});
