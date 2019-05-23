@@ -5,3 +5,7 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+*.log
+tmp/**/*
+
+./dist/*.js

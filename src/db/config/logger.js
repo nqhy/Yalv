@@ -4,10 +4,10 @@ export const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'info.log', level: 'info' }),
-    new winston.transports.File({ filename: 'debug.log', level: 'debug' }),
-    new winston.transports.File({ filename: 'combined.log' }),
+    new winston.transports.File({ filename: './tmp/log/error.log', level: 'error' }),
+    new winston.transports.File({ filename: './tmp/log/info.log', level: 'info' }),
+    new winston.transports.File({ filename: './tmp/log/debug.log', level: 'debug' }),
+    new winston.transports.File({ filename: './tmp/log/combined.log' }),
   ],
 });
 if (process.env.NODE_ENV !== 'production') {
