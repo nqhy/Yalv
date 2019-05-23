@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default buttonStyle = StyleSheet.create({
+export const buttonStyle = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

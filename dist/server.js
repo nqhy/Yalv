@@ -86,242 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/path-browserify/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/path-browserify/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// Split a filename into [root, dir, basename, ext], unix version
-// 'root' is just a slash, or nothing.
-var splitPathRe =
-    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
-var splitPath = function(filename) {
-  return splitPathRe.exec(filename).slice(1);
-};
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (typeof path !== 'string') {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(filter(paths, function(p, index) {
-    if (typeof p !== 'string') {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function(path) {
-  var result = splitPath(path),
-      root = result[0],
-      dir = result[1];
-
-  if (!root && !dir) {
-    // No dirname whatsoever
-    return '.';
-  }
-
-  if (dir) {
-    // It has a dirname, strip trailing slash
-    dir = dir.substr(0, dir.length - 1);
-  }
-
-  return root + dir;
-};
-
-
-exports.basename = function(path, ext) {
-  var f = splitPath(path)[2];
-  // TODO: make this comparison case-insensitive on windows?
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-
-exports.extname = function(path) {
-  return splitPath(path)[3];
-};
-
-function filter (xs, f) {
-    if (xs.filter) return xs.filter(f);
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i], i, xs)) res.push(xs[i]);
-    }
-    return res;
-}
-
-// String.prototype.substr - negative index don't work in IE8
-var substr = 'ab'.substr(-1) === 'b'
-    ? function (str, start, len) { return str.substr(start, len) }
-    : function (str, start, len) {
-        if (start < 0) start = str.length + start;
-        return str.substr(start, len);
-    }
-;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -517,11 +281,82 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./src/config/i18n.js":
+/*!****************************!*\
+  !*** ./src/config/i18n.js ***!
+  \****************************/
+/*! exports provided: i18n */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i18n", function() { return i18n; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _locales_en__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locales/en */ "./src/locales/en.js");
+function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=arguments[i]!=null?arguments[i]:{};var ownKeys=Object.keys(source);if(typeof Object.getOwnPropertySymbols==='function'){ownKeys=ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym){return Object.getOwnPropertyDescriptor(source,sym).enumerable;}));}ownKeys.forEach(function(key){_defineProperty(target,key,source[key]);});}return target;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}const i18n=function i18n(name){let language=arguments.length>1&&arguments[1]!==undefined?arguments[1]:'en';return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(i18nText,"".concat(language,".").concat(name),{});};const i18nText={en:_objectSpread({},_locales_en__WEBPACK_IMPORTED_MODULE_1__["localesEn"])};
+
+/***/ }),
+
+/***/ "./src/config/index.js":
+/*!*****************************!*\
+  !*** ./src/config/index.js ***!
+  \*****************************/
+/*! exports provided: i18n, secret */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./i18n */ "./src/config/i18n.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "i18n", function() { return _i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"]; });
+
+/* harmony import */ var _secret__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./secret */ "./src/config/secret.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "secret", function() { return _secret__WEBPACK_IMPORTED_MODULE_1__["secret"]; });
+
+
+
+/***/ }),
+
+/***/ "./src/config/secret.js":
+/*!******************************!*\
+  !*** ./src/config/secret.js ***!
+  \******************************/
+/*! exports provided: secret */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "secret", function() { return secret; });
+const secret="0213213";
+
+/***/ }),
+
+/***/ "./src/controller/userController.js":
+/*!******************************************!*\
+  !*** ./src/controller/userController.js ***!
+  \******************************************/
+/*! exports provided: getUsers, getUserById, addUser, updateUser, deleteUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserById", function() { return getUserById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addUser", function() { return addUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteUser", function() { return deleteUser; });
+/* harmony import */ var boom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! boom */ "boom");
+/* harmony import */ var boom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(boom__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db/models/User */ "./src/db/models/User.js");
+function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const getUsers=function(){var _ref=_asyncToGenerator(function*(req,reply){try{const users=yield _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].find();}catch(err){throw boom__WEBPACK_IMPORTED_MODULE_0___default.a.boomify(err);}});return function getUsers(_x,_x2){return _ref.apply(this,arguments);};}();const getUserById=function(){var _ref2=_asyncToGenerator(function*(req,reply){try{const id=req.params.id;const user=yield _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].findById(id);return user;}catch(err){throw boom__WEBPACK_IMPORTED_MODULE_0___default.a.boomify(err);}});return function getUserById(_x3,_x4){return _ref2.apply(this,arguments);};}();const addUser=function(){var _ref3=_asyncToGenerator(function*(req,reply){try{const user=new _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"](req.body);return user.save();}catch(err){throw boom__WEBPACK_IMPORTED_MODULE_0___default.a.boomify(err);}});return function addUser(_x5,_x6){return _ref3.apply(this,arguments);};}();const updateUser=function(){var _ref4=_asyncToGenerator(function*(req,reply){try{const id=req.params.id;const user=req.body;const updateData=_extends({},user);const update=yield _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].findByIdAndUpdate(id,updateData,{new:true});return update;}catch(err){throw boom__WEBPACK_IMPORTED_MODULE_0___default.a.boomify(err);}});return function updateUser(_x7,_x8){return _ref4.apply(this,arguments);};}();const deleteUser=function(){var _ref5=_asyncToGenerator(function*(req,reply){try{const id=req.params.id;const user=yield _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].findByIdAndRemove(id);return user;}catch(err){throw boom__WEBPACK_IMPORTED_MODULE_0___default.a.boomify(err);}});return function deleteUser(_x9,_x10){return _ref5.apply(this,arguments);};}();
+
+/***/ }),
+
 /***/ "./src/db/config/index.js":
 /*!********************************!*\
   !*** ./src/db/config/index.js ***!
   \********************************/
-/*! exports provided: default */
+/*! exports provided: default, options */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -529,7 +364,89 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Database; });
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _swagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./swagger */ "./src/db/config/swagger.js");
+/* harmony import */ var _swagger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_swagger__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "options", function() { return _swagger__WEBPACK_IMPORTED_MODULE_1__["options"]; });
+
 const server='127.0.0.1:27017';const database='YalvDb';class Database{constructor(){this._connect();}_connect(){mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(server,"/").concat(database),{useNewUrlParser:true,reconnectTries:Number.MAX_VALUE,reconnectInterval:500,poolSize:10,bufferMaxEntries:0,connectTimeoutMS:10000,family:4}).then(()=>{console.log('Database connection succesful');}).catch(err=>{console.error("Database connection error => ".concat(err));});}}
+
+/***/ }),
+
+/***/ "./src/db/config/swagger.js":
+/*!**********************************!*\
+  !*** ./src/db/config/swagger.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+exports.options={routePrefix:'/documentation',exposeRoute:true,swagger:{info:{title:'Fastify API',description:'Ziik-Yalv',version:'1.0.0'},externalDocs:{url:'https://swagger.io',description:'Find more info here'},host:'localhost',schemes:['http'],consumes:['application/json'],produces:['application/json']}};
+
+/***/ }),
+
+/***/ "./src/db/constant/regexp.js":
+/*!***********************************!*\
+  !*** ./src/db/constant/regexp.js ***!
+  \***********************************/
+/*! exports provided: nameRegExp, emailRegExp */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nameRegExp", function() { return nameRegExp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emailRegExp", function() { return emailRegExp; });
+const nameRegExp=/^[a-zA-Z0-9]+$/;const emailRegExp=/\S+@\S+\.\S+/;
+
+/***/ }),
+
+/***/ "./src/db/models/User.js":
+/*!*******************************!*\
+  !*** ./src/db/models/User.js ***!
+  \*******************************/
+/*! exports provided: UserModel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserModel", function() { return UserModel; });
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mongoose-unique-validator */ "mongoose-unique-validator");
+/* harmony import */ var mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! crypto */ "crypto");
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _constant_regexp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constant/regexp */ "./src/db/constant/regexp.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+const UserSchema=new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({username:{type:String,lowercase:true,required:[true,Object(_config__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["nameRegExp"],Object(_config__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')],index:true},email:{type:String,lowercase:true,required:[true,Object(_config__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["emailRegExp"],Object(_config__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')]},bio:String,image:String,hash:String,salt:String},{timestamps:true});UserSchema.plugin(mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1___default.a,{message:Object(_config__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.taken')});const encryPassword=(password,salt)=>crypto__WEBPACK_IMPORTED_MODULE_2___default.a.pbkdf2Sync(password,salt,10000,512,'sha512').toString('hex');UserSchema.methods.setPassword=password=>{undefined.salt=crypto__WEBPACK_IMPORTED_MODULE_2___default.a.randomBytes(16).toString('hex');undefined.halt=encryPassword(password,undefined.salt);};UserSchema.methods.validPassword=password=>{const hash=encryPassword(password,undefined.salt);return undefined.hash===hash;};UserSchema.methods.generateJWT=()=>{const today=new Date();const exp=new Date(today);exp.setDate(today.getDate()+60);return jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.sign({id:undefined._id,username:undefined.username,exp:parseInt(exp.getTime()/1000)},_config__WEBPACK_IMPORTED_MODULE_5__["secret"]);};UserSchema.methods.toAuthJSON=()=>({username:undefined.username,email:undefined.email,token:undefined.generateJWT(),bio:undefined.bio,image:undefined.image});const UserModel=mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model('User',UserSchema);
+
+/***/ }),
+
+/***/ "./src/locales/en.js":
+/*!***************************!*\
+  !*** ./src/locales/en.js ***!
+  \***************************/
+/*! exports provided: localesEn */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "localesEn", function() { return localesEn; });
+const localesEn={validate:{blank:"Can not be blank",invalid:"is Invalid",taken:'is already taken. '}};
+
+/***/ }),
+
+/***/ "./src/routes/userRoute.js":
+/*!*********************************!*\
+  !*** ./src/routes/userRoute.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _controller_userController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller/userController */ "./src/controller/userController.js");
+const routes=[{method:'GET',url:'/api/users',handler:_controller_userController__WEBPACK_IMPORTED_MODULE_0__["getUsers"]},{method:'GET',url:'/api/users/:id',handler:_controller_userController__WEBPACK_IMPORTED_MODULE_0__["getUserById"]},{method:'POST',url:'/api/users',handler:_controller_userController__WEBPACK_IMPORTED_MODULE_0__["addUser"]},{method:'PUT',url:'/api/users/:id',handler:_controller_userController__WEBPACK_IMPORTED_MODULE_0__["updateUser"]},{method:'DELETE',url:'/api/users/:id',handler:_controller_userController__WEBPACK_IMPORTED_MODULE_0__["deleteUser"]}];/* harmony default export */ __webpack_exports__["default"] = (routes);
 
 /***/ }),
 
@@ -542,37 +459,80 @@ const server='127.0.0.1:27017';const database='YalvDb';class Database{constructo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
-/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var webpack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! webpack */ "webpack");
-/* harmony import */ var webpack__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(webpack__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _webpack_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../webpack.config */ "./webpack.config.js");
-/* harmony import */ var _webpack_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_webpack_config__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _db_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../db/config */ "./src/db/config/index.js");
-const app=express__WEBPACK_IMPORTED_MODULE_0___default()(),DIST_DIR=__dirname,compiler=webpack__WEBPACK_IMPORTED_MODULE_1___default()(_webpack_config__WEBPACK_IMPORTED_MODULE_2___default.a);const port=process.env.PORT||8080;app.listen(port,()=>{console.log("Server started at port ".concat(port));const db=new _db_config__WEBPACK_IMPORTED_MODULE_3__["default"]();});
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var fastify_swagger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fastify-swagger */ "fastify-swagger");
+/* harmony import */ var fastify_swagger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fastify_swagger__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _db_config_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db/config/index */ "./src/db/config/index.js");
+/* harmony import */ var _db_config_swagger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../db/config/swagger */ "./src/db/config/swagger.js");
+/* harmony import */ var _db_config_swagger__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_db_config_swagger__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _routes_userRoute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../routes/userRoute */ "./src/routes/userRoute.js");
+function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const fastify=__webpack_require__(/*! fastify */ "fastify")({logger:true});_routes_userRoute__WEBPACK_IMPORTED_MODULE_3__["default"].forEach((route,index)=>[fastify.route(route)]);fastify.register(__webpack_require__(/*! fastify-swagger */ "fastify-swagger"),_db_config_swagger__WEBPACK_IMPORTED_MODULE_2___default.a.options);const start=function(){var _ref=_asyncToGenerator(function*(){try{yield fastify.listen(3000);fastify.swagger();fastify.log.info("server listening on ".concat(fastify.server.address().port));const db=new _db_config_index__WEBPACK_IMPORTED_MODULE_1__["default"]();}catch(err){fastify.log.error(err);process.exit(1);}});return function start(){return _ref.apply(this,arguments);};}();start();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "./webpack.config.js":
-/*!***************************!*\
-  !*** ./webpack.config.js ***!
-  \***************************/
+/***/ "boom":
+/*!***********************!*\
+  !*** external "boom" ***!
+  \***********************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-const path=__webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");const webpack=__webpack_require__(/*! webpack */ "webpack");const nodeExternals=__webpack_require__(/*! webpack-node-externals */ "webpack-node-externals");module.exports={entry:{server:'./src/server/server-dev.js'},output:{path:path.join(__dirname,'dist'),publicPath:'/',filename:'[name].js'},mode:'development',target:'web',devtool:'source-map',node:{__dirname:false,__filename:false},externals:[nodeExternals()],module:{rules:[{test:/\.js$/,exclude:/node_modules/,use:{loader:"babel-loader"}}]},plugins:[],watch:true,watchOptions:{poll:1000,aggregateTimeout:300}};
+module.exports = require("boom");
 
 /***/ }),
 
-/***/ "express":
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("crypto");
+
+/***/ }),
+
+/***/ "fastify":
 /*!**************************!*\
-  !*** external "express" ***!
+  !*** external "fastify" ***!
   \**************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("fastify");
+
+/***/ }),
+
+/***/ "fastify-swagger":
+/*!**********************************!*\
+  !*** external "fastify-swagger" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("fastify-swagger");
+
+/***/ }),
+
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("lodash");
 
 /***/ }),
 
@@ -587,25 +547,14 @@ module.exports = require("mongoose");
 
 /***/ }),
 
-/***/ "webpack":
-/*!**************************!*\
-  !*** external "webpack" ***!
-  \**************************/
+/***/ "mongoose-unique-validator":
+/*!********************************************!*\
+  !*** external "mongoose-unique-validator" ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack");
-
-/***/ }),
-
-/***/ "webpack-node-externals":
-/*!*****************************************!*\
-  !*** external "webpack-node-externals" ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("webpack-node-externals");
+module.exports = require("mongoose-unique-validator");
 
 /***/ })
 

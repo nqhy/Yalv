@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { buttonSty } from '../../styles/common';
+import { buttonStyle } from '../../styles/common';
 
 export default class CommonButton extends React.Component {
   render() {

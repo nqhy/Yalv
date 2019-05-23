@@ -1,16 +1,33 @@
-import express from 'express';
-import webpack from 'webpack'
 
-import config from '../../webpack.config';
-import Connection from '../db/config';
+import swaggerFastify from 'fastify-swagger';
 
-const app = express(),
-            DIST_DIR = __dirname,
-            compiler = webpack(config)
+import Connection from '../db/config/index'
+import swagger from '../db/config/swagger';
+import routes from '../routes/userRoute';
 
-const port = process.env.PORT || 8080;
+const fastify = require('fastify')({
+  logger: true
+})
 
-app.listen(port, () => {
-  console.log(`Server started at port ${port}`);
-  const db = new Connection();
-});
+routes.forEach((route, index) => [
+  fastify.route(route)
+])
+
+//Config Swagger
+fastify.register(require('fastify-swagger'), swagger.options)
+
+
+// Start Server
+const start = async () => {
+  try {
+    await fastify.listen(3000)
+    fastify.swagger()
+    fastify.log.info(`server listening on ${fastify.server.address().port}`)
+    const db = new Connection();
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+start()
+

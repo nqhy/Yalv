@@ -26,3 +26,5 @@ export default class Database {
     })
   }
 }
+
+export { options } from './swagger'
