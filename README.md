@@ -12,3 +12,7 @@
 
 ##### Running Server
  * yarn server
+
+#### Eslint Check
+ * yarn lint
+ * yarn lint --fix (auto fix)
