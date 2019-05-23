@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 
-import { inputSty } from '../../styles/common';
+import { inputStyle } from '../../styles/common';
 
 export default class CommonInput extends React.Component {
   render() {
