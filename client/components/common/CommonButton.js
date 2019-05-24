@@ -9,13 +9,9 @@ type Props = {
   children: String,
 }
 
-const CommonButton = (props: Props) => {
+export const CommonButton = (props: Props) => {
   const {
-    style: {
-      styleText = {},
-      styleButton = {},
-      styleContainer = {},
-    } = {},
+    style: { styleText = {}, styleButton = {}, styleContainer = {} } = {},
     children,
   } = props;
   return (
@@ -26,5 +22,3 @@ const CommonButton = (props: Props) => {
     </View>
   );
 };
-
-export default CommonButton;

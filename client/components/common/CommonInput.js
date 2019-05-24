@@ -11,7 +11,7 @@ type Props = {
   placeholderText: String,
 }
 
-const CommonInput = (props: Props) => {
+export const CommonInput = (props: Props) => {
   const {
     style: {
       styleContainer = {},
@@ -33,5 +33,3 @@ const CommonInput = (props: Props) => {
     </View>
   );
 };
-
-export default CommonInput;

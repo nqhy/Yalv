@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import CommonInput from './common/CommonInput';
+import { CommonInput } from './common';
 
 const styles = {
   styleContainer: {
