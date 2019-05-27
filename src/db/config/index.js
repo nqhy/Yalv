@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 import { logger } from './logger';
 
-const server = '127.0.0.1:27017';
-const database = 'YalvDb';
+import { env } from '../../config/enviroment';
 
 const connect = () => {
-  mongoose.connect(`mongodb://${server}/${database}`, {
+  console.log(env.mlabUser);
+  mongoose.connect(`mongodb://${env.mlabUser}:${env.mlabUser}>@ds149146.mlab.com:49146/yalv`, {
     useNewUrlParser: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 500,

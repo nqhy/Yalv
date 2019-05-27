@@ -4,7 +4,8 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
 import { nameRegExp, emailRegExp } from '../constant/regexp';
-import { i18n, secret } from '../../config';
+import { i18n } from '../../config/i18n';
+import { env } from '../../config/enviroment';
 
 // Schema Defining
 const UserSchema = new mongoose.Schema({
@@ -51,7 +52,7 @@ UserSchema.methods.generateJWT = () => {
     id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000, 10),
-  }, secret);
+  }, env.seceret_jwt);
 };
 
 UserSchema.methods.toAuthJSON = () => ({
