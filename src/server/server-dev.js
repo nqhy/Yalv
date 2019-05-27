@@ -6,6 +6,9 @@ import Connection from '../db/config/index';
 import swagger from '../db/config/swagger';
 import routes from '../routes/userRoute';
 
+// Dotenv Config
+process.env = dotenv.config().parsed;
+
 const fastify = require('fastify')({
   logger: true,
 });
@@ -13,9 +16,6 @@ const fastify = require('fastify')({
 routes.forEach((route) => [
   fastify.route(route),
 ]);
-
-// Dotenv Config
-dotenv.config();
 
 // Config Swagger
 fastify.register(swaggerFastify, swagger.options);

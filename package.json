@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.config.js",
-    "server": "nodemon -r dotenv/config ./dist/server.js",
+    "server": "nodemon ./dist/server.js",
     "lint": "eslint --ext=js --ext=jsx client src"
   },
   "dependencies": {
