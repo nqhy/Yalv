@@ -6,6 +6,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.log
-tmp/**/*
 
 ./dist/*.js
