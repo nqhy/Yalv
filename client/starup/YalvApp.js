@@ -1,15 +1,17 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 
-import Components from '../components';
-import { store } from '../store';
+import { LoginScreen } from '../components/authenticate';
+import { withProvider } from '../utils/providerHoc';
 
-export default class YalvApp extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Components />
-      </Provider>
-    );
-  }
+
+const MainNavigator = createStackNavigator({
+  Login: { screen: withProvider(LoginScreen) },
+},
+{
+  initialRouteName: 'Login',
 }
+);
+
+const YalvApp = createAppContainer(MainNavigator);
+
+export default YalvApp;
