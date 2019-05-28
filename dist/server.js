@@ -366,7 +366,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _constant_regexp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constant/regexp */ "./src/db/constant/regexp.js");
 /* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config/i18n */ "./src/config/i18n.js");
-const UserSchema=new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({username:{type:String,lowercase:true,required:[true,Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["nameRegExp"],Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')],index:true},email:{type:String,lowercase:true,required:[true,Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["emailRegExp"],Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')]},bio:String,image:String,hash:String,salt:String},{timestamps:true});UserSchema.plugin(mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1___default.a,{message:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.taken')});const encryPassword=(password,salt)=>crypto__WEBPACK_IMPORTED_MODULE_2___default.a.pbkdf2Sync(password,salt,10000,512,'sha512').toString('hex');UserSchema.methods.setPassword=password=>{undefined.salt=crypto__WEBPACK_IMPORTED_MODULE_2___default.a.randomBytes(16).toString('hex');undefined.halt=encryPassword(password,undefined.salt);};UserSchema.methods.validPassword=password=>{const hash=encryPassword(password,undefined.salt);return undefined.hash===hash;};UserSchema.methods.generateJWT=()=>{const today=new Date();const exp=new Date(today);exp.setDate(today.getDate()+60);return jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.sign({id:undefined._id,username:undefined.username,exp:parseInt(exp.getTime()/1000,10)},process.env.SECERET_JWT);};UserSchema.methods.toAuthJSON=()=>({username:undefined.username,email:undefined.email,token:undefined.generateJWT(),bio:undefined.bio,image:undefined.image});const User=mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model('User',UserSchema);
+const UserSchema=new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({username:{type:String,lowercase:true,required:[true,Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["nameRegExp"],Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')],index:true},email:{type:String,lowercase:true,required:[true,Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.blank')],match:[_constant_regexp__WEBPACK_IMPORTED_MODULE_4__["emailRegExp"],Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.invalid')]},bio:String,image:String,hash:String,salt:String},{timestamps:true});UserSchema.plugin(mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1___default.a,{message:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"])('validate.taken')});const encryPassword=function encryPassword(password,salt){return crypto__WEBPACK_IMPORTED_MODULE_2___default.a.pbkdf2Sync(password,salt,10000,512,'sha512').toString('hex');};UserSchema.methods.setPassword=function(password){this.salt=crypto__WEBPACK_IMPORTED_MODULE_2___default.a.randomBytes(16).toString('hex');this.halt=encryPassword(password,this.salt);};UserSchema.methods.validPassword=function(password){const hash=encryPassword(password,this.salt);return this.hash===hash;};UserSchema.methods.generateJWT=function(){const today=new Date();const exp=new Date(today);exp.setDate(today.getDate()+60);return jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.sign({id:this._id,username:this.username,exp:parseInt(exp.getTime()/1000,10)},process.env.SECERET_JWT);};UserSchema.methods.toAuthJSON=function(){return{username:this.username,email:this.email,token:this.generateJWT(),bio:this.bio,image:this.image};};const User=mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model('User',UserSchema);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
@@ -382,16 +382,16 @@ const UserSchema=new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({use
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _query_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./query/User */ "./src/graphql/query/User.js");
-/* harmony import */ var _mutation_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutation/User */ "./src/graphql/mutation/User.js");
-const RootQuery=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'RootQueryType',fields:{user: _query_User__WEBPACK_IMPORTED_MODULE_1__["user"],users: _query_User__WEBPACK_IMPORTED_MODULE_1__["users"]}});const Mutation=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'Mutation',fields:{addUser: _mutation_User__WEBPACK_IMPORTED_MODULE_2__["addUser"],updateUser: _mutation_User__WEBPACK_IMPORTED_MODULE_2__["updateUser"],deleteUser: _mutation_User__WEBPACK_IMPORTED_MODULE_2__["deleteUser"],deleteManyUser: _mutation_User__WEBPACK_IMPORTED_MODULE_2__["deleteManyUser"]}});/* harmony default export */ __webpack_exports__["default"] = (new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLSchema"]({query:RootQuery,mutation:Mutation}));
+/* harmony import */ var _queries_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/User */ "./src/graphql/queries/User.js");
+/* harmony import */ var _mutations_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations/User */ "./src/graphql/mutations/User.js");
+const RootQuery=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'RootQueryType',fields:{user: _queries_User__WEBPACK_IMPORTED_MODULE_1__["user"],users: _queries_User__WEBPACK_IMPORTED_MODULE_1__["users"]}});const Mutation=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'Mutation',fields:{addUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["addUser"],updateUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUser"],deleteUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteUser"],deleteManyUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteManyUser"]}});/* harmony default export */ __webpack_exports__["default"] = (new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLSchema"]({query:RootQuery,mutation:Mutation}));
 
 /***/ }),
 
-/***/ "./src/graphql/mutation/User.js":
-/*!**************************************!*\
-  !*** ./src/graphql/mutation/User.js ***!
-  \**************************************/
+/***/ "./src/graphql/mutations/User.js":
+/*!***************************************!*\
+  !*** ./src/graphql/mutations/User.js ***!
+  \***************************************/
 /*! exports provided: addUser, updateUser, deleteUser, deleteManyUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -411,10 +411,10 @@ function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=ar
 
 /***/ }),
 
-/***/ "./src/graphql/query/User.js":
-/*!***********************************!*\
-  !*** ./src/graphql/query/User.js ***!
-  \***********************************/
+/***/ "./src/graphql/queries/User.js":
+/*!*************************************!*\
+  !*** ./src/graphql/queries/User.js ***!
+  \*************************************/
 /*! exports provided: user, users */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
