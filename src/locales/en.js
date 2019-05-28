@@ -4,4 +4,9 @@ export const localesEn = {
     invalid: 'is Invalid',
     taken: 'is already taken. ',
   },
+  message: {
+    success: {
+      delete: 'Delete Successfully',
+    },
+  },
 };

@@ -3,6 +3,7 @@ import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
 import { UserType } from '../schema/UserSchema';
 import { User } from '../../db/models/User';
 import { logger } from '../../db/config/logger';
+import { i18n } from '../../config/i18n';
 
 export const addUser = {
   type: UserType,
@@ -47,7 +48,7 @@ export const deleteManyUser = {
   type: UserType,
   resolve() {
     return User.deleteMany({}, () => {
-      logger.info('Delete Succesfully');
+      logger.info(i18n('message.success.delete'));
     });
   },
 };
