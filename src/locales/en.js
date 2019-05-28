@@ -7,6 +7,10 @@ export const localesEn = {
   message: {
     success: {
       delete: 'Delete Successfully',
+      connect: 'Connection Successfully',
+    },
+    failure: {
+      connect: 'Connection Error',
     },
   },
 };
