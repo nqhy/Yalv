@@ -14,4 +14,3 @@ const connect = () => {
 };
 
 export default connect;
-export { options } from './swagger';
