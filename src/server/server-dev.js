@@ -1,35 +1,28 @@
-
-import swaggerFastify from 'fastify-swagger';
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import cors from 'cors';
 import dotenv from 'dotenv';
 
 import Connection from '../db/config/index';
-import swagger from '../db/config/swagger';
-import routes from '../routes/userRoute';
+import { logger } from '../db/config/logger';
+import schema from '../graphql';
+
+const app = express();
 
 // Dotenv Config
 process.env = dotenv.config().parsed;
 
-const fastify = require('fastify')({
-  logger: true,
-});
-
-routes.forEach((route) => [
-  fastify.route(route),
-]);
-
-// Config Swagger
-fastify.register(swaggerFastify, swagger.options);
+// MiddleWare
+app.use(cors());
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
 
 // Start Server
-const start = async () => {
-  try {
-    await fastify.listen(3000);
-    fastify.swagger();
-    fastify.log.info(`server listening on ${fastify.server.address().port}`);
-    Connection();
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-start();
+const port = 8000 || process.env.PORT;
+
+app.listen(port, () => {
+  Connection();
+  logger.info(`Server is running at ${port}`);
+});

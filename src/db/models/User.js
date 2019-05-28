@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
@@ -30,19 +32,21 @@ const UserSchema = new mongoose.Schema({
 UserSchema.plugin(uniqueValidator, { message: i18n('validate.taken') });
 
 // Methods Defining
-const encryPassword = (password, salt) => crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512').toString('hex');
+const encryPassword = function(password, salt) {
+  return crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512').toString('hex');
+};
 
-UserSchema.methods.setPassword = (password) => {
+UserSchema.methods.setPassword = function(password) {
   this.salt = crypto.randomBytes(16).toString('hex');
   this.halt = encryPassword(password, this.salt);
 };
 
-UserSchema.methods.validPassword = (password) => {
+UserSchema.methods.validPassword = function(password) {
   const hash = encryPassword(password, this.salt);
   return this.hash === hash;
 };
 
-UserSchema.methods.generateJWT = () => {
+UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const exp = new Date(today);
   exp.setDate(today.getDate() + 60);
@@ -54,12 +58,14 @@ UserSchema.methods.generateJWT = () => {
   }, process.env.SECERET_JWT);
 };
 
-UserSchema.methods.toAuthJSON = () => ({
-  username: this.username,
-  email: this.email,
-  token: this.generateJWT(),
-  bio: this.bio,
-  image: this.image,
-});
+UserSchema.methods.toAuthJSON = function() {
+  return {
+    username: this.username,
+    email: this.email,
+    token: this.generateJWT(),
+    bio: this.bio,
+    image: this.image,
+  };
+};
 
 export const User = mongoose.model('User', UserSchema);
