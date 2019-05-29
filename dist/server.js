@@ -310,7 +310,8 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logger */ "./src/db/config/logger.js");
-const connect=()=>{mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(process.env.MLAB_USER,":").concat(process.env.MLAB_PASS,"@ds149146.mlab.com:49146/yalv"),{useNewUrlParser:true}).then(()=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].info('Database connection succesful');}).catch(err=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].error("Database connection error => ".concat(err));});};/* harmony default export */ __webpack_exports__["default"] = (connect);
+/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/i18n */ "./src/config/i18n.js");
+const connect=()=>{mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(process.env.MLAB_USER,":").concat(process.env.MLAB_PASS,"@ds149146.mlab.com:49146/yalv"),{useNewUrlParser:true}).then(()=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].info(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"])('message.success.connect'));}).catch(err=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].error("".concat(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"])('message.failure.connect')," => ").concat(err));});};/* harmony default export */ __webpack_exports__["default"] = (connect);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
@@ -456,7 +457,7 @@ const UserType=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({na
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "localesEn", function() { return localesEn; });
-const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. '},message:{success:{delete:'Delete Successfully'}}};
+const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. '},message:{success:{delete:'Delete Successfully',connect:'Connection Successfully'},failure:{connect:'Connection Error'}}};
 
 /***/ }),
 
