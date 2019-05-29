@@ -1,4 +1,5 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { KeepAwake, registerRootComponent } from 'expo';
 
 import { LoginScreen } from '../components/authenticate';
 import { withProvider } from '../utils/providerHoc';
@@ -14,4 +15,9 @@ const MainNavigator = createStackNavigator({
 
 const YalvApp = createAppContainer(MainNavigator);
 
-export default YalvApp;
+// eslint-disable-next-line no-undef
+if (__DEV__) {
+  KeepAwake.activate();
+}
+
+registerRootComponent(YalvApp);
