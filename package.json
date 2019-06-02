@@ -30,6 +30,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "node-uuid": "^1.4.8",
     "nodemon": "^1.19.0",
+    "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "^3.11.0",

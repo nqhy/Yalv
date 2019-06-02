@@ -6,6 +6,7 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.log
+*.swp
 
 # Enviroment Variablse
 *.env
