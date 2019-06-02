@@ -1,8 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { CommonInput, CommonButton } from '../common';
-import { LoadingSpine } from '../common/LoadingSpine';
+import { CommonInput, CommonButton, LoadingSpine } from '../common';
 
 const styles = {
   styleContainer: {
@@ -16,7 +15,7 @@ const styles = {
 export const LoginScreen = () => (
   <View style={styles.styleContainer}>
     <CommonInput style={styles} />
-    <CommonButton>Helo</CommonButton>
+    <CommonButton>Hello</CommonButton>
     <LoadingSpine sourceImg={require('../../styles/img/loadingSpine.png')} />
   </View>
 );
