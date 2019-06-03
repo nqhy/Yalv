@@ -65,16 +65,10 @@ UserSchema.methods.toAuthJSON = function() {
 
 // Static Methods
 UserSchema.statics.authenticate = async function(email, password) {
-  let data = {};
-  await this.findOne({ email }, (error, user) => {
-    if (error) return { error };
-    const hash = encryPassword(password, user.salt);
-    if (user.hash === hash) {
-      data = user.toAuthJSON();
-    } else { data = { error: i18n('validate.authenticate') }; }
-    return null;
-  });
-  return data;
+  const user = await this.findOne({ email });
+  const hash = encryPassword(password, user.salt);
+  if (user.hash === hash) return user.toAuthJSON();
+  return { error: i18n('validate.authenticate') };
 };
 
 export const User = mongoose.model('User', UserSchema);

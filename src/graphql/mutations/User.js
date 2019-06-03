@@ -32,7 +32,7 @@ export const validateUser = {
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: async (parent, args) => User.authenticate(args.email, args.password),
+  resolve: (parent, args) => User.authenticate(args.email, args.password),
 };
 
 export const updateUser = {
