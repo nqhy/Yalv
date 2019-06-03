@@ -8,7 +8,7 @@ type Props = {
   style: Object,
   selectionColor: String,
   placeholderTextColor: String,
-  placeholderText: String,
+  placeholder: String,
 }
 
 export const CommonInput = (props: Props) => {
@@ -19,7 +19,7 @@ export const CommonInput = (props: Props) => {
     } = {},
     selectionColor = 'pink',
     placeholderTextColor = 'pink',
-    placeholderText = 'Common Input ...',
+    placeholder = 'Common Input ...',
   } = props;
 
   return (
@@ -28,7 +28,7 @@ export const CommonInput = (props: Props) => {
         style={[inputStyle.input, styleInput]}
         selectionColor={selectionColor}
         placeholderTextColor={placeholderTextColor}
-        placeholder={placeholderText}
+        placeholder={placeholder}
       />
     </View>
   );

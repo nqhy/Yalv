@@ -1,12 +1,12 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { KeepAwake, registerRootComponent } from 'expo';
 
-import { LoginScreen } from '../components/authenticate';
-import { withProvider } from '../utils/providerHoc';
+import { SignUpScreen } from '../components/authenticate';
+import { withApolloProvider } from '../provider/withApolloProvider';
 
 
 const MainNavigator = createStackNavigator({
-  Login: { screen: withProvider(LoginScreen) },
+  Login: { screen: SignUpScreen },
 },
 {
   initialRouteName: 'Login',
@@ -25,4 +25,4 @@ if (__DEV__) {
   KeepAwake.activate();
 }
 
-registerRootComponent(YalvApp);
+registerRootComponent(withApolloProvider(YalvApp));
