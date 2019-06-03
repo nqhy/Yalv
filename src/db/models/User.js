@@ -38,12 +38,7 @@ const encryPassword = function(password, salt) {
 
 UserSchema.methods.setPassword = function(password) {
   this.salt = crypto.randomBytes(16).toString('hex');
-  this.halt = encryPassword(password, this.salt);
-};
-
-UserSchema.methods.validPassword = function(password) {
-  const hash = encryPassword(password, this.salt);
-  return this.hash === hash;
+  this.hash = encryPassword(password, this.salt);
 };
 
 UserSchema.methods.generateJWT = function() {
@@ -66,6 +61,20 @@ UserSchema.methods.toAuthJSON = function() {
     bio: this.bio,
     image: this.image,
   };
+};
+
+// Static Methods
+UserSchema.statics.authenticate = async function(email, password) {
+  let data = {};
+  await this.findOne({ email }, (error, user) => {
+    if (error) return { error };
+    const hash = encryPassword(password, user.salt);
+    if (user.hash === hash) {
+      data = user.toAuthJSON();
+    } else { data = { error: i18n('validate.authenticate') }; }
+    return null;
+  });
+  return data;
 };
 
 export const User = mongoose.model('User', UserSchema);

@@ -10,5 +10,7 @@ export const UserType = new GraphQLObjectType({
     image: { type: GraphQLString },
     hash: { type: GraphQLString },
     salt: { type: GraphQLString },
+    token: { type: GraphQLString },
+    error: { type: GraphQLString },
   }),
 });
