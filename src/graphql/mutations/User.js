@@ -11,15 +11,28 @@ export const addUser = {
     username: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
+    confirmPassword: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve(parent, args) {
     const user = new User({
       username: args.username,
       email: args.email,
     });
-    user.setPassword(args.password);
-    return user.save();
+    if (args.password === args.confirmPassword) {
+      user.setPassword(args.password);
+      return user.save();
+    }
+    return { error: i18n('validate.confirmPass') };
   },
+};
+
+export const validateUser = {
+  type: UserType,
+  args: {
+    email: { type: new GraphQLNonNull(GraphQLString) },
+    password: { type: new GraphQLNonNull(GraphQLString) },
+  },
+  resolve: async (parent, args) => User.authenticate(args.email, args.password),
 };
 
 export const updateUser = {
