@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import { graphql } from 'react-apollo';
 import { View } from 'react-native';
 
 import { CommonInput, CommonButton } from '../common';
+import { UserMutation } from '../../graphql/mutations/user';
 
 const styles = {
   styleContainer: {
@@ -12,9 +14,9 @@ const styles = {
   },
 };
 
-export const SignUpScreen = () => {
+export const SignUpComponent = () => {
   useEffect(() => {
-    // Do nothing Now
+    // Do Nothing
   }, []);
 
   return (
@@ -27,3 +29,5 @@ export const SignUpScreen = () => {
     </View>
   );
 };
+
+export const SignUpScreen = graphql(UserMutation.createUser)(SignUpComponent);

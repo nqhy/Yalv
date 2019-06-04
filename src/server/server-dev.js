@@ -14,6 +14,7 @@ process.env = dotenv.config().parsed;
 
 // MiddleWare
 app.use(cors());
+
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true,

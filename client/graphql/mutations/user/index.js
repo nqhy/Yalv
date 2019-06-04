@@ -1,9 +1,9 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import { updateUserProvider } from '../provider';
 
-const createUser = gql`
-  mutation($username: String!, $email: String!, $password: String!, $confirmPassword: !String){
+const createUser = gql(`
+  mutation($username: String!, $email: String!, $password: String!, $confirmPassword: String!){
     createUser(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword ){
       username
       email
@@ -11,7 +11,7 @@ const createUser = gql`
       error
     }
   }
-`;
+`);
 
 const updateUserName = updateUserProvider('username');
 const updateUserEmail = updateUserProvider('email');
