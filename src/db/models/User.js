@@ -5,7 +5,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
-import { nameRegExp, emailRegExp, phoneRegExp } from '../constant/regexp';
+import { nameRegExp, emailRegExp, phoneRegExp, passRegExp } from '../constant/regexp';
 import { i18n } from '../../config/i18n';
 
 // Schema Defining
@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     lowercase: true,
+    minlength: 6,
     required: [true, i18n('validate.blank')],
     match: [nameRegExp, i18n('validate.invalid')],
     index: true,
@@ -79,18 +80,42 @@ UserSchema.methods.toAuthJSON = function() {
 };
 
 // Static Methods
+UserSchema.statics.createUser = async function(data) {
+  const { username, email, password, confirmPassword } = data;
+  const user = new this({
+    username,
+    email,
+  });
+  if (!passRegExp.test(password)) return { error: i18n('validate.passwordValidate') };
+  if (password === confirmPassword) {
+    user.setPassword(password);
+    try {
+      return user.save();
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+  return { error: i18n('validate.confirmPass') };
+};
+
 UserSchema.statics.authenticate = async function(email, password) {
   const user = await this.findOne({ email });
+  if (user === null) return { error: i18n('validate.recordNotFound') };
   const hash = encryPassword(password, user.salt);
   if (user.hash === hash) return user.toAuthJSON();
   return { error: i18n('validate.authenticate') };
 };
 
 UserSchema.statics.updateUserInfo = async function(id, type, data) {
-  const user = await this.findById(id);
-  user[type] = data[type];
-  user.save();
-  return user.toAuthJSON();
+  try {
+    const user = await this.findById(id);
+    user[type] = data[type];
+    await user.save();
+    return user.toAuthJSON();
+  } catch (error) {
+    if (error.name === 'CastError') return { error: i18n('validate.recordNotFound') };
+    return { error: error.message };
+  }
 };
 
 export const User = mongoose.model('User', UserSchema);

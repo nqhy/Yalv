@@ -4,7 +4,6 @@ import { UserType } from '../schema/UserSchema';
 import { User } from '../../db/models/User';
 import { logger } from '../../db/config/logger';
 import { i18n } from '../../config/i18n';
-import { passRegExp } from '../../db/constant/regexp';
 import { updateUser } from './provider';
 
 // Create
@@ -16,20 +15,7 @@ export const createUser = {
     password: { type: new GraphQLNonNull(GraphQLString) },
     confirmPassword: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve(parent, args) {
-    const { password, confirmPassword, email, username } = args;
-    const user = new User({
-      username,
-      email,
-    });
-    if (!passRegExp.test(password)) return { error: i18n('validate.passwordValidate') };
-    if (password === confirmPassword) {
-      user.setPassword(password);
-      user.save();
-      return { success: i18n('message.success.addUser') };
-    }
-    return { error: i18n('validate.confirmPass') };
-  },
+  resolve: async (parent, args) => User.createUser(args),
 };
 
 // Update
