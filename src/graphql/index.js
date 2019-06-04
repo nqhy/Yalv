@@ -1,7 +1,18 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql';
 
 import { user, users } from './queries/User';
-import { addUser, validateUser, updateUser, deleteUser, deleteManyUser } from './mutations/User';
+import {
+  createUser,
+  validateUser,
+  updateUserName,
+  updateUserEmail,
+  updateUserBio,
+  updateUserImage,
+  updateUserGender,
+  updateUserPhone,
+  updateUserBirthDay,
+  deleteUser,
+  deleteManyUser } from './mutations/User';
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -14,8 +25,14 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    addUser,
-    updateUser,
+    createUser,
+    updateUserName,
+    updateUserEmail,
+    updateUserBio,
+    updateUserImage,
+    updateUserGender,
+    updateUserPhone,
+    updateUserBirthDay,
     deleteUser,
     deleteManyUser,
     validateUser,

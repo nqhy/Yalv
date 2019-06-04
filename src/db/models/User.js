@@ -5,7 +5,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
-import { nameRegExp, emailRegExp } from '../constant/regexp';
+import { nameRegExp, emailRegExp, phoneRegExp } from '../constant/regexp';
 import { i18n } from '../../config/i18n';
 
 // Schema Defining
@@ -25,6 +25,22 @@ const UserSchema = new mongoose.Schema({
   },
   bio: String,
   image: String,
+  gender: {
+    type: String,
+    enum: [
+      i18n('enum.user.gender.male'),
+      i18n('enum.user.gender.female'),
+    ],
+  },
+  phone: {
+    type: String,
+    required: false,
+    match: [phoneRegExp, i18n('validate.invalid')],
+  },
+  birthDay: {
+    type: Date,
+    default: null,
+  },
   hash: String,
   salt: String,
 }, { timestamps: true });
@@ -49,17 +65,16 @@ UserSchema.methods.generateJWT = function() {
   return jwt.sign({
     id: this._id,
     username: this.username,
+    email: this.email,
+    bio: this.bio,
+    image: this.image,
     exp: parseInt(exp.getTime() / 1000, 10),
   }, process.env.SECERET_JWT);
 };
 
 UserSchema.methods.toAuthJSON = function() {
   return {
-    username: this.username,
-    email: this.email,
     token: this.generateJWT(),
-    bio: this.bio,
-    image: this.image,
   };
 };
 
@@ -69,6 +84,13 @@ UserSchema.statics.authenticate = async function(email, password) {
   const hash = encryPassword(password, user.salt);
   if (user.hash === hash) return user.toAuthJSON();
   return { error: i18n('validate.authenticate') };
+};
+
+UserSchema.statics.updateUserInfo = async function(id, type, data) {
+  const user = await this.findById(id);
+  user[type] = data[type];
+  user.save();
+  return user.toAuthJSON();
 };
 
 export const User = mongoose.model('User', UserSchema);

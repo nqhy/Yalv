@@ -4,8 +4,11 @@ import { UserType } from '../schema/UserSchema';
 import { User } from '../../db/models/User';
 import { logger } from '../../db/config/logger';
 import { i18n } from '../../config/i18n';
+import { passRegExp } from '../../db/constant/regexp';
+import { updateUser } from './provider';
 
-export const addUser = {
+// Create
+export const createUser = {
   type: UserType,
   args: {
     username: { type: new GraphQLNonNull(GraphQLString) },
@@ -14,18 +17,53 @@ export const addUser = {
     confirmPassword: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve(parent, args) {
+    const { password, confirmPassword, email, username } = args;
     const user = new User({
-      username: args.username,
-      email: args.email,
+      username,
+      email,
     });
-    if (args.password === args.confirmPassword) {
-      user.setPassword(args.password);
-      return user.save();
+    if (!passRegExp.test(password)) return { error: i18n('validate.passwordValidate') };
+    if (password === confirmPassword) {
+      user.setPassword(password);
+      user.save();
+      return { success: i18n('message.success.addUser') };
     }
     return { error: i18n('validate.confirmPass') };
   },
 };
 
+// Update
+export const updateUserName = updateUser('username');
+
+export const updateUserEmail = updateUser('email');
+
+export const updateUserBio = updateUser('bio');
+
+export const updateUserImage = updateUser('image');
+
+export const updateUserGender = updateUser('gender');
+
+export const updateUserPhone = updateUser('phone');
+
+export const updateUserBirthDay = updateUser('birthday');
+
+// Delete
+export const deleteUser = {
+  type: UserType,
+  args: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+  },
+  resolve: (parent, args) => User.findByIdAndRemove(args.id),
+};
+
+export const deleteManyUser = {
+  type: UserType,
+  resolve: () => User.deleteMany({}, () => {
+    logger.info(i18n('message.success.delete'));
+  }),
+};
+
+// Validate
 export const validateUser = {
   type: UserType,
   args: {
@@ -33,35 +71,4 @@ export const validateUser = {
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (parent, args) => User.authenticate(args.email, args.password),
-};
-
-export const updateUser = {
-  type: UserType,
-  args: {
-    id: { type: new GraphQLNonNull(GraphQLID) },
-    data: { type: new GraphQLNonNull(GraphQLString) },
-  },
-  resolve(parent, args) {
-    const updateData = JSON.parse(args.data);
-    return User.findByIdAndUpdate(args.id, { ...updateData }, { new: true });
-  },
-};
-
-export const deleteUser = {
-  type: UserType,
-  args: {
-    id: { type: new GraphQLNonNull(GraphQLID) },
-  },
-  resolve(parent, args) {
-    return User.findByIdAndRemove(args.id);
-  },
-};
-
-export const deleteManyUser = {
-  type: UserType,
-  resolve() {
-    return User.deleteMany({}, () => {
-      logger.info(i18n('message.success.delete'));
-    });
-  },
 };

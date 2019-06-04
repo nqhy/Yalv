@@ -12,5 +12,6 @@ export const UserType = new GraphQLObjectType({
     salt: { type: GraphQLString },
     token: { type: GraphQLString },
     error: { type: GraphQLString },
+    success: { type: GraphQLString },
   }),
 });
