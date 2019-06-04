@@ -1,0 +1,1 @@
+export { updateUserProvider } from './providerUser';
