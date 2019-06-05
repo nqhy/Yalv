@@ -2,8 +2,8 @@
 
 ### Runing App
  * yarn start (expo start)
- * yarn run ios (expo start ios)
- * yarn run android (expo start android)
+ * yarn ios (expo start ios)
+ * yarn android (expo start android)
 
 ### Running WebPack
 ##### Mode Developemnt: 
