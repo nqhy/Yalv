@@ -1,10 +1,11 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { KeepAwake, registerRootComponent } from 'expo';
 
+import '../locales/i18n';
 import { SignUpScreen } from '../components/authenticate';
-import { withApolloProvider } from '../provider/withApolloProvider';
+import { withApolloProvider } from '../utils/hoc';
 
-
+// Configure Stack Navigator and I18n for each screen
 const MainNavigator = createStackNavigator({
   Login: { screen: SignUpScreen },
 },
