@@ -5,7 +5,7 @@ type Props = {
   i18n: Object,
 }
 
-export const withChangeLanguage = (Component) => (props: Props) => {
+export const withChangeLanguage = (Component: Node) => (props: Props) => {
   const { i18n } = props;
 
   const onChangeLanguage =  (lng) => {

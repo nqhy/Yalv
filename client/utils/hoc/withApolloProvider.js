@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
@@ -9,7 +10,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const withApolloProvider = (Component) => () => (
+export const withApolloProvider = (Component: Node) => () => (
   <ApolloProvider client={client}>
     <Component />
   </ApolloProvider>

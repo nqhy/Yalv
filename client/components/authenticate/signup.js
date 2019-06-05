@@ -1,13 +1,8 @@
 // @flow
 import React from 'react';
-import { graphql } from 'react-apollo';
 import { View } from 'react-native';
-import { compose } from 'recompose';
-import { withTranslation } from 'react-i18next';
 
 import { CommonInput, CommonButton } from '../common';
-import { UserMutation } from '../../graphql/mutations/user';
-import { withChangeLanguage } from '../../utils/hoc';
 
 const styles = {
   styleContainer: {
@@ -35,9 +30,3 @@ export const SignUpComponent = (props: Props) => {
     </View>
   );
 };
-
-export const SignUpScreen = compose(
-  withTranslation('authenticate'),
-  graphql(UserMutation.createUser),
-  withChangeLanguage,
-)(SignUpComponent);

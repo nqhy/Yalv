@@ -42,7 +42,6 @@
     "react-native": "npm:@brunolemos/react-native",
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
-    "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-saga": "^1.0.2",
