@@ -4,6 +4,7 @@ export default {
     email: 'Email',
     password: 'Mật Khẩu',
     confirmation: 'Xác Nhận Lại Mật Khẩu',
-    'sign up': 'Đăng kí',
+    'sign up': 'Đăng Kí',
+    'sign in': 'Đăng Nhập',
   },
 };

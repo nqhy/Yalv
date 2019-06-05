@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { View, Animated, Easing } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
 import { loadingStyle } from '../../styles/common';
 
@@ -29,7 +29,7 @@ export class LoadingSpine extends React.Component {
     const {
       isLoading = true,
       Content = () => null,
-      style: { styleContainer = {}, styleImage = {} } = {},
+      style: { styleImage = {} } = {},
       sourceImg = '',
     } = this.props;
 
@@ -39,7 +39,7 @@ export class LoadingSpine extends React.Component {
     });
 
     return (
-      <View style={[loadingStyle.container, styleContainer]}>
+      <>
         {
           isLoading ? (
             <Animated.Image
@@ -50,7 +50,7 @@ export class LoadingSpine extends React.Component {
             <Content />
           )
         }
-      </View>
+      </>
     );
   }
 }

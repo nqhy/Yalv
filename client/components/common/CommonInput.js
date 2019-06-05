@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 
 import { inputStyle } from '../../styles/common';
 
@@ -14,7 +14,6 @@ type Props = {
 export const CommonInput = (props: Props) => {
   const {
     style: {
-      styleContainer = {},
       styleInput = {},
     } = {},
     selectionColor = 'pink',
@@ -23,13 +22,13 @@ export const CommonInput = (props: Props) => {
   } = props;
 
   return (
-    <View style={[inputStyle.container, styleContainer]}>
+    <>
       <TextInput
         style={[inputStyle.input, styleInput]}
         selectionColor={selectionColor}
         placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}
       />
-    </View>
+    </>
   );
 };
