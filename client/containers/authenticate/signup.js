@@ -5,6 +5,10 @@ import { withChangeLanguage } from '../../utils/hoc';
 import { SignUpComponent } from '../../components/authenticate';
 import { UserMutation } from '../../graphql/mutations/user';
 
+SignUpComponent.navigationOptions = {
+  header: null,
+};
+
 export const SignUpScreen = compose(
   withTranslation('authenticate'),
   graphql(UserMutation.createUser),

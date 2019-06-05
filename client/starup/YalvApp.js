@@ -8,7 +8,7 @@ import { SignUpScreen } from '../containers/authenticate';
 
 // Configure Stack Navigator and I18n for each screen
 const MainNavigator = createStackNavigator({
-  Login: { screen: SignUpScreen },
+  Login: { screen: SignUpScreen, navigationOptions: { header: null } },
 },
 {
   initialRouteName: 'Login',
