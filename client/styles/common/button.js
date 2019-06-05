@@ -1,23 +1,22 @@
 import { StyleSheet } from 'react-native';
 
+import { color } from '../theme';
+
 export const buttonStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   button: {
-    borderColor: 'black',
+    borderColor: color.black,
     borderWidth: 2,
     borderRadius: 20,
     padding: 15,
     width: 150,
     height: 'auto',
-    backgroundColor: 'black',
+    backgroundColor: color.black,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     fontSize: 16,
-    color: 'pink',
+    color: color.illusion,
     fontWeight: 'bold',
   },
 });

@@ -4,14 +4,14 @@ import { compose } from 'react-apollo';
 
 import '../locales/i18n';
 import { withApolloProvider, withProviderRedux } from '../utils/hoc';
-import { SignUpScreen } from '../containers/authenticate';
+import AuthenticateScreen from '../containers/authenticate';
 
 // Configure Stack Navigator and I18n for each screen
 const MainNavigator = createStackNavigator({
-  Login: { screen: SignUpScreen, navigationOptions: { header: null } },
+  Authenticate: { screen: AuthenticateScreen, navigationOptions: { header: null } },
 },
 {
-  initialRouteName: 'Login',
+  initialRouteName: 'Authenticate',
   defaultNavigationOptions: {
     headerStyle: {
       borderBottomWidth: 0,

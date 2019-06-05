@@ -1,24 +1,26 @@
 // @flow
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import { buttonStyle } from '../../styles/common';
 
 type Props = {
   style: Object,
   children: String,
+  handlePress: Function,
 }
 
 export const CommonButton = (props: Props) => {
   const {
-    style: { styleText = {}, styleButton = {}, styleContainer = {} } = {},
+    style: { styleText = {}, styleButton = {} } = {},
     children,
+    handlePress = () => null,
   } = props;
   return (
-    <View style={[buttonStyle.container, styleContainer]}>
-      <TouchableOpacity style={[buttonStyle.button, styleButton]}>
+    <>
+      <TouchableOpacity style={[buttonStyle.button, styleButton]} onPress={() => handlePress()}>
         <Text style={[buttonStyle.text, styleText]}>{children}</Text>
       </TouchableOpacity>
-    </View>
+    </>
   );
 };
