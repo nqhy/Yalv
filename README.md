@@ -1,5 +1,6 @@
 # Yalv
-
+### Install Package
+ * yarn or npm install
 ### Runing App
  * yarn start (expo start)
  * yarn ios (expo start ios)
