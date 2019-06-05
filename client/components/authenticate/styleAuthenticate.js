@@ -19,7 +19,7 @@ export const styleAuthenticate = {
     borderColor: color.regentGray,
     color: color.white,
     fontSize: 25,
-    marginBottom: 30,
+    marginBottom: '5%',
     textAlign: 'center',
   },
   firstInput: {
@@ -29,15 +29,17 @@ export const styleAuthenticate = {
     marginBottom: '12%',
   },
   buttonSignIn: {
-    width: 250,
+    width: '50%',
     backgroundColor: color.roseBud,
     borderWidth: 0,
     marginBottom: 10,
+    padding: 7,
   },
   buttonSignUp: {
-    width: 250,
+    width: '50%',
     backgroundColor: color.blueViolet,
     borderWidth: 0,
+    padding: 7,
   },
   buttonText: {
     fontSize: 20,
