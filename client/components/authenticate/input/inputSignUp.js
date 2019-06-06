@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import { styleAuthenticate } from '../styles';
+import { styleInput } from '../styles';
 import { CommonInput } from '../../common';
 
 type Props = {
@@ -19,12 +19,12 @@ export const InputSignUp = (props: Props) => {
       <CommonInput
         style={{
           styleInput: {
-            ...styleAuthenticate.input,
-            ...styleAuthenticate.firstInput,
+            ...styleInput.input,
+            ...styleInput.firstInput,
           },
         }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
+        selectionColor={styleInput.selectionColor}
+        placeholderTextColor={styleInput.placeholderTextColor}
         placeholder={t('username')}
         animation={{
           typeAnimation: 'opacity',
@@ -36,10 +36,10 @@ export const InputSignUp = (props: Props) => {
       />
       <CommonInput
         style={{
-          styleInput: styleAuthenticate.input,
+          styleInput: styleInput.input,
         }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
+        selectionColor={styleInput.selectionColor}
+        placeholderTextColor={styleInput.placeholderTextColor}
         placeholder={t('email')}
         animation={{
           typeAnimation: 'opacity',
@@ -51,10 +51,10 @@ export const InputSignUp = (props: Props) => {
       />
       <CommonInput
         style={{
-          styleInput: styleAuthenticate.input,
+          styleInput: styleInput.input,
         }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
+        selectionColor={styleInput.selectionColor}
+        placeholderTextColor={styleInput.placeholderTextColor}
         placeholder={t('password')}
         animation={{
           typeAnimation: 'opacity',
@@ -67,12 +67,12 @@ export const InputSignUp = (props: Props) => {
       <CommonInput
         style={{
           styleInput: {
-            ...styleAuthenticate.input,
-            ...styleAuthenticate.lastInput,
+            ...styleInput.input,
+            ...styleInput.lastInput,
           },
         }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
+        selectionColor={styleInput.selectionColor}
+        placeholderTextColor={styleInput.placeholderTextColor}
         placeholder={t('confirmation')}
         animation={{
           typeAnimation: 'opacity',
