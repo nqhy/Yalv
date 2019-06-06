@@ -5,7 +5,7 @@ import { KeyboardAvoidingView, ImageBackground } from 'react-native';
 import { SignUpComponent } from './signup';
 import { styleAuthenticate } from './styleAuthenticate';
 import { SignInComponent } from './signin';
-import { CommonButton, BackButton } from '../common';
+import { inputSignInData, inputSignUpData } from '../../constants/data/authenticate';
 
 type Props = {
   t: Function,
@@ -19,18 +19,9 @@ export const AuthenticateComponent = (props: Props) => {
   return (
     <ImageBackground source={require('../../styles/img/SignUpBackground.png')} style={styleAuthenticate.backgroundImg} resizeMode="cover">
       <KeyboardAvoidingView style={styleAuthenticate.styleContainer} behavior="padding" enabled>
-        { isSignIn ? (
-          <SignInComponent {...{ t, styleAuthenticate, setIsSignIn }} />
-        ) : (
-          <>
-            <SignUpComponent {...{ t, styleAuthenticate, setIsSignIn }} />
-            <BackButton handlePress={() => setIsSignIn(true)} />
-          </>
-        )
+        { isSignIn ? <SignInComponent {...{ t, setIsSignIn }} data={inputSignInData} />
+          : <SignUpComponent {...{ t, setIsSignIn }} data={inputSignUpData} />
         }
-        <CommonButton style={{ styleButton: styleAuthenticate.buttonSignUp, styleText: styleAuthenticate.buttonText }} handlePress={() => setIsSignIn(false)}>
-          {t('sign up')}
-        </CommonButton>
       </KeyboardAvoidingView>
     </ImageBackground>
   );

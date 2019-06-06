@@ -1,36 +1,36 @@
 // @flow
-import React, { useEffect } from 'react';
-import { Animated, Easing, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Animated, TouchableOpacity } from 'react-native';
+
 import { backButtonStyle } from '../../styles/common';
+import { withFadeAnimation } from '../Animated/withFadeAnimation';
 
 type Props = {
   handlePress: Function,
+  style: Object,
+  animation: Object,
 }
 
-export const BackButton = (props: Props) => {
-  const { handlePress } = props;
-  const animatedFade = new Animated.Value(0);
-
-  const animate = () => {
-    Animated.timing(
-      animatedFade,
-      {
-        toValue: 1,
-        duration: 1000,
-        easing: Easing.cubic,
-      }
-    ).start();
-  };
-
-  useEffect(() => {
-    animate();
-  }, []);
+const BackButtonComponent = (props: Props) => {
+  const {
+    handlePress,
+    style: {
+      styleButton = {},
+      styleText = {},
+    } = {},
+    animation: {
+      type = 'opacity',
+      value = 1,
+    },
+  } = props;
 
   return (
-    <TouchableOpacity style={backButtonStyle.button} onPress={() => handlePress()}>
-      <Animated.Text style={[backButtonStyle.text, { opacity: animatedFade }]}>
+    <TouchableOpacity style={[styleButton, backButtonStyle.button]} onPress={() => handlePress()}>
+      <Animated.Text style={[styleText, backButtonStyle.text, { [type]: value }]}>
         X
       </Animated.Text>
     </TouchableOpacity>
   );
 };
+
+export const BackButton = withFadeAnimation()(BackButtonComponent);

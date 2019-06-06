@@ -5,24 +5,20 @@ import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
-import { nameRegExp, emailRegExp, phoneRegExp, passRegExp } from '../constant/regexp';
 import { i18n } from '../../config/i18n';
+import { iterations, keylen, digest, encoding, sizeRandom, expiration, radix } from '../constant/user';
+import { castError } from '../constant/errors';
 
 // Schema Defining
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     lowercase: true,
-    minlength: 6,
-    required: [true, i18n('validate.blank')],
-    match: [nameRegExp, i18n('validate.invalid')],
     index: true,
   },
   email: {
     type: String,
     lowercase: true,
-    required: [true, i18n('validate.blank')],
-    match: [emailRegExp, i18n('validate.invalid')],
   },
   bio: String,
   image: String,
@@ -36,7 +32,6 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: false,
-    match: [phoneRegExp, i18n('validate.invalid')],
   },
   birthDay: {
     type: Date,
@@ -50,18 +45,18 @@ UserSchema.plugin(uniqueValidator, { message: i18n('validate.taken') });
 
 // Methods Defining
 const encryPassword = function(password, salt) {
-  return crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512').toString('hex');
+  return crypto.pbkdf2Sync(password, salt, iterations, keylen, digest).toString(encoding);
 };
 
 UserSchema.methods.setPassword = function(password) {
-  this.salt = crypto.randomBytes(16).toString('hex');
+  this.salt = crypto.randomBytes(sizeRandom).toString(encoding);
   this.hash = encryPassword(password, this.salt);
 };
 
 UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const exp = new Date(today);
-  exp.setDate(today.getDate() + 60);
+  exp.setDate(today.getDate() + expiration);
 
   return jwt.sign({
     id: this._id,
@@ -69,7 +64,7 @@ UserSchema.methods.generateJWT = function() {
     email: this.email,
     bio: this.bio,
     image: this.image,
-    exp: parseInt(exp.getTime() / 1000, 10),
+    exp: parseInt(exp.getTime() / 1000, radix),
   }, process.env.SECERET_JWT);
 };
 
@@ -81,21 +76,17 @@ UserSchema.methods.toAuthJSON = function() {
 
 // Static Methods
 UserSchema.statics.createUser = async function(data) {
-  const { username, email, password, confirmPassword } = data;
+  const { username, email, password } = data;
   const user = new this({
     username,
     email,
   });
-  if (!passRegExp.test(password)) return { error: i18n('validate.passwordValidate') };
-  if (password === confirmPassword) {
-    user.setPassword(password);
-    try {
-      return user.save();
-    } catch (error) {
-      return { error: error.message };
-    }
+  user.setPassword(password);
+  try {
+    return user.save();
+  } catch (error) {
+    return { error: error.message };
   }
-  return { error: i18n('validate.confirmPass') };
 };
 
 UserSchema.statics.authenticate = async function(email, password) {
@@ -113,7 +104,7 @@ UserSchema.statics.updateUserInfo = async function(id, type, data) {
     await user.save();
     return user.toAuthJSON();
   } catch (error) {
-    if (error.name === 'CastError') return { error: i18n('validate.recordNotFound') };
+    if (error.name === castError) return { error: i18n('validate.recordNotFound') };
     return { error: error.message };
   }
 };

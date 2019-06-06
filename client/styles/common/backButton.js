@@ -6,7 +6,7 @@ export const backButtonStyle = StyleSheet.create({
   button: {
     position: 'absolute',
     top: 50,
-    left: 20,
+    left: 30,
   },
   text: {
     fontSize: 40,

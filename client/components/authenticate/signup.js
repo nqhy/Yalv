@@ -1,37 +1,35 @@
 // @flow
 import React from 'react';
 
-import { CommonInput } from '../common';
+import { CommonButton, BackButton } from '../common';
+import { styleAuthenticate } from './styleAuthenticate';
+import { Inputs } from './input';
 
-export const SignUpComponent = (props: Props) => {
-  const { t, styleAuthenticate } = props;
+type Props = {
+  t: Function,
+  setIsSignIn: Function,
+  data: Array,
+}
+
+export const SignUpComponent =  (props: Props) => {
+  const {
+    t,
+    setIsSignIn,
+    data,
+  } = props;
 
   return (
     <>
-      <CommonInput
-        style={{ styleInput: { ...styleAuthenticate.input, ...styleAuthenticate.firstInput } }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
-        placeholder={t('user name')}
-      />
-      <CommonInput
-        style={{ styleInput: styleAuthenticate.input }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
-        placeholder={t('email')}
-      />
-      <CommonInput
-        style={{ styleInput: styleAuthenticate.input }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
-        placeholder={t('password')}
-      />
-      <CommonInput
-        style={{ styleInput: { ...styleAuthenticate.input, ...styleAuthenticate.lastInput } }}
-        selectionColor={styleAuthenticate.selectionColor}
-        placeholderTextColor={styleAuthenticate.placeholderTextColor}
-        placeholder={t('confirmation')}
-      />
+      <Inputs {...{ data, t }} />
+      <CommonButton
+        style={{
+          styleButton: styleAuthenticate.buttonSignUp,
+          styleText: styleAuthenticate.buttonText }
+        }
+      >
+        {t('sign up')}
+      </CommonButton>
+      <BackButton handlePress={() => setIsSignIn(true)} />
     </>
   );
 };
