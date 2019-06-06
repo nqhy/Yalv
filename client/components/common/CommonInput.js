@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { TextInput } from 'react-native';
+import { TextInput, Animated } from 'react-native';
 
 import { inputStyle } from '../../styles/common';
 
@@ -9,6 +9,7 @@ type Props = {
   selectionColor: String,
   placeholderTextColor: String,
   placeholder: String,
+  animation: Object,
 }
 
 export const CommonInput = (props: Props) => {
@@ -19,12 +20,18 @@ export const CommonInput = (props: Props) => {
     selectionColor = 'pink',
     placeholderTextColor = 'pink',
     placeholder = 'Common Input ...',
+    animation: {
+      type = 'opacity',
+      value = 1,
+    },
   } = props;
+
+  const AnimatedText = Animated.createAnimatedComponent(TextInput);
 
   return (
     <>
-      <TextInput
-        style={[inputStyle.input, styleInput]}
+      <AnimatedText
+        style={[inputStyle.input, styleInput, { [type]: value }]}
         selectionColor={selectionColor}
         placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}

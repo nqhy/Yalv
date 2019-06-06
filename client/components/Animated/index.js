@@ -1,0 +1,1 @@
+export { withFadeAnimation } from './withFadeAnimation';

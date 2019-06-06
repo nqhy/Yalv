@@ -1,6 +1,6 @@
 import { color } from '../../styles/theme';
 
-export const styleAuthenticate = {
+export const styleAuthenticate = ({
   backgroundImg: {
     flex: 1,
     width: '100%',
@@ -47,4 +47,4 @@ export const styleAuthenticate = {
   },
   placeholderTextColor: color.white,
   selectionColor: color.nepal,
-};
+});
