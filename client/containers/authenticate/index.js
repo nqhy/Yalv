@@ -6,7 +6,6 @@ import { withChangeLanguage } from '../../utils/hoc';
 
 import { AuthenticateComponent } from '../../components/authenticate';
 import { UserMutation } from '../../graphql/mutations/user';
-import withEnhancedForm from './withEnhancedForm';
 
 AuthenticateComponent.navigationOptions = {
   header: null,
@@ -22,7 +21,6 @@ const withHandleAuthenticate = (Component: Node) => (props) => {
 
 export default compose(
   withTranslation(['authenticate', 'validation']),
-  withEnhancedForm,
   graphql(UserMutation.createUser),
   withChangeLanguage,
   withHandleAuthenticate,

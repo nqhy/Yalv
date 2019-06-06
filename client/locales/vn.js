@@ -6,5 +6,6 @@ export default {
     confirmation: 'Xác Nhận Lại Mật Khẩu',
     'sign up': 'Đăng Kí',
     'sign in': 'Đăng Nhập',
+    submit: 'Xác Nhận',
   },
 };

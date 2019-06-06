@@ -10,6 +10,10 @@ type Props = {
   placeholderTextColor: String,
   placeholder: String,
   animation: Object,
+  valueFormik: String,
+  handleBlur: Function,
+  handleChange: Function,
+  valueFormik: String,
 }
 
 export const CommonInput = (props: Props) => {
@@ -21,20 +25,26 @@ export const CommonInput = (props: Props) => {
     placeholderTextColor = 'pink',
     placeholder = 'Common Input ...',
     animation: {
-      type = 'opacity',
-      value = 1,
+      typeAnimation = 'opacity',
+      valueAnimation = 1,
     },
+    handleBlur = () => null,
+    handleChange = () => null,
+    valueFormik,
   } = props;
 
-  const AnimatedText = Animated.createAnimatedComponent(TextInput);
+  const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
   return (
     <>
-      <AnimatedText
-        style={[inputStyle.input, styleInput, { [type]: value }]}
+      <AnimatedTextInput
+        style={[inputStyle.input, styleInput, { [typeAnimation]: valueAnimation }]}
         selectionColor={selectionColor}
         placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}
+        onChangeText={handleChange}
+        onBlur={handleBlur}
+        value={valueFormik}
       />
     </>
   );
