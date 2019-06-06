@@ -10,7 +10,7 @@ type Props = {
   t: Function,
 }
 
-export default (Component: Node) => (props: Props) => {
+export const withAuthenticateForm =  (Component: Node) => (props: Props) => {
   const { isSignIn, t } = props;
 
   const RenderedComponent = withFormik({

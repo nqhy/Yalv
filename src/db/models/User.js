@@ -105,7 +105,7 @@ UserSchema.statics.updateUserInfo = async function(id, type, data) {
     return user.toAuthJSON();
   } catch (error) {
     if (error.name === castError) return { error: i18n('validate.recordNotFound') };
-    return { error: error.message };
+    return null; // Consider Others Errors
   }
 };
 

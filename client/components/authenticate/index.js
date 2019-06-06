@@ -1,10 +1,9 @@
 // @flow
 import React from 'react';
-import { KeyboardAvoidingView, ImageBackground } from 'react-native';
+import { KeyboardAvoidingView, ImageBackground, Animated } from 'react-native';
 
-import { SignUpComponent } from './signup';
-import { styleAuthenticate } from './styleAuthenticate';
-import { SignInComponent } from './signin';
+import { commonStyle } from './styles';
+import { SignForm } from './signForm';
 import { inputSignInData, inputSignUpData } from '../../constants/data/authenticate';
 
 type Props = {
@@ -16,12 +15,18 @@ type Props = {
 export const AuthenticateComponent = (props: Props) => {
   const { t, isSignIn, setIsSignIn } = props;
 
+  const data = isSignIn ? inputSignInData : inputSignUpData;
+  const animatedInputValue = [];
+
+  data.map(value => {
+    animatedInputValue[value['namePlaceholder']] = new Animated.Value(0);
+    return true;
+  });
+
   return (
-    <ImageBackground source={require('../../styles/img/SignUpBackground.png')} style={styleAuthenticate.backgroundImg} resizeMode="cover">
-      <KeyboardAvoidingView style={styleAuthenticate.styleContainer} behavior="padding" enabled>
-        { isSignIn ? <SignInComponent {...{ t, setIsSignIn }} data={inputSignInData} />
-          : <SignUpComponent {...{ t, setIsSignIn }} data={inputSignUpData} />
-        }
+    <ImageBackground source={require('../../styles/img/SignUpBackground.png')} style={commonStyle.backgroundImg} resizeMode="cover">
+      <KeyboardAvoidingView style={commonStyle.styleContainer} behavior="padding" enabled>
+        <SignForm {...{ t, setIsSignIn, animatedInputValue, isSignIn, data }} />
       </KeyboardAvoidingView>
     </ImageBackground>
   );

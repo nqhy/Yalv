@@ -6,6 +6,7 @@ export default {
     confirmation: 'Confirmation',
     'sign up': 'Sign Up',
     'sign in': 'Sign In',
+    submit: 'Submit',
   },
   validation: {
     string: '{{name}} must contains characters',

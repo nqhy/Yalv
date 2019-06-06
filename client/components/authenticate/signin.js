@@ -2,36 +2,29 @@
 import React from 'react';
 
 import { CommonButton } from '../common';
-import { styleAuthenticate } from './styleAuthenticate';
-import { Inputs } from './input';
+import { styleButton } from './styles';
 
 type Props = {
   t: Function,
   setIsSignIn: Function,
-  data: Array,
 }
 
-export const SignInComponent =  (props: Props) => {
-  const {
-    t,
-    setIsSignIn,
-    data,
-  } = props;
+export const SignInComponent = (props: Props) => {
+  const { t, setIsSignIn } = props;
 
   return (
     <>
-      <Inputs {...{ data, t }} />
       <CommonButton
         style={{
-          styleButton: styleAuthenticate.buttonSignIn,
-          styleText: styleAuthenticate.buttonText }}
+          styleButton: styleButton.buttonSignIn,
+          styleText: styleButton.buttonText }}
       >
         {t('sign in')}
       </CommonButton>
       <CommonButton
         style={{
-          styleButton: styleAuthenticate.buttonSignUp,
-          styleText: styleAuthenticate.buttonText }} handlePress={() => setIsSignIn(false)}
+          styleButton: styleButton.buttonSignUp,
+          styleText: styleButton.buttonText }} handlePress={() => setIsSignIn(false)}
       >
         {t('sign up')}
       </CommonButton>
