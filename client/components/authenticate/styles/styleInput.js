@@ -9,14 +9,11 @@ export const styleInput = {
     borderColor: color.regentGray,
     color: color.white,
     fontSize: 25,
-    marginBottom: '5%',
+    marginBottom: '7%',
     textAlign: 'center',
   },
   firstInput: {
-    marginTop: '7%',
-  },
-  lastInput: {
-    marginBottom: '15%',
+    marginTop: '5%',
   },
   placeholderTextColor: color.white,
   selectionColor: color.nepal,

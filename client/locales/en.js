@@ -11,10 +11,10 @@ export default {
   validation: {
     string: '{{name}} must contains characters',
     required: '{{name}} must required',
-    'password match': '{{name}} must match',
+    'password match': 'Password must match',
     'min required': '{{name}} must have {{min}} characters',
-    'name regexp': '{{name}} not valid the type',
-    'pass regexp': '{{name}} must contains 8 charcters, at least 1 special character and number',
-    'email regexp': '{{name}} is not an email address',
+    'name regexp': 'Name is not valid the type',
+    'pass regexp': 'Password must contains 8 charcters, at least 1 special character and number',
+    'email regexp': 'It is not an email address',
   },
 };

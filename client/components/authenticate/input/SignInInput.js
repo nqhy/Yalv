@@ -33,7 +33,6 @@ export const SignInInput = withReduceProps((props: Props) => {
       />
       <AunthenticateInput
         {...commonProps}
-        isLast={true}
         type="password"
         handleBlur={handleBlur('password')}
         handleChange={handleChange('password')}

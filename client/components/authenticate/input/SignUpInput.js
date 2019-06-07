@@ -45,7 +45,6 @@ export const SignUpInput = withReduceProps((props: Props) => {
       />
       <AunthenticateInput
         {...commonProps}
-        isLast={true}
         type="confirmation"
         handleBlur={handleBlur('confirmation')}
         handleChange={handleChange('confirmation')}

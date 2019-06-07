@@ -6,6 +6,7 @@ const buttonSignIn = {
   borderWidth: 0,
   marginBottom: 10,
   padding: 7,
+  top: '4%',
 };
 
 export const styleButton = {

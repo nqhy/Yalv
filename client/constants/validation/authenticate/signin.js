@@ -1,11 +1,14 @@
 import * as yup from 'yup';
 
+import { emailRegExp } from '../../regex';
+
 export const signInSchema = ({ t }) => yup.object().shape({
-  username: yup
-    .string(t('string', { name: t('user name') }))
-    .required(t('required', { name: t('user name') })),
+  email: yup
+    .string(t('validation:string', { name: t('email') }))
+    .required(t('validation:required', { name: t('email') }))
+    .matches(emailRegExp, t('validation:email regexp', { name: t('email') })),
   password: yup
-    .string(t('string', { name: t('password') }))
-    .required(t('required', { name: t('password') }))
+    .string(t('validation:string', { name: t('password') }))
+    .required(t('validation:required', { name: t('password') }))
   ,
 });

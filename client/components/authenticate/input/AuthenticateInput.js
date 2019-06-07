@@ -12,11 +12,12 @@ type Props = {
   values: Object,
   t: Function,
   isFirst: Boolean,
-  isLast: Boolean,
   secureTextEntry: Boolean,
   editable: Boolean,
   autoCapitalize: String,
   keyboardType: String,
+  errors: Object,
+  touched: Object,
 }
 
 export const AunthenticateInput = (props: Props) => {
@@ -28,19 +29,20 @@ export const AunthenticateInput = (props: Props) => {
     values = {},
     t,
     isFirst = false,
-    isLast = false,
     secureTextEntry,
     editable,
     autoCapitalize,
     keyboardType,
+    errors,
+    touched,
   } = props;
 
   let additionStyle = {};
   if (isFirst) additionStyle = styleInput.firstInput;
-  if (isLast) additionStyle = styleInput.lastInput;
 
   return (
     <CommonInputFormik
+      type={type}
       style={{
         styleInput: {
           ...styleInput.input,
@@ -54,13 +56,15 @@ export const AunthenticateInput = (props: Props) => {
         typeAnimation: 'opacity',
         valueAnimation: animatedInputValue[type],
       }}
-      value={values[type]}
+      valueFormik={values[type]}
       handleBlur={handleBlur}
       handleChange={handleChange}
       secureTextEntry={secureTextEntry}
       editable={editable}
       autoCapitalize={autoCapitalize}
       keyboardType={keyboardType}
+      errors={errors}
+      touched={touched}
     />
   );
 };
