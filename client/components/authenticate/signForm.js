@@ -2,10 +2,9 @@
 import React, { useEffect } from 'react';
 import { Animated, Easing } from 'react-native';
 
-import { SignInComponent } from './signin';
 import { withAuthenticateForm } from '../../containers/authenticate/withAuthenticateForm';
-import { InputSignIn, InputSignUp } from './input';
-import { SignUpComponent } from './signup';
+import { SignInInput, SignUpInput } from './input';
+import { SignInButton, SignUpButton } from './button';
 
 type Props = {
   t: Function,
@@ -17,6 +16,9 @@ type Props = {
   handleChange: Function,
   data: Array,
   animatedInputValue: Array,
+  isSubmitting: Boolean,
+  errors: Object,
+  touched: Object,
 }
 
 const SignFormComponent =  (props: Props) => {
@@ -29,6 +31,9 @@ const SignFormComponent =  (props: Props) => {
     handleChange,
     data,
     animatedInputValue,
+    isSubmitting,
+    errors,
+    touched,
   } = props;
 
   useEffect(() => {
@@ -43,18 +48,34 @@ const SignFormComponent =  (props: Props) => {
     Animated.stagger(500, inputAnimations).start();
   }, []);
 
+  const inputProps = {
+    t,
+    animatedInputValue,
+    data,
+    handleBlur,
+    handleChange,
+    values,
+    isSubmitting,
+    errors,
+    touched,
+  };
+
+  const buttonProps = {
+    t, setIsSignIn,
+  };
+
   return (
     <>
       {isSignIn ? (
         <>
-          <InputSignIn {...{ t, animatedInputValue, data, handleBlur, handleChange, values }} />
-          <SignInComponent {...{ t, setIsSignIn }} />
+          <SignInInput {...inputProps} />
+          <SignInButton {...buttonProps} />
         </>
       )
         : (
           <>
-            <InputSignUp {...{ t, animatedInputValue, data, handleBlur, handleChange, values }} />
-            <SignUpComponent {...{ t, setIsSignIn }} />
+            <SignUpInput {...inputProps} />
+            <SignUpButton {...buttonProps} />
           </>
         ) }
     </>

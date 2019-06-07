@@ -1,4 +1,4 @@
 export { CommonButton } from './CommonButton';
-export { CommonInput } from './CommonInput';
+export { CommonInputFormik } from './CommonInputFormik';
 export { LoadingSpine } from './LoadingSpine';
 export { BackButton } from './BackButton';

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { KeyboardAvoidingView, ImageBackground, Animated } from 'react-native';
+import { KeyboardAvoidingView, ImageBackground, Animated, Platform } from 'react-native';
 
 import { commonStyle } from './styles';
 import { SignForm } from './signForm';
@@ -25,7 +25,11 @@ export const AuthenticateComponent = (props: Props) => {
 
   return (
     <ImageBackground source={require('../../styles/img/SignUpBackground.png')} style={commonStyle.backgroundImg} resizeMode="cover">
-      <KeyboardAvoidingView style={commonStyle.styleContainer} behavior="padding" enabled>
+      <KeyboardAvoidingView
+        style={commonStyle.styleContainer}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
+      >
         <SignForm {...{ t, setIsSignIn, animatedInputValue, isSignIn, data }} />
       </KeyboardAvoidingView>
     </ImageBackground>

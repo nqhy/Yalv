@@ -10,13 +10,16 @@ type Props = {
   placeholderTextColor: String,
   placeholder: String,
   animation: Object,
-  valueFormik: String,
   handleBlur: Function,
   handleChange: Function,
-  valueFormik: String,
+  secureTextEntry: Boolean,
+  editable: Boolean,
+  autoCapitalize: String,
+  keyboardType: String,
+  value: String,
 }
 
-export const CommonInput = (props: Props) => {
+export const CommonInputFormik = (props: Props) => {
   const {
     style: {
       styleInput = {},
@@ -30,7 +33,11 @@ export const CommonInput = (props: Props) => {
     },
     handleBlur = () => null,
     handleChange = () => null,
-    valueFormik,
+    secureTextEntry = false,
+    editable = true,
+    autoCapitalize = 'none',
+    keyboardType = 'default',
+    value = '',
   } = props;
 
   const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
@@ -44,7 +51,11 @@ export const CommonInput = (props: Props) => {
         placeholder={placeholder}
         onChangeText={handleChange}
         onBlur={handleBlur}
-        value={valueFormik}
+        value={value}
+        secureTextEntry={secureTextEntry}
+        editable={editable}
+        autoCapitalize={autoCapitalize}
+        keyboardType={keyboardType}
       />
     </>
   );

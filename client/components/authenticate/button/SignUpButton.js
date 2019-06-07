@@ -1,15 +1,15 @@
 // @flow
 import React from 'react';
 
-import { CommonButton, BackButton } from '../common';
-import { styleButton } from './styles';
+import { CommonButton, BackButton } from '../../common';
+import { styleButton } from '../styles';
 
 type Props = {
   t: Function,
   setIsSignIn: Function,
 }
 
-export const SignUpComponent = (props: Props) => {
+export const SignUpButton = (props: Props) => {
   const {
     t,
     setIsSignIn,
