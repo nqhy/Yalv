@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
-import { TextInput, Animated } from 'react-native';
 
 import { inputStyle } from '../../styles/common';
+import { AnimatedTextInput } from '../Animated';
+import { ErrorMessage } from '../authenticate/messages';
 
 type Props = {
   style: Object,
@@ -16,7 +17,10 @@ type Props = {
   editable: Boolean,
   autoCapitalize: String,
   keyboardType: String,
-  value: String,
+  valueFormik: String,
+  type: String,
+  touched: Object,
+  errors: Object,
 }
 
 export const CommonInputFormik = (props: Props) => {
@@ -37,10 +41,11 @@ export const CommonInputFormik = (props: Props) => {
     editable = true,
     autoCapitalize = 'none',
     keyboardType = 'default',
-    value = '',
+    valueFormik = '',
+    type = '',
+    touched = {},
+    errors = {},
   } = props;
-
-  const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
   return (
     <>
@@ -51,12 +56,16 @@ export const CommonInputFormik = (props: Props) => {
         placeholder={placeholder}
         onChangeText={handleChange}
         onBlur={handleBlur}
-        value={value}
+        value={valueFormik}
         secureTextEntry={secureTextEntry}
         editable={editable}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
       />
+      {touched[type] && errors[type] ? (
+        <ErrorMessage>{errors[type]}</ErrorMessage>
+      ) : <ErrorMessage />
+      }
     </>
   );
 };

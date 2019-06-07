@@ -1,6 +1,6 @@
 export const defaultValuesSignIn = {
-  username: '',
   email: '',
+  password: '',
 };
 
 export const defaultValuesSignUp = {
