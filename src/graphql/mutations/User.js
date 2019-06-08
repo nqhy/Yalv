@@ -13,7 +13,6 @@ export const createUser = {
     username: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
-    confirmPassword: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: async (parent, args) => User.createUser(args),
 };

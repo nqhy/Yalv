@@ -14,7 +14,7 @@ export default {
     'password match': '{{name}} Không Khớp',
     'min required': '{{name}} phải có ít nhất {{min}} ký tự',
     'name regexp': '{{name}} không hợp lệ',
-    'pass regexp': '{{name}} phải bao gồm  8 ký tự, ký tự đặc biệt và số',
+    'pass regexp': '{{name}} không đủ phức tạp',
     'email regexp': 'Địa chỉ Email Không hợp lệ',
   },
 };

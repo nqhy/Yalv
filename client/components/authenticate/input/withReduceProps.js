@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
   t: Function,
@@ -20,8 +20,10 @@ export const withReduceProps = (Component) => (props: Props) => {
     isSubmitting,
     touched,
     errors,
+    handleBlur,
+    handleChange,
   } = props;
-
+  const [focusInput, setFocusInput] = useState(null);
   const editable = !isSubmitting;
   const commonProps = {
     t,
@@ -30,10 +32,16 @@ export const withReduceProps = (Component) => (props: Props) => {
     editable,
     touched,
     errors,
+    focusInput,
+    setFocusInput,
+    handleBlur,
+    handleChange,
   };
+
+
   return (
     <>
-      <Component {...{ commonProps }} {...props} />
+      <Component {...{ ...props, commonProps, setFocusInput }} />
     </>
   );
 };

@@ -9,7 +9,7 @@ export const styleInput = {
     borderColor: color.regentGray,
     color: color.white,
     fontSize: 25,
-    marginBottom: '7%',
+    marginBottom: '2%',
     textAlign: 'center',
   },
   firstInput: {

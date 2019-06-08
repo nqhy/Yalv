@@ -21,6 +21,9 @@ type Props = {
   type: String,
   touched: Object,
   errors: Object,
+  focus: Boolean,
+  handleSubmitInput: Function,
+  returnKeyType: String,
 }
 
 export const CommonInputFormik = (props: Props) => {
@@ -45,22 +48,30 @@ export const CommonInputFormik = (props: Props) => {
     type = '',
     touched = {},
     errors = {},
+    focus = false,
+    handleSubmitInput = () => null,
+    returnKeyType,
   } = props;
 
   return (
     <>
       <AnimatedTextInput
         style={[inputStyle.input, styleInput, { [typeAnimation]: valueAnimation }]}
-        selectionColor={selectionColor}
-        placeholderTextColor={placeholderTextColor}
-        placeholder={placeholder}
         onChangeText={handleChange}
         onBlur={handleBlur}
         value={valueFormik}
-        secureTextEntry={secureTextEntry}
-        editable={editable}
-        autoCapitalize={autoCapitalize}
-        keyboardType={keyboardType}
+        onSubmitEditing={() => handleSubmitInput()}
+        autoFocus={focus}
+        {...{ selectionColor,
+          placeholderTextColor,
+          placeholder,
+          secureTextEntry,
+          editable,
+          autoCapitalize,
+          keyboardType,
+          focus,
+          returnKeyType,
+        }}
       />
       {touched[type] && errors[type] ? (
         <ErrorMessage>{errors[type]}</ErrorMessage>

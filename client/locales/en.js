@@ -14,7 +14,7 @@ export default {
     'password match': 'Password must match',
     'min required': '{{name}} must have {{min}} characters',
     'name regexp': 'Name is not valid the type',
-    'pass regexp': 'Password must contains 8 charcters, at least 1 special character and number',
+    'pass regexp': 'Password is not complex',
     'email regexp': 'It is not an email address',
   },
 };

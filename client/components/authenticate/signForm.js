@@ -1,10 +1,11 @@
 // @flow
-import React, { useEffect } from 'react';
-import { Animated, Easing } from 'react-native';
+import React from 'react';
+import { compose } from 'react-apollo';
 
 import { withAuthenticateForm } from '../../containers/authenticate/withAuthenticateForm';
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
+import { withAnimatedInput } from '../Animated';
 
 type Props = {
   t: Function,
@@ -14,7 +15,6 @@ type Props = {
   setIsSignIn: Function,
   handleBlur: Function,
   handleChange: Function,
-  data: Array,
   animatedInputValue: Array,
   isSubmitting: Boolean,
   errors: Object,
@@ -29,29 +29,15 @@ const SignFormComponent =  (props: Props) => {
     setIsSignIn,
     handleBlur,
     handleChange,
-    data,
     animatedInputValue,
     isSubmitting,
     errors,
     touched,
   } = props;
 
-  useEffect(() => {
-    const inputAnimations = data.map(value => Animated.timing(
-      animatedInputValue[value['namePlaceholder']],
-      {
-        toValue: 1,
-        duration: 1000,
-        Easing: Easing.linear,
-      }
-    ));
-    Animated.stagger(500, inputAnimations).start();
-  }, []);
-
   const inputProps = {
     t,
     animatedInputValue,
-    data,
     handleBlur,
     handleChange,
     values,
@@ -82,4 +68,7 @@ const SignFormComponent =  (props: Props) => {
   );
 };
 
-export const SignForm = withAuthenticateForm(SignFormComponent);
+export const SignForm = compose(
+  withAnimatedInput,
+  withAuthenticateForm
+)(SignFormComponent);

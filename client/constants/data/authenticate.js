@@ -1,23 +1,7 @@
-export const inputSignUpData = [
-  {
-    namePlaceholder: 'username',
-  },
-  {
-    namePlaceholder: 'email',
-  },
-  {
-    namePlaceholder: 'password',
-  },
-  {
-    namePlaceholder: 'confirmation',
-  },
-];
+export const inputSignUpData = {
+  placeholder: ['username', 'email', 'password', 'confirmation'],
+};
 
-export const inputSignInData = [
-  {
-    namePlaceholder: 'username',
-  },
-  {
-    namePlaceholder: 'password',
-  },
-];
+export const inputSignInData = {
+  placeholder: ['username', 'password'],
+};

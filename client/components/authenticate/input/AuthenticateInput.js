@@ -18,6 +18,9 @@ type Props = {
   keyboardType: String,
   errors: Object,
   touched: Object,
+  handleSubmitInput: Function,
+  focusInput: String,
+  returnKeyType: String,
 }
 
 export const AunthenticateInput = (props: Props) => {
@@ -35,6 +38,9 @@ export const AunthenticateInput = (props: Props) => {
     keyboardType,
     errors,
     touched,
+    handleSubmitInput = () => null,
+    focusInput,
+    returnKeyType,
   } = props;
 
   let additionStyle = {};
@@ -57,14 +63,17 @@ export const AunthenticateInput = (props: Props) => {
         valueAnimation: animatedInputValue[type],
       }}
       valueFormik={values[type]}
-      handleBlur={handleBlur}
-      handleChange={handleChange}
+      handleBlur={handleBlur(type)}
+      handleChange={handleChange(type)}
       secureTextEntry={secureTextEntry}
       editable={editable}
       autoCapitalize={autoCapitalize}
       keyboardType={keyboardType}
       errors={errors}
       touched={touched}
+      handleSubmitInput={handleSubmitInput}
+      focus={focusInput === type}
+      returnKeyType={returnKeyType}
     />
   );
 };

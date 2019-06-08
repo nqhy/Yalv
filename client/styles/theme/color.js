@@ -8,4 +8,5 @@ export const color = {
   black: '#000000',
   illusion: '#F59EE6',
   frenchRose: '#ef5777',
+  soaringEagle: '#95afc0',
 };

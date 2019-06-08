@@ -5,20 +5,14 @@ import { AunthenticateInput } from './AuthenticateInput';
 import { withReduceProps } from './withReduceProps';
 
 type Props = {
-  t: Function,
-  animatedInputValue: Array,
-  values: Object,
-  handleBlur: Function,
-  handleChange: Function,
-  isSubmitting: Boolean,
   commonProps: Object,
+  setFocusInput: Function,
 }
 
 export const SignInInput = withReduceProps((props: Props) => {
   const {
     commonProps,
-    handleBlur,
-    handleChange,
+    setFocusInput,
   } = props;
 
   return (
@@ -27,15 +21,14 @@ export const SignInInput = withReduceProps((props: Props) => {
         {...commonProps}
         isFirst={true}
         type="email"
-        handleBlur={handleBlur('email')}
-        handleChange={handleChange('email')}
         keyboardType="email-address"
+        handleSubmitInput={() => setFocusInput('password')}
+        returnKeyType="next"
       />
       <AunthenticateInput
         {...commonProps}
         type="password"
-        handleBlur={handleBlur('password')}
-        handleChange={handleChange('password')}
+        returnKeyType="default"
         secureTextEntry={true}
       />
     </>
