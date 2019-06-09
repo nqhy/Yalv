@@ -2,7 +2,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-import { buttonStyle } from '../../styles/common';
+import { buttonStyle } from './styles';
 
 type Props = {
   style: Object,

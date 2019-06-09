@@ -3,7 +3,7 @@
 import React from 'react';
 import { Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
-import { loadingStyle } from '../../styles/common';
+import { loadingStyle } from './styles';
 
 export class LoadingSpine extends React.Component {
   componentDidMount() {

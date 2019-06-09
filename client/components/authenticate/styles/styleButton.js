@@ -1,10 +1,10 @@
 import { color } from '../../../styles/theme';
 
 const buttonSignIn = {
-  width: '50%',
+  width: '60%',
   backgroundColor: color.cinnabar,
   borderWidth: 0,
-  marginBottom: 10,
+  marginBottom: 15,
   padding: 7,
   top: '4%',
 };

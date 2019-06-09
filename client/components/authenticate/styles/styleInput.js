@@ -3,14 +3,14 @@ import { color } from '../../../styles/theme';
 export const styleInput = {
   input: {
     borderWidth: 0,
-    borderBottomWidth: 2,
-    borderRadius: 0,
     backgroundColor: 'transparent',
-    borderColor: color.white,
+    borderColor: color.black,
+    width: '90%',
     color: color.white,
-    fontSize: 25,
+    fontSize: 30,
     marginBottom: '2%',
     textAlign: 'center',
+    fontWeight: 'bold',
   },
   firstInput: {
     marginTop: '5%',

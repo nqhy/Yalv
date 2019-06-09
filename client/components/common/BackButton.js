@@ -2,7 +2,7 @@
 import React from 'react';
 import { Animated, TouchableOpacity } from 'react-native';
 
-import { backButtonStyle } from '../../styles/common';
+import { backButtonStyle } from './styles';
 import { withFadeAnimation } from '../Animated/withFadeAnimation';
 
 type Props = {

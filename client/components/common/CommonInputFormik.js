@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import { inputStyle } from '../../styles/common';
+import { inputStyle } from './styles';
 import { AnimatedTextInput } from '../Animated';
 import { ErrorMessage } from '../authenticate/messages';
 
