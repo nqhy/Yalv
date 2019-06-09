@@ -1,5 +1,4 @@
 export const color = {
-  regentGray: '#7F8FA6',
   white: '#FFFFFF',
   dodgerBlue: '#0fbcf9',
   charade: '#2f3542',
@@ -8,5 +7,5 @@ export const color = {
   black: '#000000',
   illusion: '#F59EE6',
   frenchRose: '#ef5777',
-  soaringEagle: '#95afc0',
+  redOrange: '#ff3838',
 };

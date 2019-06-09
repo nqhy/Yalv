@@ -5,6 +5,7 @@ import { KeyboardAvoidingView, ImageBackground, Platform } from 'react-native';
 import { commonStyle } from './styles';
 import { SignForm } from './signForm';
 import { inputSignInData, inputSignUpData } from '../../constants/data/authenticate';
+import { AuthenticateBackgroundImage } from '../../styles/img';
 
 type Props = {
   t: Function,
@@ -17,7 +18,7 @@ export const AuthenticateComponent = (props: Props) => {
   const dataAnimation = isSignIn ? inputSignInData : inputSignUpData;
 
   return (
-    <ImageBackground source={require('../../styles/img/SignUpBackground.png')} style={commonStyle.backgroundImg} resizeMode="cover">
+    <ImageBackground source={AuthenticateBackgroundImage} style={commonStyle.backgroundImg} resizeMode="cover">
       <KeyboardAvoidingView
         style={commonStyle.styleContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}

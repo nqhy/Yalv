@@ -4,10 +4,10 @@ export const styleMessage = {
   container: {
     width: 'auto',
     height: 15,
-    marginBottom: 7,
+    marginBottom: 10,
   },
   text: {
-    color: color.soaringEagle,
+    color: color.redOrange,
     fontSize: 12,
     fontWeight: 'bold',
     fontStyle: 'italic',

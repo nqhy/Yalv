@@ -10,7 +10,7 @@ export const backButtonStyle = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: color.charade,
+    color: color.white,
     fontWeight: 'bold',
   },
 });

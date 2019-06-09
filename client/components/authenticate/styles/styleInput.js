@@ -6,7 +6,7 @@ export const styleInput = {
     borderBottomWidth: 2,
     borderRadius: 0,
     backgroundColor: 'transparent',
-    borderColor: color.regentGray,
+    borderColor: color.white,
     color: color.white,
     fontSize: 25,
     marginBottom: '2%',

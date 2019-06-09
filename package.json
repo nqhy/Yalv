@@ -7,7 +7,7 @@
     "eject": "expo eject",
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.config.js",
     "server": "nodemon ./dist/server.js",
-    "lint": "eslint --ext=js --ext=jsx client src"
+    "lint": "eslint --ext=js --ext=jsx client server"
   },
   "dependencies": {
     "@babel/core": "^7.4.4",
