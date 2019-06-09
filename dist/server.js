@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/server-dev.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./server/root.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -281,10 +281,10 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./src/config/i18n.js":
-/*!****************************!*\
-  !*** ./src/config/i18n.js ***!
-  \****************************/
+/***/ "./server/config/i18n.js":
+/*!*******************************!*\
+  !*** ./server/config/i18n.js ***!
+  \*******************************/
 /*! exports provided: i18n */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -293,15 +293,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i18n", function() { return i18n; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _locales_en__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locales/en */ "./src/locales/en.js");
+/* harmony import */ var _locales_en__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locales/en */ "./server/locales/en.js");
 function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=arguments[i]!=null?arguments[i]:{};var ownKeys=Object.keys(source);if(typeof Object.getOwnPropertySymbols==='function'){ownKeys=ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym){return Object.getOwnPropertyDescriptor(source,sym).enumerable;}));}ownKeys.forEach(function(key){_defineProperty(target,key,source[key]);});}return target;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}const i18nText={en:_objectSpread({},_locales_en__WEBPACK_IMPORTED_MODULE_1__["localesEn"])};const i18n=function i18n(name){let language=arguments.length>1&&arguments[1]!==undefined?arguments[1]:'en';return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(i18nText,"".concat(language,".").concat(name),{});};
 
 /***/ }),
 
-/***/ "./src/db/config/index.js":
-/*!********************************!*\
-  !*** ./src/db/config/index.js ***!
-  \********************************/
+/***/ "./server/db/config/index.js":
+/*!***********************************!*\
+  !*** ./server/db/config/index.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -309,17 +309,17 @@ function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=ar
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logger */ "./src/db/config/logger.js");
-/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/i18n */ "./src/config/i18n.js");
+/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logger */ "./server/db/config/logger.js");
+/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/i18n */ "./server/config/i18n.js");
 const connect=()=>{mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb://".concat(process.env.MLAB_USER,":").concat(process.env.MLAB_PASS,"@ds149146.mlab.com:49146/yalv"),{useNewUrlParser:true}).then(()=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].info(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"])('message.success.connect'));}).catch(err=>{_logger__WEBPACK_IMPORTED_MODULE_1__["logger"].error("".concat(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"])('message.failure.connect')," => ").concat(err));});};/* harmony default export */ __webpack_exports__["default"] = (connect);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "./src/db/config/logger.js":
-/*!*********************************!*\
-  !*** ./src/db/config/logger.js ***!
-  \*********************************/
+/***/ "./server/db/config/logger.js":
+/*!************************************!*\
+  !*** ./server/db/config/logger.js ***!
+  \************************************/
 /*! exports provided: logger */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -332,10 +332,10 @@ const logger=winston__WEBPACK_IMPORTED_MODULE_0___default.a.createLogger({level:
 
 /***/ }),
 
-/***/ "./src/db/constant/errors/index.js":
-/*!*****************************************!*\
-  !*** ./src/db/constant/errors/index.js ***!
-  \*****************************************/
+/***/ "./server/db/constant/errors/index.js":
+/*!********************************************!*\
+  !*** ./server/db/constant/errors/index.js ***!
+  \********************************************/
 /*! exports provided: castError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -346,10 +346,10 @@ const castError='CastError';
 
 /***/ }),
 
-/***/ "./src/db/constant/user/index.js":
-/*!***************************************!*\
-  !*** ./src/db/constant/user/index.js ***!
-  \***************************************/
+/***/ "./server/db/constant/user/index.js":
+/*!******************************************!*\
+  !*** ./server/db/constant/user/index.js ***!
+  \******************************************/
 /*! exports provided: iterations, keylen, digest, encoding, sizeRandom, expiration, radix */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -366,10 +366,10 @@ const iterations=10000;const keylen=512;const digest='sha512';const encoding='he
 
 /***/ }),
 
-/***/ "./src/db/models/User.js":
-/*!*******************************!*\
-  !*** ./src/db/models/User.js ***!
-  \*******************************/
+/***/ "./server/db/models/User.js":
+/*!**********************************!*\
+  !*** ./server/db/models/User.js ***!
+  \**********************************/
 /*! exports provided: User */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -384,18 +384,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/i18n */ "./src/config/i18n.js");
-/* harmony import */ var _constant_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constant/user */ "./src/db/constant/user/index.js");
-/* harmony import */ var _constant_errors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constant/errors */ "./src/db/constant/errors/index.js");
+/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/i18n */ "./server/config/i18n.js");
+/* harmony import */ var _constant_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constant/user */ "./server/db/constant/user/index.js");
+/* harmony import */ var _constant_errors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constant/errors */ "./server/db/constant/errors/index.js");
 function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const UserSchema=new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({username:{type:String,lowercase:true,index:true},email:{type:String,lowercase:true},bio:String,image:String,gender:{type:String,enum:[Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('enum.user.gender.male'),Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('enum.user.gender.female')]},phone:{type:String,required:false},birthDay:{type:Date,default:null},hash:String,salt:String},{timestamps:true});UserSchema.plugin(mongoose_unique_validator__WEBPACK_IMPORTED_MODULE_1___default.a,{message:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('validate.taken')});const encryPassword=function encryPassword(password,salt){return crypto__WEBPACK_IMPORTED_MODULE_2___default.a.pbkdf2Sync(password,salt,_constant_user__WEBPACK_IMPORTED_MODULE_5__["iterations"],_constant_user__WEBPACK_IMPORTED_MODULE_5__["keylen"],_constant_user__WEBPACK_IMPORTED_MODULE_5__["digest"]).toString(_constant_user__WEBPACK_IMPORTED_MODULE_5__["encoding"]);};UserSchema.methods.setPassword=function(password){this.salt=crypto__WEBPACK_IMPORTED_MODULE_2___default.a.randomBytes(_constant_user__WEBPACK_IMPORTED_MODULE_5__["sizeRandom"]).toString(_constant_user__WEBPACK_IMPORTED_MODULE_5__["encoding"]);this.hash=encryPassword(password,this.salt);};UserSchema.methods.generateJWT=function(){const today=new Date();const exp=new Date(today);exp.setDate(today.getDate()+_constant_user__WEBPACK_IMPORTED_MODULE_5__["expiration"]);return jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.sign({id:this._id,username:this.username,email:this.email,bio:this.bio,image:this.image,exp:parseInt(exp.getTime()/1000,_constant_user__WEBPACK_IMPORTED_MODULE_5__["radix"])},process.env.SECERET_JWT);};UserSchema.methods.toAuthJSON=function(){return{token:this.generateJWT()};};UserSchema.statics.createUser=function(){var _ref=_asyncToGenerator(function*(data){const username=data.username,email=data.email,password=data.password;const user=new this({username,email});user.setPassword(password);try{return user.save();}catch(error){return{error:error.message};}});return function(_x){return _ref.apply(this,arguments);};}();UserSchema.statics.authenticate=function(){var _ref2=_asyncToGenerator(function*(email,password){const user=yield this.findOne({email});if(user===null)return{error:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('validate.recordNotFound')};const hash=encryPassword(password,user.salt);if(user.hash===hash)return user.toAuthJSON();return{error:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('validate.authenticate')};});return function(_x2,_x3){return _ref2.apply(this,arguments);};}();UserSchema.statics.updateUserInfo=function(){var _ref3=_asyncToGenerator(function*(id,type,data){try{const user=yield this.findById(id);user[type]=data[type];yield user.save();return user.toAuthJSON();}catch(error){if(error.name===_constant_errors__WEBPACK_IMPORTED_MODULE_6__["castError"])return{error:Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('validate.recordNotFound')};return null;}});return function(_x4,_x5,_x6){return _ref3.apply(this,arguments);};}();const User=mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model('User',UserSchema);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "./src/graphql/index.js":
-/*!******************************!*\
-  !*** ./src/graphql/index.js ***!
-  \******************************/
+/***/ "./server/graphql/index.js":
+/*!*********************************!*\
+  !*** ./server/graphql/index.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -403,16 +403,16 @@ function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var inf
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _queries_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/User */ "./src/graphql/queries/User.js");
-/* harmony import */ var _mutations_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations/User */ "./src/graphql/mutations/User.js");
+/* harmony import */ var _queries_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/User */ "./server/graphql/queries/User.js");
+/* harmony import */ var _mutations_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations/User */ "./server/graphql/mutations/User.js");
 const RootQuery=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'RootQueryType',fields:{user: _queries_User__WEBPACK_IMPORTED_MODULE_1__["user"],users: _queries_User__WEBPACK_IMPORTED_MODULE_1__["users"]}});const Mutation=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'Mutation',fields:{createUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["createUser"],updateUserName: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserName"],updateUserEmail: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserEmail"],updateUserBio: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserBio"],updateUserImage: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserImage"],updateUserGender: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserGender"],updateUserPhone: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserPhone"],updateUserBirthDay: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserBirthDay"],deleteUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteUser"],deleteManyUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteManyUser"],validateUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["validateUser"]}});/* harmony default export */ __webpack_exports__["default"] = (new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLSchema"]({query:RootQuery,mutation:Mutation}));
 
 /***/ }),
 
-/***/ "./src/graphql/mutations/User.js":
-/*!***************************************!*\
-  !*** ./src/graphql/mutations/User.js ***!
-  \***************************************/
+/***/ "./server/graphql/mutations/User.js":
+/*!******************************************!*\
+  !*** ./server/graphql/mutations/User.js ***!
+  \******************************************/
 /*! exports provided: createUser, updateUserName, updateUserEmail, updateUserBio, updateUserImage, updateUserGender, updateUserPhone, updateUserBirthDay, deleteUser, deleteManyUser, validateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -431,35 +431,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateUser", function() { return validateUser; });
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../schema/UserSchema */ "./src/graphql/schema/UserSchema.js");
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../db/models/User */ "./src/db/models/User.js");
-/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../db/config/logger */ "./src/db/config/logger.js");
-/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/i18n */ "./src/config/i18n.js");
-/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./provider */ "./src/graphql/mutations/provider/index.js");
+/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
+/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../db/models/User */ "./server/db/models/User.js");
+/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../db/config/logger */ "./server/db/config/logger.js");
+/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/i18n */ "./server/config/i18n.js");
+/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./provider */ "./server/graphql/mutations/provider/index.js");
 function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const createUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{username:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:function(){var _resolve=_asyncToGenerator(function*(parent,args){return _db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].createUser(args);});function resolve(_x,_x2){return _resolve.apply(this,arguments);}return resolve;}()};const updateUserName=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('username');const updateUserEmail=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('email');const updateUserBio=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('bio');const updateUserImage=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('image');const updateUserGender=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('gender');const updateUserPhone=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('phone');const updateUserBirthDay=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('birthday');const deleteUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])}},resolve:(parent,args)=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].findByIdAndRemove(args.id)};const deleteManyUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],resolve:()=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].deleteMany({},()=>{_db_config_logger__WEBPACK_IMPORTED_MODULE_3__["logger"].info(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('message.success.delete'));})};const validateUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].authenticate(args.email,args.password)};
 
 /***/ }),
 
-/***/ "./src/graphql/mutations/provider/index.js":
-/*!*************************************************!*\
-  !*** ./src/graphql/mutations/provider/index.js ***!
-  \*************************************************/
+/***/ "./server/graphql/mutations/provider/index.js":
+/*!****************************************************!*\
+  !*** ./server/graphql/mutations/provider/index.js ***!
+  \****************************************************/
 /*! exports provided: updateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _providerUser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./providerUser */ "./src/graphql/mutations/provider/providerUser.js");
+/* harmony import */ var _providerUser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./providerUser */ "./server/graphql/mutations/provider/providerUser.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return _providerUser__WEBPACK_IMPORTED_MODULE_0__["updateUser"]; });
 
 
 
 /***/ }),
 
-/***/ "./src/graphql/mutations/provider/providerUser.js":
-/*!********************************************************!*\
-  !*** ./src/graphql/mutations/provider/providerUser.js ***!
-  \********************************************************/
+/***/ "./server/graphql/mutations/provider/providerUser.js":
+/*!***********************************************************!*\
+  !*** ./server/graphql/mutations/provider/providerUser.js ***!
+  \***********************************************************/
 /*! exports provided: updateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -468,16 +468,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../schema/UserSchema */ "./src/graphql/schema/UserSchema.js");
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../db/models/User */ "./src/db/models/User.js");
+/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
+/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../db/models/User */ "./server/db/models/User.js");
 const updateUser=type=>({type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])},[type]:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>{const data={[type]:args[type]};return _db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].updateUserInfo(args.id,type,data);}});
 
 /***/ }),
 
-/***/ "./src/graphql/queries/User.js":
-/*!*************************************!*\
-  !*** ./src/graphql/queries/User.js ***!
-  \*************************************/
+/***/ "./server/graphql/queries/User.js":
+/*!****************************************!*\
+  !*** ./server/graphql/queries/User.js ***!
+  \****************************************/
 /*! exports provided: user, users */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -487,16 +487,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "users", function() { return users; });
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../db/models/User */ "./src/db/models/User.js");
-/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../schema/UserSchema */ "./src/graphql/schema/UserSchema.js");
+/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../db/models/User */ "./server/db/models/User.js");
+/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
 const user={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"],args:{id:{type:graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"]}},resolve(parent,args){return _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].findById(args.id);}};const users={type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLList"](_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"]),resolve(){return _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].find();}};
 
 /***/ }),
 
-/***/ "./src/graphql/schema/UserSchema.js":
-/*!******************************************!*\
-  !*** ./src/graphql/schema/UserSchema.js ***!
-  \******************************************/
+/***/ "./server/graphql/schema/UserSchema.js":
+/*!*********************************************!*\
+  !*** ./server/graphql/schema/UserSchema.js ***!
+  \*********************************************/
 /*! exports provided: UserType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -509,24 +509,24 @@ const UserType=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({na
 
 /***/ }),
 
-/***/ "./src/locales/en.js":
-/*!***************************!*\
-  !*** ./src/locales/en.js ***!
-  \***************************/
+/***/ "./server/locales/en.js":
+/*!******************************!*\
+  !*** ./server/locales/en.js ***!
+  \******************************/
 /*! exports provided: localesEn */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "localesEn", function() { return localesEn; });
-const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. ',passwordValidate:'Your Password is not right format',confirmPass:'Confirm Password is not correct',authenticate:'Your Email or Password is not correct',recordNotFound:'Record Not Found'},message:{success:{delete:'Delete Successfully',connect:'Connection Successfully',authenticate:'Authenticate Successfully',addUser:'User Sign Up Successfully'},failure:{connect:'Connection Error'}},enum:{user:{gender:{male:'Male',female:'Female'}}}};
+const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. ',recordNotFound:'Record Not Found'},message:{success:{delete:'Delete Successfully',connect:'Connection Successfully',authenticate:'Authenticate Successfully',addUser:'User Sign Up Successfully'},failure:{connect:'Connection Error'}},enum:{user:{gender:{male:'Male',female:'Female'}}}};
 
 /***/ }),
 
-/***/ "./src/server/server-dev.js":
-/*!**********************************!*\
-  !*** ./src/server/server-dev.js ***!
-  \**********************************/
+/***/ "./server/root.js":
+/*!************************!*\
+  !*** ./server/root.js ***!
+  \************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -540,11 +540,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dotenv */ "dotenv");
 /* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _db_config_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../db/config/index */ "./src/db/config/index.js");
-/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../db/config/logger */ "./src/db/config/logger.js");
-/* harmony import */ var _graphql__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../graphql */ "./src/graphql/index.js");
+/* harmony import */ var _db_config_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./db/config/index */ "./server/db/config/index.js");
+/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./db/config/logger */ "./server/db/config/logger.js");
+/* harmony import */ var _graphql__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./graphql */ "./server/graphql/index.js");
 const app=express__WEBPACK_IMPORTED_MODULE_0___default()();process.env=dotenv__WEBPACK_IMPORTED_MODULE_3___default.a.config().parsed;app.use(cors__WEBPACK_IMPORTED_MODULE_2___default()());app.use('/graphql',express_graphql__WEBPACK_IMPORTED_MODULE_1___default()({schema: _graphql__WEBPACK_IMPORTED_MODULE_6__["default"],graphiql:true}));const port=8000||false;app.listen(port,()=>{Object(_db_config_index__WEBPACK_IMPORTED_MODULE_4__["default"])();_db_config_logger__WEBPACK_IMPORTED_MODULE_5__["logger"].info("Server is running at ".concat(port));});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 

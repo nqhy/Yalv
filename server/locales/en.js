@@ -3,9 +3,6 @@ export const localesEn = {
     blank: 'Can not be blank',
     invalid: 'is Invalid',
     taken: 'is already taken. ',
-    passwordValidate: 'Your Password is not right format',
-    confirmPass: 'Confirm Password is not correct',
-    authenticate: 'Your Email or Password is not correct',
     recordNotFound: 'Record Not Found',
   },
   message: {

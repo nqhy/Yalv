@@ -3,9 +3,9 @@ import graphqlHTTP from 'express-graphql';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import Connection from '../db/config/index';
-import { logger } from '../db/config/logger';
-import schema from '../graphql';
+import Connection from './db/config/index';
+import { logger } from './db/config/logger';
+import schema from './graphql';
 
 const app = express();
 
