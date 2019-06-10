@@ -2,10 +2,11 @@
 import React from 'react';
 import { compose } from 'react-apollo';
 
-import { withAuthenticateForm } from '../../containers/authenticate/withAuthenticateForm';
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
 import { withAnimatedInput } from '../Animated';
+import { withFormikAuthenticate } from '../../containers/authenticate/withFormikAuthenticate';
+import { withGraphQlConnection } from '../../containers/authenticate/withGraphQlConnection';
 
 type Props = {
   t: Function,
@@ -19,6 +20,7 @@ type Props = {
   isSubmitting: Boolean,
   errors: Object,
   touched: Object,
+  handleSubmit: Function,
 }
 
 const SignFormComponent =  (props: Props) => {
@@ -33,6 +35,7 @@ const SignFormComponent =  (props: Props) => {
     isSubmitting,
     errors,
     touched,
+    handleSubmit,
   } = props;
 
   const inputProps = {
@@ -44,10 +47,11 @@ const SignFormComponent =  (props: Props) => {
     isSubmitting,
     errors,
     touched,
+    handleSubmit,
   };
 
   const buttonProps = {
-    t, setIsSignIn,
+    t, handleSubmit,
   };
 
   return (
@@ -55,7 +59,7 @@ const SignFormComponent =  (props: Props) => {
       {isSignIn ? (
         <>
           <SignInInput {...inputProps} />
-          <SignInButton {...buttonProps} />
+          <SignInButton {...{ ...buttonProps, setIsSignIn }} />
         </>
       )
         : (
@@ -70,5 +74,6 @@ const SignFormComponent =  (props: Props) => {
 
 export const SignForm = compose(
   withAnimatedInput,
-  withAuthenticateForm
+  withGraphQlConnection,
+  withFormikAuthenticate,
 )(SignFormComponent);

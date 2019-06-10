@@ -7,10 +7,11 @@ import { styleButton } from '../styles';
 type Props = {
   t: Function,
   setIsSignIn: Function,
+  handleSubmit: Function,
 }
 
 export const SignInButton = (props: Props) => {
-  const { t, setIsSignIn } = props;
+  const { t, setIsSignIn, handleSubmit } = props;
 
   return (
     <>
@@ -18,6 +19,7 @@ export const SignInButton = (props: Props) => {
         style={{
           styleButton: styleButton.buttonSignIn,
           styleText: styleButton.buttonText }}
+        handlePress={handleSubmit}
       >
         {t('sign in')}
       </CommonButton>
