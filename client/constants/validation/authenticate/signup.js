@@ -14,7 +14,7 @@ export const signUpSchema = ({ t }) => Yup.object().shape({
     .matches(passRegExp, t('validation:pass regexp', { name: t('password') })),
   confirmation: Yup
     .string(t('validation:string', { name: t('confirmation') }))
-    .oneOf([Yup.ref('validation:password'), null], t('validation:password match', { name: t('password') })),
+    .oneOf([Yup.ref('password'), null], t('validation:password match', { name: t('password') })),
   email: Yup
     .string(t('validation:string', { name: t('email') }))
     .required(t('validation:required', { name: t('email') }))

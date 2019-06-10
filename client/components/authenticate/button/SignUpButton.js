@@ -1,18 +1,18 @@
 // @flow
 import React from 'react';
 
-import { CommonButton, BackButton } from '../../common';
+import { CommonButton } from '../../common';
 import { styleButton } from '../styles';
 
 type Props = {
   t: Function,
-  setIsSignIn: Function,
+  handleSubmit: Function,
 }
 
 export const SignUpButton = (props: Props) => {
   const {
     t,
-    setIsSignIn,
+    handleSubmit,
   } = props;
 
   return (
@@ -22,10 +22,10 @@ export const SignUpButton = (props: Props) => {
           styleButton: styleButton.buttonSubmit,
           styleText: styleButton.buttonText }
         }
+        handlePress={handleSubmit}
       >
         {t('submit')}
       </CommonButton>
-      <BackButton handlePress={() => setIsSignIn(true)} />
     </>
   );
 };

@@ -3,10 +3,19 @@ import gql from 'graphql-tag';
 import { updateUserProvider } from '../provider';
 
 const createUser = gql(`
-  mutation($username: String!, $email: String!, $password: String!, $confirmPassword: String!){
-    createUser(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword ){
+  mutation($username: String!, $email: String!, $password: String!){
+    createUser(username: $username, email: $email, password: $password){
       username
       email
+      token
+      error
+    }
+  }
+`);
+
+const validateUser = gql(`
+  mutation($email: String!, $password: String!){
+    validateUser(email: $email, password: $password){
       token
       error
     }
@@ -24,6 +33,7 @@ const updateUserBirthDay = updateUserProvider('birthday');
 
 export const UserMutation = {
   createUser,
+  validateUser,
   updateUserName,
   updateUserEmail,
   updateUserBio,
