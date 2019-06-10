@@ -36,7 +36,6 @@ module.exports = {
   },
   plugins: [
   ],
-  watch: true,
   watchOptions: {
     poll: 1000,
     aggregateTimeout: 300,
