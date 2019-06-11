@@ -7,8 +7,8 @@
     "eject": "expo eject",
     "webpackDev": "rm -rf dist && webpack --mode development --config webpack.config.js --watch=true",
     "webpackDocker": "rm -rf dist && webpack --mode development --config webpack.config.js",
-    "dockerBuild": "docker build -t huyd/yalvserver",
-    "dockerRun": "docker run -p 8080:8000 -d huyd/yalvserver",
+    "dockerBuild": "sudo docker build -t huyd/yalvserver .",
+    "dockerRun": "sudo docker run -p 8000:8000 -d huyd/yalvserver",
     "server": "nodemon ./dist/server.js",
     "lint": "eslint --ext=js --ext=jsx client server"
   },

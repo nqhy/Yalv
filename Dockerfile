@@ -5,6 +5,8 @@ LABEL author="NGUYEN-QUANG Huy<huynguyennbk@gmail.com>"
 # Create app directory
 WORKDIR /usr/src/yalvApp/
 
+RUN rm -rf ./*
+
 # Yarn Install
 RUN npm install -g yarn
 

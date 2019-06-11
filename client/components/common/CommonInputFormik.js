@@ -3,7 +3,7 @@ import React from 'react';
 
 import { inputStyle } from './styles';
 import { AnimatedTextInput } from '../Animated';
-import { ErrorMessage } from '../authenticate/messages';
+import { ErrorMessage } from '../Authenticate/messages';
 
 type Props = {
   style: Object,
