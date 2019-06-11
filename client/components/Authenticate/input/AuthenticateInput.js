@@ -18,8 +18,6 @@ type Props = {
   keyboardType: String,
   errors: Object,
   touched: Object,
-  handleSubmitInput: Function,
-  focusInput: String,
   returnKeyType: String,
 }
 
@@ -38,8 +36,6 @@ export const AunthenticateInput = (props: Props) => {
     keyboardType,
     errors,
     touched,
-    handleSubmitInput = () => null,
-    focusInput,
     returnKeyType,
   } = props;
 
@@ -71,8 +67,6 @@ export const AunthenticateInput = (props: Props) => {
       keyboardType={keyboardType}
       errors={errors}
       touched={touched}
-      handleSubmitInput={handleSubmitInput}
-      focus={focusInput === type}
       returnKeyType={returnKeyType}
     />
   );

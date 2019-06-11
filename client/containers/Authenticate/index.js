@@ -4,7 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import { withTranslation } from 'react-i18next';
 import { withChangeLanguage } from '../../utils/hoc';
 
-import { AuthenticateComponent } from '../../components/authenticate';
+import { AuthenticateComponent } from '../../components/Authenticate';
 import { UserMutation } from '../../graphql/mutations/user';
 
 AuthenticateComponent.navigationOptions = {

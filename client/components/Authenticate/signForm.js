@@ -5,8 +5,8 @@ import { compose } from 'react-apollo';
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
 import { withAnimatedInput } from '../Animated';
-import { withFormikAuthenticate } from '../../containers/authenticate/withFormikAuthenticate';
-import { withGraphQlConnection } from '../../containers/authenticate/withGraphQlConnection';
+import { withFormikAuthenticate } from '../../containers/Authenticate/withFormikAuthenticate';
+import { withGraphQlConnection } from '../../containers/Authenticate/withGraphQlConnection';
 
 type Props = {
   t: Function,

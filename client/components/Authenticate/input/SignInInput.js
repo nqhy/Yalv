@@ -6,13 +6,11 @@ import { withReduceProps } from './withReduceProps';
 
 type Props = {
   commonProps: Object,
-  setFocusInput: Function,
 }
 
 export const SignInInput = withReduceProps((props: Props) => {
   const {
     commonProps,
-    setFocusInput,
   } = props;
 
   return (
@@ -22,13 +20,10 @@ export const SignInInput = withReduceProps((props: Props) => {
         isFirst={true}
         type="email"
         keyboardType="email-address"
-        handleSubmitInput={() => setFocusInput('password')}
-        returnKeyType="next"
       />
       <AunthenticateInput
         {...commonProps}
         type="password"
-        returnKeyType="default"
         secureTextEntry={true}
       />
     </>
