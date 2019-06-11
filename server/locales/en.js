@@ -10,7 +10,6 @@ export const localesEn = {
       delete: 'Delete Successfully',
       connect: 'Connection Successfully',
       authenticate: 'Authenticate Successfully',
-      addUser: 'User Sign Up Successfully',
     },
     failure: {
       connect: 'Connection Error',

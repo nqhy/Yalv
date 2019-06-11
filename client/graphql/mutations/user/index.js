@@ -5,9 +5,6 @@ import { updateUserProvider } from '../provider';
 const createUser = gql(`
   mutation($username: String!, $email: String!, $password: String!){
     createUser(username: $username, email: $email, password: $password){
-      username
-      email
-      token
       error
     }
   }

@@ -4,13 +4,13 @@ import { compose } from 'react-apollo';
 
 import '../locales/i18n';
 import { withApolloProvider, withProviderRedux } from '../utils/hoc';
-import { MainNavigation } from '../routes/mainNavigation';
+import { RootRouter } from '../routes';
 
 const YalvApp = compose(
   withApolloProvider,
   withProviderRedux,
   createAppContainer,
-)(MainNavigation);
+)(RootRouter);
 
 // eslint-disable-next-line no-undef
 if (__DEV__) {

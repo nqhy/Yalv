@@ -519,7 +519,7 @@ const UserType=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({na
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "localesEn", function() { return localesEn; });
-const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. ',recordNotFound:'Record Not Found'},message:{success:{delete:'Delete Successfully',connect:'Connection Successfully',authenticate:'Authenticate Successfully',addUser:'User Sign Up Successfully'},failure:{connect:'Connection Error'}},enum:{user:{gender:{male:'Male',female:'Female'}}}};
+const localesEn={validate:{blank:'Can not be blank',invalid:'is Invalid',taken:'is already taken. ',recordNotFound:'Record Not Found'},message:{success:{delete:'Delete Successfully',connect:'Connection Successfully',authenticate:'Authenticate Successfully'},failure:{connect:'Connection Error'}},enum:{user:{gender:{male:'Male',female:'Female'}}}};
 
 /***/ }),
 

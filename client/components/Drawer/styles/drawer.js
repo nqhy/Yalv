@@ -6,7 +6,7 @@ export const drawerStyle = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  header: {
+  view: {
     height: 200,
     backgroundColor: color.black,
   },

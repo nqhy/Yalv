@@ -23,7 +23,7 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
         email,
         password,
       },
-    });
+    }).then(data => console.log(data));
   };
 
   const handleSubmitSignIn = (values) => {
@@ -41,9 +41,8 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
     mapPropsToValues: () => (isSignIn ? defaultValuesSignIn : defaultValuesSignUp),
     validationSchema: isSignIn ? signInSchema({ t }) : signUpSchema({ t }),
     handleSubmit: (values, { setSubmitting }) => {
-      if (isSignIn) handleSubmitSignUp(values);
-      else handleSubmitSignIn(values);
-
+      if (isSignIn) handleSubmitSignIn(values);
+      else handleSubmitSignUp(values);
       setSubmitting(true);
     },
   })(Component);

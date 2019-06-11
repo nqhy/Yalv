@@ -17,4 +17,7 @@ export default {
     'pass regexp': 'Password is not complex',
     'email regexp': 'It is not an email address',
   },
+  'home screen': {
+    title: 'Home',
+  },
 };
