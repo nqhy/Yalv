@@ -1,0 +1,1 @@
+export { homeNavigationOptions } from './home';
