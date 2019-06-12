@@ -1,16 +1,16 @@
 import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
 
-import { UserType } from '../../types';
-import { User } from '../../../db/models';
+import { CommentType } from '../../types';
+import { Commnent } from '../../../db/models';
 
-export const updateUser = (type) => ({
-  type: UserType,
+export const updateComment = (type) => ({
+  type: CommentType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     [type]: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (parent, args) => {
     const data = { [type]: args[type] };
-    return User.updateUserInfo(args.id, type, data);
+    return Commnent.updateCommentInfo(args.id, type, data);
   },
 });
