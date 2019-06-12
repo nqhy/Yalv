@@ -15,7 +15,7 @@ const withHandleAuthenticate = (Component: Node) => (props) => {
   const [isSignIn, setIsSignIn] = useState(true);
 
   return (
-    <Component {...props} {...{ isSignIn, setIsSignIn }} />
+    <Component {...{ ...props, isSignIn, setIsSignIn }} />
   );
 };
 

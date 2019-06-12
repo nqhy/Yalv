@@ -8,7 +8,7 @@ const PostSchema = new Schema({
   title: {
     type: String,
     lowercase: true,
-    // unique: true,
+    unique: true,
     required: true,
   },
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },

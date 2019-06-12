@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import { withFormik } from 'formik';
 
 import { defaultValuesSignIn, defaultValuesSignUp } from '../../constants/formik';
@@ -10,10 +10,13 @@ type Props = {
   t: Function,
   createUser: Function,
   validateUser: Function,
+  setIsSignIn: Function,
 }
 
 export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
   const { isSignIn, t, createUser, validateUser } = props;
+
+  const [toastValue, setToastValue] = useState({});
 
   const handleSubmitSignUp = (values) => {
     const { username, email, password } = values;
@@ -23,6 +26,10 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
         email,
         password,
       },
+    }).then(res => {
+      const { data: { createUser: { error } } } = res;
+      if (error) return setToastValue({ message: error, type: 'error', success: false });
+      return setToastValue({ message: t('success sign up'), type: 'success', success: true });
     });
   };
 
@@ -47,5 +54,5 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
     },
   })(Component);
 
-  return <RenderedComponent {...props} />;
+  return <RenderedComponent {...{ ...props, toastValue }} />;
 };
