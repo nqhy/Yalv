@@ -392,6 +392,22 @@ function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var inf
 
 /***/ }),
 
+/***/ "./server/db/models/index.js":
+/*!***********************************!*\
+  !*** ./server/db/models/index.js ***!
+  \***********************************/
+/*! exports provided: User */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ "./server/db/models/User.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "User", function() { return _User__WEBPACK_IMPORTED_MODULE_0__["User"]; });
+
+
+
+/***/ }),
+
 /***/ "./server/graphql/index.js":
 /*!*********************************!*\
   !*** ./server/graphql/index.js ***!
@@ -403,40 +419,30 @@ function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var inf
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _queries_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/User */ "./server/graphql/queries/User.js");
-/* harmony import */ var _mutations_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations/User */ "./server/graphql/mutations/User.js");
-const RootQuery=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'RootQueryType',fields:{user: _queries_User__WEBPACK_IMPORTED_MODULE_1__["user"],users: _queries_User__WEBPACK_IMPORTED_MODULE_1__["users"]}});const Mutation=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'Mutation',fields:{createUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["createUser"],updateUserName: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserName"],updateUserEmail: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserEmail"],updateUserBio: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserBio"],updateUserImage: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserImage"],updateUserGender: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserGender"],updateUserPhone: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserPhone"],updateUserBirthDay: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["updateUserBirthDay"],deleteUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteUser"],deleteManyUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["deleteManyUser"],validateUser: _mutations_User__WEBPACK_IMPORTED_MODULE_2__["validateUser"]}});/* harmony default export */ __webpack_exports__["default"] = (new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLSchema"]({query:RootQuery,mutation:Mutation}));
+/* harmony import */ var _queries_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/User */ "./server/graphql/queries/User/index.js");
+/* harmony import */ var _mutations_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations/User */ "./server/graphql/mutations/User/index.js");
+function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=arguments[i]!=null?arguments[i]:{};var ownKeys=Object.keys(source);if(typeof Object.getOwnPropertySymbols==='function'){ownKeys=ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym){return Object.getOwnPropertyDescriptor(source,sym).enumerable;}));}ownKeys.forEach(function(key){_defineProperty(target,key,source[key]);});}return target;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}const RootQuery=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'RootQueryType',fields:_objectSpread({},_queries_User__WEBPACK_IMPORTED_MODULE_1__["querieUser"])});const Mutation=new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLObjectType"]({name:'Mutation',fields:_objectSpread({},_mutations_User__WEBPACK_IMPORTED_MODULE_2__["mutationUser"])});/* harmony default export */ __webpack_exports__["default"] = (new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLSchema"]({query:RootQuery,mutation:Mutation}));
 
 /***/ }),
 
-/***/ "./server/graphql/mutations/User.js":
-/*!******************************************!*\
-  !*** ./server/graphql/mutations/User.js ***!
-  \******************************************/
-/*! exports provided: createUser, updateUserName, updateUserEmail, updateUserBio, updateUserImage, updateUserGender, updateUserPhone, updateUserBirthDay, deleteUser, deleteManyUser, validateUser */
+/***/ "./server/graphql/mutations/User/index.js":
+/*!************************************************!*\
+  !*** ./server/graphql/mutations/User/index.js ***!
+  \************************************************/
+/*! exports provided: mutationUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createUser", function() { return createUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserName", function() { return updateUserName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserEmail", function() { return updateUserEmail; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserBio", function() { return updateUserBio; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserImage", function() { return updateUserImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserGender", function() { return updateUserGender; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserPhone", function() { return updateUserPhone; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserBirthDay", function() { return updateUserBirthDay; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteUser", function() { return deleteUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteManyUser", function() { return deleteManyUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateUser", function() { return validateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutationUser", function() { return mutationUser; });
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../db/models/User */ "./server/db/models/User.js");
-/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../db/config/logger */ "./server/db/config/logger.js");
-/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/i18n */ "./server/config/i18n.js");
-/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./provider */ "./server/graphql/mutations/provider/index.js");
-function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const createUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{username:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:function(){var _resolve=_asyncToGenerator(function*(parent,args){return _db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].createUser(args);});function resolve(_x,_x2){return _resolve.apply(this,arguments);}return resolve;}()};const updateUserName=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('username');const updateUserEmail=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('email');const updateUserBio=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('bio');const updateUserImage=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('image');const updateUserGender=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('gender');const updateUserPhone=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('phone');const updateUserBirthDay=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('birthday');const deleteUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])}},resolve:(parent,args)=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].findByIdAndRemove(args.id)};const deleteManyUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],resolve:()=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].deleteMany({},()=>{_db_config_logger__WEBPACK_IMPORTED_MODULE_3__["logger"].info(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('message.success.delete'));})};const validateUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>_db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].authenticate(args.email,args.password)};
+/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
+/* harmony import */ var _db_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../db/models */ "./server/db/models/index.js");
+/* harmony import */ var _db_config_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../db/config/logger */ "./server/db/config/logger.js");
+/* harmony import */ var _config_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../config/i18n */ "./server/config/i18n.js");
+/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../provider */ "./server/graphql/mutations/provider/index.js");
+function asyncGeneratorStep(gen,resolve,reject,_next,_throw,key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{Promise.resolve(value).then(_next,_throw);}}function _asyncToGenerator(fn){return function(){var self=this,args=arguments;return new Promise(function(resolve,reject){var gen=fn.apply(self,args);function _next(value){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"next",value);}function _throw(err){asyncGeneratorStep(gen,resolve,reject,_next,_throw,"throw",err);}_next(undefined);});};}const createUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{username:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:function(){var _resolve=_asyncToGenerator(function*(parent,args){return _db_models__WEBPACK_IMPORTED_MODULE_2__["User"].createUser(args);});function resolve(_x,_x2){return _resolve.apply(this,arguments);}return resolve;}()};const updateUserName=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('username');const updateUserEmail=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('email');const updateUserBio=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('bio');const updateUserImage=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('image');const updateUserGender=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('gender');const updateUserPhone=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('phone');const updateUserBirthDay=Object(_provider__WEBPACK_IMPORTED_MODULE_5__["updateUser"])('birthday');const deleteUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])}},resolve:(parent,args)=>_db_models__WEBPACK_IMPORTED_MODULE_2__["User"].findByIdAndRemove(args.id)};const deleteManyUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],resolve:()=>_db_models__WEBPACK_IMPORTED_MODULE_2__["User"].deleteMany({},()=>{_db_config_logger__WEBPACK_IMPORTED_MODULE_3__["logger"].info(Object(_config_i18n__WEBPACK_IMPORTED_MODULE_4__["i18n"])('message.success.delete'));})};const validateUser={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{email:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])},password:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>_db_models__WEBPACK_IMPORTED_MODULE_2__["User"].authenticate(args.email,args.password)};const mutationUser={createUser,updateUserName,updateUserEmail,updateUserBio,updateUserBirthDay,updateUserGender,updateUserImage,updateUserPhone,deleteUser,deleteManyUser,validateUser};
 
 /***/ }),
 
@@ -469,27 +475,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../db/models/User */ "./server/db/models/User.js");
-const updateUser=type=>({type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])},[type]:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>{const data={[type]:args[type]};return _db_models_User__WEBPACK_IMPORTED_MODULE_2__["User"].updateUserInfo(args.id,type,data);}});
+/* harmony import */ var _db_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../db/models */ "./server/db/models/index.js");
+const updateUser=type=>({type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_1__["UserType"],args:{id:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"])},[type]:{type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLNonNull"](graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLString"])}},resolve:(parent,args)=>{const data={[type]:args[type]};return _db_models__WEBPACK_IMPORTED_MODULE_2__["User"].updateUserInfo(args.id,type,data);}});
 
 /***/ }),
 
-/***/ "./server/graphql/queries/User.js":
-/*!****************************************!*\
-  !*** ./server/graphql/queries/User.js ***!
-  \****************************************/
-/*! exports provided: user, users */
+/***/ "./server/graphql/queries/User/index.js":
+/*!**********************************************!*\
+  !*** ./server/graphql/queries/User/index.js ***!
+  \**********************************************/
+/*! exports provided: querieUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "user", function() { return user; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "users", function() { return users; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "querieUser", function() { return querieUser; });
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql */ "graphql");
 /* harmony import */ var graphql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _db_models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../db/models/User */ "./server/db/models/User.js");
-/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
-const user={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"],args:{id:{type:graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"]}},resolve(parent,args){return _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].findById(args.id);}};const users={type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLList"](_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"]),resolve(){return _db_models_User__WEBPACK_IMPORTED_MODULE_1__["User"].find();}};
+/* harmony import */ var _db_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../db/models */ "./server/db/models/index.js");
+/* harmony import */ var _schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../schema/UserSchema */ "./server/graphql/schema/UserSchema.js");
+const user={type:_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"],args:{id:{type:graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLID"]}},resolve(parent,args){return _db_models__WEBPACK_IMPORTED_MODULE_1__["User"].findById(args.id);}};const users={type:new graphql__WEBPACK_IMPORTED_MODULE_0__["GraphQLList"](_schema_UserSchema__WEBPACK_IMPORTED_MODULE_2__["UserType"]),resolve(){return _db_models__WEBPACK_IMPORTED_MODULE_1__["User"].find();}};const querieUser={user,users};
 
 /***/ }),
 

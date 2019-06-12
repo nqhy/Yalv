@@ -1,9 +1,9 @@
 import { GraphQLID, GraphQLList } from 'graphql';
 
-import { User } from '../../db/models/User';
-import { UserType } from '../schema/UserSchema';
+import { User } from '../../../db/models';
+import { UserType } from '../../schema/UserSchema';
 
-export const user = {
+const user = {
   type: UserType,
   args: { id: { type: GraphQLID } },
   resolve(parent, args) {
@@ -11,9 +11,14 @@ export const user = {
   },
 };
 
-export const users = {
+const users = {
   type: new GraphQLList(UserType),
   resolve() {
     return User.find();
   },
+};
+
+export const querieUser = {
+  user,
+  users,
 };

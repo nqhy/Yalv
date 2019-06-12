@@ -1,13 +1,13 @@
 import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
 
-import { UserType } from '../schema/UserSchema';
-import { User } from '../../db/models/User';
-import { logger } from '../../db/config/logger';
-import { i18n } from '../../config/i18n';
-import { updateUser } from './provider';
+import { UserType } from '../../schema/UserSchema';
+import { User } from '../../../db/models';
+import { logger } from '../../../db/config/logger';
+import { i18n } from '../../../config/i18n';
+import { updateUser } from '../provider';
 
 // Create
-export const createUser = {
+const createUser = {
   type: UserType,
   args: {
     username: { type: new GraphQLNonNull(GraphQLString) },
@@ -18,22 +18,22 @@ export const createUser = {
 };
 
 // Update
-export const updateUserName = updateUser('username');
+const updateUserName = updateUser('username');
 
-export const updateUserEmail = updateUser('email');
+const updateUserEmail = updateUser('email');
 
-export const updateUserBio = updateUser('bio');
+const updateUserBio = updateUser('bio');
 
-export const updateUserImage = updateUser('image');
+const updateUserImage = updateUser('image');
 
-export const updateUserGender = updateUser('gender');
+const updateUserGender = updateUser('gender');
 
-export const updateUserPhone = updateUser('phone');
+const updateUserPhone = updateUser('phone');
 
-export const updateUserBirthDay = updateUser('birthday');
+const updateUserBirthDay = updateUser('birthday');
 
 // Delete
-export const deleteUser = {
+const deleteUser = {
   type: UserType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
@@ -41,7 +41,7 @@ export const deleteUser = {
   resolve: (parent, args) => User.findByIdAndRemove(args.id),
 };
 
-export const deleteManyUser = {
+const deleteManyUser = {
   type: UserType,
   resolve: () => User.deleteMany({}, () => {
     logger.info(i18n('message.success.delete'));
@@ -49,11 +49,25 @@ export const deleteManyUser = {
 };
 
 // Validate
-export const validateUser = {
+const validateUser = {
   type: UserType,
   args: {
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (parent, args) => User.authenticate(args.email, args.password),
+};
+
+export const mutationUser = {
+  createUser,
+  updateUserName,
+  updateUserEmail,
+  updateUserBio,
+  updateUserBirthDay,
+  updateUserGender,
+  updateUserImage,
+  updateUserPhone,
+  deleteUser,
+  deleteManyUser,
+  validateUser,
 };

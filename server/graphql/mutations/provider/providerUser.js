@@ -1,7 +1,7 @@
 import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
 
 import { UserType } from '../../schema/UserSchema';
-import { User } from '../../../db/models/User';
+import { User } from '../../../db/models';
 
 export const updateUser = (type) => ({
   type: UserType,
