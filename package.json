@@ -9,7 +9,7 @@
     "webpackDocker": "rm -rf dist && webpack --mode development --config webpack.config.js",
     "dockerBuild": "sudo docker build -t huyd/yalvserver .",
     "dockerRun": "sudo docker run -p 8000:8000 -d huyd/yalvserver",
-    "server": "rm -rf dist && webpack --mode development --config webpack.config.js --watch=true && nodemon ./dist/server.js",
+    "server": "rm -rf dist && webpack --mode development --config webpack.config.js && nodemon ./dist/server.js",
     "lint": "eslint --ext=js --ext=jsx client server"
   },
   "dependencies": {
