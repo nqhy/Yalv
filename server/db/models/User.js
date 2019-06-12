@@ -1,13 +1,11 @@
 /* eslint-disable func-names */
-
 import mongoose from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
 import { i18n } from '../../config/i18n';
 import { iterations, keylen, digest, encoding, sizeRandom, expiration, radix } from '../constant/user';
-import { castError } from '../constant/errors';
+import { uniqueValidatorPlugin, updateFieldDb } from './utils';
 
 // Schema Defining
 const UserSchema = new mongoose.Schema({
@@ -19,6 +17,7 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     lowercase: true,
+    unique: true,
   },
   bio: String,
   image: String,
@@ -41,7 +40,8 @@ const UserSchema = new mongoose.Schema({
   salt: String,
 }, { timestamps: true });
 
-UserSchema.plugin(uniqueValidator, { message: i18n('validate.taken') });
+// Plugin
+uniqueValidatorPlugin(UserSchema);
 
 // Methods Defining
 const encryPassword = function(password, salt) {
@@ -83,7 +83,8 @@ UserSchema.statics.createUser = async function(data) {
   });
   user.setPassword(password);
   try {
-    return user.save();
+    const result = await user.save();
+    return result;
   } catch (error) {
     return { error: error.message };
   }
@@ -97,16 +98,6 @@ UserSchema.statics.authenticate = async function(email, password) {
   return { error: i18n('validate.authenticate') };
 };
 
-UserSchema.statics.updateUserInfo = async function(id, type, data) {
-  try {
-    const user = await this.findById(id);
-    user[type] = data[type];
-    await user.save();
-    return user.toAuthJSON();
-  } catch (error) {
-    if (error.name === castError) return { error: i18n('validate.recordNotFound') };
-    return null; // Consider Others Errors
-  }
-};
+UserSchema.statics.updateUserInfo = updateFieldDb('User');
 
 export const User = mongoose.model('User', UserSchema);

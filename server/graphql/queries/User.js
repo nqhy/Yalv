@@ -1,7 +1,7 @@
 import { GraphQLID, GraphQLList } from 'graphql';
 
-import { User } from '../../../db/models';
-import { UserType } from '../../schema/UserSchema';
+import { User } from '../../db/models';
+import { UserType } from '../types';
 
 const user = {
   type: UserType,

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { updateUserProvider } from '../provider';
+import { updateUserProvider } from './provider';
 
 const createUser = gql(`
   mutation($username: String!, $email: String!, $password: String!){

@@ -1,12 +1,15 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql';
 
-import { querieUser } from './queries/User';
-import { mutationUser } from './mutations/User';
+import { querieUser, queriePost, querieComment, querieTag } from './queries';
+import { mutationUser, mutationPost, mutationComment, mutationTag } from './mutations';
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     ...querieUser,
+    ...queriePost,
+    ...querieComment,
+    ...querieTag,
   },
 });
 
@@ -14,6 +17,9 @@ const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
     ...mutationUser,
+    ...mutationPost,
+    ...mutationComment,
+    ...mutationTag,
   },
 });
 

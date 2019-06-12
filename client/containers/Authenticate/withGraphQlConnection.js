@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
-import { UserMutation } from '../../graphql/mutations/user';
+import { UserMutation } from '../../graphql/mutations';
 
 export const withGraphQlConnection = (Componnent: Node) => (props) => {
   const NewComponent = compose(

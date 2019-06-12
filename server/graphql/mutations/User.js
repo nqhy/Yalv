@@ -1,10 +1,10 @@
 import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
 
-import { UserType } from '../../schema/UserSchema';
-import { User } from '../../../db/models';
-import { logger } from '../../../db/config/logger';
-import { i18n } from '../../../config/i18n';
-import { updateUser } from '../provider';
+import { UserType } from '../types';
+import { User } from '../../db/models';
+import { logger } from '../../db/config/logger';
+import { i18n } from '../../config/i18n';
+import { updateUser } from './provider';
 
 // Create
 const createUser = {
@@ -19,17 +19,11 @@ const createUser = {
 
 // Update
 const updateUserName = updateUser('username');
-
 const updateUserEmail = updateUser('email');
-
 const updateUserBio = updateUser('bio');
-
 const updateUserImage = updateUser('image');
-
 const updateUserGender = updateUser('gender');
-
 const updateUserPhone = updateUser('phone');
-
 const updateUserBirthDay = updateUser('birthday');
 
 // Delete

@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import { withChangeLanguage } from '../../utils/hoc';
 
 import { AuthenticateComponent } from '../../components/Authenticate';
-import { UserMutation } from '../../graphql/mutations/user';
+import { UserMutation } from '../../graphql/mutations';
 
 AuthenticateComponent.navigationOptions = {
   header: null,

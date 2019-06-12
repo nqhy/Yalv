@@ -23,7 +23,7 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
         email,
         password,
       },
-    }).then(data => console.log(data));
+    });
   };
 
   const handleSubmitSignIn = (values) => {

@@ -1,1 +1,1 @@
-export { UserMutation } from './user';
+export { UserMutation } from './UserMutation';
