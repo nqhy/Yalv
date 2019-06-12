@@ -11,5 +11,4 @@ npm-debug.*
 # Enviroment Variablse
 *.env
 
-./dist/*.js
-./dist/*.js.map
+dist/**/*
