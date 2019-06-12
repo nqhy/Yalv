@@ -17,10 +17,10 @@ uniqueValidatorPlugin(CommentSchema);
 CommentSchema.statics.updateCommentInfo = updateFieldDb();
 
 CommentSchema.statics.createComment = async function(data) {
-  const { content, author_id } = data;
+  const { content, author } = data;
   const comment = new this({
     content,
-    author: author_id,
+    author,
   });
   try {
     const result = await comment.save();

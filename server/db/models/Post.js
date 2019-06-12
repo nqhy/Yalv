@@ -8,7 +8,7 @@ const PostSchema = new Schema({
   title: {
     type: String,
     lowercase: true,
-    unique: true,
+    // unique: true,
     required: true,
   },
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -26,12 +26,13 @@ uniqueValidatorPlugin(PostSchema);
 
 // Static Methods
 PostSchema.statics.createPost = async function(data) {
-  const { title, author_id, content } = data;
+  const { title, author, content } = data;
   const post = new this({
     title,
-    author: author_id,
+    author,
     content,
   });
+
   try {
     const result = await post.save();
     return result;

@@ -1,11 +1,12 @@
 /* eslint-disable func-names */
 
-export const findPopulate = (type) => function(id) {
-  return this
-    .findById(id)
-    .populate(type)
-    .exec((error, data) => {
-      if (error) return { error: error.message };
-      return data;
-    });
+export const findPopulate = (type) => async function(id) {
+  try {
+    const object = await this
+      .findById(id)
+      .populate(type);
+    return object.author;
+  } catch (error) {
+    return { error: error.message };
+  }
 };

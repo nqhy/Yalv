@@ -8,10 +8,11 @@ export const PostType = new GraphQLObjectType({
   name: 'Post',
   fields: () => ({
     id: { type: GraphQLID },
+    title: { type: GraphQLString },
     author: {
       type: UserType,
       resolve(parent) {
-        Post.findAuthor(parent.id);
+        return Post.findAuthor(parent.id);
       },
     },
     content: { type: GraphQLString },
