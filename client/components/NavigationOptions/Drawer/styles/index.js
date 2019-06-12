@@ -1,0 +1,1 @@
+export { mainStyle } from './main';

@@ -7,6 +7,7 @@ export default {
     'sign up': 'Sign Up',
     'sign in': 'Sign In',
     submit: 'Submit',
+    'success sign up': 'You have completed sign up ',
   },
   validation: {
     string: '{{name}} must contains characters',
@@ -17,7 +18,7 @@ export default {
     'pass regexp': 'Password is not complex',
     'email regexp': 'It is not an email address',
   },
-  'home screen': {
-    title: 'Home',
+  'drawer navigation': {
+    main: 'Main',
   },
 };

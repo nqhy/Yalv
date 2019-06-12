@@ -1,15 +1,15 @@
 import { createStackNavigator } from 'react-navigation';
 
 import AuthenticateScreen from '../containers/Authenticate';
-import { MainScreen } from './Drawer/Main';
+import { DrawerNavigation } from './Drawer';
 
 export const RootRouter = createStackNavigator(
   {
     Authenticate: { screen: AuthenticateScreen, navigationOptions: { header: null } },
-    Main: { screen: MainScreen },
+    DrawerNavigation: { screen: DrawerNavigation },
   },
   {
-    initialRouteName: 'Authenticate',
+    initialRouteName: 'DrawerNavigation',
     defaultNavigationOptions: {
       header: null,
     },

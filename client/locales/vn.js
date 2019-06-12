@@ -17,7 +17,7 @@ export default {
     'pass regexp': '{{name}} không đủ phức tạp',
     'email regexp': 'Địa chỉ Email Không hợp lệ',
   },
-  'home screen': {
-    title: 'Màn Hình Chính',
+  'drawer navigation': {
+    main: 'Màn Hình Chính',
   },
 };

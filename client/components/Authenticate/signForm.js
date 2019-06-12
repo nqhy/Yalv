@@ -4,6 +4,7 @@ import { compose } from 'react-apollo';
 
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
+import { ModalNotification } from '../common';
 import { withAnimatedInput } from '../Animated';
 import { withFormikAuthenticate } from '../../containers/Authenticate/withFormikAuthenticate';
 import { withGraphQlConnection } from '../../containers/Authenticate/withGraphQlConnection';
@@ -21,6 +22,7 @@ type Props = {
   errors: Object,
   touched: Object,
   handleSubmit: Function,
+  toastValue: Object,
 }
 
 const SignFormComponent =  (props: Props) => {
@@ -36,6 +38,11 @@ const SignFormComponent =  (props: Props) => {
     errors,
     touched,
     handleSubmit,
+    toastValue: {
+      message = null,
+      type = null,
+      success = null,
+    },
   } = props;
 
   const inputProps = {
@@ -68,6 +75,13 @@ const SignFormComponent =  (props: Props) => {
             <SignUpButton {...buttonProps} />
           </>
         ) }
+      {message && (
+        <ModalNotification
+          message={message}
+          type={type}
+          callbackFunc={() => success && setIsSignIn(true)}
+        />
+      )}
     </>
   );
 };
