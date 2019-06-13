@@ -1,8 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { color } from '../../../styles/theme';
+import { ScreenHeight } from '../../../constants/Dimensions';
 
-const ScreenHeight = Dimensions.get('screen').height;
 export const headerComponentStyle = StyleSheet.create({
   header: {
     backgroundColor: color.white,

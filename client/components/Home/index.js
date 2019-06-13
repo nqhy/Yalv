@@ -1,13 +1,15 @@
-// @ flow
+// @flow
 import React from 'react';
-import { Text } from 'react-native';
-import { compose } from 'react-apollo';
-import { withTranslation } from 'react-i18next';
+import { PostCategoryList } from './PostCategoryList';
 
-const HomeScreenComponent = () => (
-  <Text>Hello</Text>
-);
+type Props = {
+  categoryData: Array,
+  loading: Boolean,
+}
 
-export const HomeScreen = compose(
-  withTranslation('home screen'),
-)(HomeScreenComponent);
+export const HomeScreenComponent = (props: Props) => {
+  const { categoryData, loading } = props;
+  return (
+    <PostCategoryList {...{ categoryData, loading }} />
+  );
+};

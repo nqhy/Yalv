@@ -3,6 +3,7 @@
 import React from 'react';
 import { Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
+
 import { loadingStyle } from './styles';
 
 export class LoadingSpine extends React.Component {
@@ -28,7 +29,6 @@ export class LoadingSpine extends React.Component {
   render() {
     const {
       isLoading = true,
-      Content = () => null,
       style: { styleImage = {} } = {},
       sourceImg = '',
     } = this.props;
@@ -40,16 +40,12 @@ export class LoadingSpine extends React.Component {
 
     return (
       <>
-        {
-          isLoading ? (
-            <Animated.Image
-              source={sourceImg}
-              style={[loadingStyle.image, styleImage, { transform: [{ rotate: rotation }] }]}
-            />
-          ) : (
-            <Content />
-          )
-        }
+        {isLoading && (
+          <Animated.Image
+            source={sourceImg}
+            style={[loadingStyle.image, styleImage, { transform: [{ rotate: rotation }] }]}
+          />
+        )}
       </>
     );
   }
@@ -57,7 +53,6 @@ export class LoadingSpine extends React.Component {
 
 LoadingSpine.propTypes = {
   isLoading: PropTypes.bool,
-  Content: PropTypes.node,
   style: PropTypes.object,
   sourceImg: PropTypes.number,
 };

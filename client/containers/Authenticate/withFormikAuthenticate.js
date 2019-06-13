@@ -18,7 +18,7 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
 
   const [toastValue, setToastValue] = useState({});
 
-  const handleSubmitSignUp = (values) => {
+  const handleSubmitSignUp = (values, setFieldError) => {
     const { username, email, password } = values;
     createUser({
       variables: {
@@ -28,8 +28,8 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
       },
     }).then(res => {
       const { data: { createUser: { error } } } = res;
-      if (error) return setToastValue({ message: error, type: 'error', success: false });
-      return setToastValue({ message: t('success sign up'), type: 'success', success: true });
+      if (error) return setFieldError('apiError', error);
+      return setToastValue({ message: t('success sign up'), type: 'success' });
     });
   };
 
@@ -47,9 +47,9 @@ export const withFormikAuthenticate =  (Component: Node) => (props: Props) => {
     enableReinitialize: false,
     mapPropsToValues: () => (isSignIn ? defaultValuesSignIn : defaultValuesSignUp),
     validationSchema: isSignIn ? signInSchema({ t }) : signUpSchema({ t }),
-    handleSubmit: (values, { setSubmitting }) => {
-      if (isSignIn) handleSubmitSignIn(values);
-      else handleSubmitSignUp(values);
+    handleSubmit: (values, { setSubmitting, setFieldError }) => {
+      if (isSignIn) handleSubmitSignIn(values, setFieldError);
+      else handleSubmitSignUp(values, setFieldError);
       setSubmitting(true);
     },
   })(Component);
