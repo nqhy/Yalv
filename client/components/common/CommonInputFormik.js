@@ -3,7 +3,7 @@ import React from 'react';
 
 import { inputStyle } from './styles';
 import { AnimatedTextInput } from '../Animated';
-import { ErrorMessage } from '../Authenticate/messages';
+import { Message } from '../Authenticate/messages';
 
 type Props = {
   style: Object,
@@ -74,8 +74,8 @@ export const CommonInputFormik = (props: Props) => {
         }}
       />
       {touched[type] && errors[type] ? (
-        <ErrorMessage>{errors[type]}</ErrorMessage>
-      ) : <ErrorMessage />
+        <Message>{errors[type]}</Message>
+      ) : <Message />
       }
     </>
   );

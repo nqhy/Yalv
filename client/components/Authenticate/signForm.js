@@ -4,10 +4,10 @@ import { compose } from 'react-apollo';
 
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
-import { ModalNotification } from '../common';
 import { withAnimatedInput } from '../Animated';
 import { withFormikAuthenticate } from '../../containers/Authenticate/withFormikAuthenticate';
-import { withGraphQlConnection } from '../../containers/Authenticate/withGraphQlConnection';
+import { withGraphQlAuthenticate } from '../../containers/Authenticate/withGraphQlAuthenticate';
+import { BoxMessage } from './messages';
 
 type Props = {
   t: Function,
@@ -41,7 +41,6 @@ const SignFormComponent =  (props: Props) => {
     toastValue: {
       message = null,
       type = null,
-      success = null,
     },
   } = props;
 
@@ -56,11 +55,21 @@ const SignFormComponent =  (props: Props) => {
     touched,
     handleSubmit,
   };
-
+  const { apiError = null } = errors;
   const buttonProps = {
     t, handleSubmit,
   };
 
+  const displayBoxMessage = () => {
+    if (apiError !== null) return (<BoxMessage>{apiError}</BoxMessage>);
+    if (message !== null) return (<BoxMessage {...{ type }}>{message}</BoxMessage>);
+    return null;
+  };
+
+  const displayHiddenBox = () => {
+    if (apiError === null && message === null) return <BoxMessage type="hidden" />;
+    return null;
+  };
   return (
     <>
       {isSignIn ? (
@@ -75,19 +84,18 @@ const SignFormComponent =  (props: Props) => {
             <SignUpButton {...buttonProps} />
           </>
         ) }
-      {message && (
-        <ModalNotification
-          message={message}
-          type={type}
-          callbackFunc={() => success && setIsSignIn(true)}
-        />
-      )}
+      {
+        displayBoxMessage()
+      }
+      {
+        displayHiddenBox()
+      }
     </>
   );
 };
 
 export const SignForm = compose(
   withAnimatedInput,
-  withGraphQlConnection,
+  withGraphQlAuthenticate,
   withFormikAuthenticate,
 )(SignFormComponent);
