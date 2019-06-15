@@ -8,4 +8,7 @@ export const color = {
   illusion: '#F59EE6',
   frenchRose: '#ef5777',
   redOrange: '#ff3838',
+  lightGreenishBlue: '#55efc4',
+  cherub: '#EBF1F9',
+  cityLight: '#636e72',
 };

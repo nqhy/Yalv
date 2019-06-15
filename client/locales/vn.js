@@ -1,5 +1,7 @@
 export default {
   authenticate: {
+    yalv: 'YALV',
+    'sub title': 'Chúng Tôi Kết Nối Mọi Người',
     username: 'Tên Đăng Nhập',
     email: 'Email',
     password: 'Mật Khẩu',
@@ -7,6 +9,9 @@ export default {
     'sign up': 'Đăng Kí',
     'sign in': 'Đăng Nhập',
     submit: 'Xác Nhận',
+    'success sign up': 'Đăng nhập thành công ',
+    400: 'Email hoặc password của bạn không chính xác',
+    600: 'Bạn chưa đăng ký với email này',
   },
   validation: {
     string: '{{name}} phải bao gồm ký tự',

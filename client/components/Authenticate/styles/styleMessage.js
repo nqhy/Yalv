@@ -13,18 +13,31 @@ export const styleMessage = {
     fontStyle: 'italic',
     textAlign: 'center',
   },
-  boxTextError: {
+  TextError: {
     color: color.illusion,
     padding: '2%',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  viewError: {
+  BoxError: {
     width: 'auto',
     height: 34,
     backgroundColor: color.charade,
     bottom: '-10%',
+  },
+  BoxSuccess: {
+    width: 'auto',
+    height: 34,
+    backgroundColor: color.white,
+    bottom: '-10%',
+  },
+  TextSuccess: {
+    color: color.lightGreenishBlue,
+    padding: '2%',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   hiddenBox: {
     width: 'auto',

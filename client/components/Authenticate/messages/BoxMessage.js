@@ -26,11 +26,15 @@ export const BoxMessage = withFadeAnimation()((props: Props) => {
   let styleViewBase = null;
   switch (type) {
     case 'error':
-      styleTextBase = styleMessage.boxTextError;
-      styleViewBase = styleMessage.viewError;
+      styleTextBase = styleMessage.TextError;
+      styleViewBase = styleMessage.BoxError;
       break;
     case 'hidden':
       styleViewBase = styleMessage.hiddenBox;
+      break;
+    case 'success':
+      styleViewBase = styleMessage.BoxSuccess;
+      styleTextBase = styleMessage.TextSuccess;
       break;
     default:
       break;

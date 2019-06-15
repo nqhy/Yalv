@@ -3,7 +3,8 @@ export const localesEn = {
     blank: 'Can not be blank',
     invalid: 'is Invalid',
     taken: 'is already taken. ',
-    recordNotFound: 'Record Not Found',
+    recordNotFound: '600',
+    authenticate: '400',
   },
   message: {
     success: {

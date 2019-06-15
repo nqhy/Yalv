@@ -5,11 +5,11 @@ import { color } from '../../../styles/theme';
 export const backButtonStyle = StyleSheet.create({
   button: {
     position: 'absolute',
-    top: '7%',
-    right: '14%',
+    top: '-8%',
+    right: '5%',
   },
   text: {
-    fontSize: 40,
+    fontSize: 37,
     color: color.white,
     fontWeight: 'bold',
   },

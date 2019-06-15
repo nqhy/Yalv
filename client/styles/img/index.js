@@ -1,4 +1,5 @@
 import AuthenticateBackgroundImage from './AuthenticateBackground.png';
+import AuthenticateBackgroundImageGif from './AuthenticateBackground.gif';
 import logoDrawerImage from './logoDrawer.gif';
 import MenuIcon from './menuIcon.png';
 import HomeIcon from './homeIcon.png';
@@ -14,6 +15,7 @@ import LoadingSpineCategory from './loadingSpineCategory.png';
 
 export {
   AuthenticateBackgroundImage,
+  AuthenticateBackgroundImageGif,
   logoDrawerImage,
   MenuIcon,
   HomeIcon,

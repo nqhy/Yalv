@@ -1,5 +1,7 @@
 export default {
   authenticate: {
+    title: 'YALV',
+    'sub title': 'We Connect Every One',
     username: 'User Name',
     email: 'Email',
     password: 'Password',
@@ -8,6 +10,8 @@ export default {
     'sign in': 'Sign In',
     submit: 'Submit',
     'success sign up': 'You have completed sign up ',
+    400: 'Your Email or Password is not Correct',
+    600: 'Your are not registed on this email',
   },
   validation: {
     string: '{{name}} must contains characters',

@@ -65,6 +65,8 @@ UserSchema.methods.generateJWT = function() {
     email: this.email,
     bio: this.bio,
     image: this.image,
+    gender: this.gender,
+    phone: this.phone,
     exp: parseInt(exp.getTime() / 1000, radix),
   }, process.env.SECERET_JWT);
 };

@@ -5,7 +5,7 @@ import { compose } from 'react-apollo';
 import { SignInInput, SignUpInput } from './input';
 import { SignInButton, SignUpButton } from './button';
 import { withAnimatedInput } from '../Animated';
-import { withFormikAuthenticate } from '../../containers/Authenticate/withFormikAuthenticate';
+import { withConnectRedux, withConnectFormik } from '../../containers/Authenticate/withHandlerAuthenticate';
 import { withGraphQlAuthenticate } from '../../containers/Authenticate/withGraphQlAuthenticate';
 import { BoxMessage } from './messages';
 
@@ -38,10 +38,6 @@ const SignFormComponent =  (props: Props) => {
     errors,
     touched,
     handleSubmit,
-    toastValue: {
-      message = null,
-      type = null,
-    },
   } = props;
 
   const inputProps = {
@@ -56,18 +52,19 @@ const SignFormComponent =  (props: Props) => {
     handleSubmit,
   };
   const { apiError = null } = errors;
+  const { apiSuccess = null } = values;
   const buttonProps = {
     t, handleSubmit,
   };
 
   const displayBoxMessage = () => {
     if (apiError !== null) return (<BoxMessage>{apiError}</BoxMessage>);
-    if (message !== null) return (<BoxMessage {...{ type }}>{message}</BoxMessage>);
+    if (apiSuccess !== null) return (<BoxMessage type="success">{apiSuccess}</BoxMessage>);
     return null;
   };
 
   const displayHiddenBox = () => {
-    if (apiError === null && message === null) return <BoxMessage type="hidden" />;
+    if (apiError === null && apiSuccess === null) return <BoxMessage type="hidden" />;
     return null;
   };
   return (
@@ -97,5 +94,6 @@ const SignFormComponent =  (props: Props) => {
 export const SignForm = compose(
   withAnimatedInput,
   withGraphQlAuthenticate,
-  withFormikAuthenticate,
+  withConnectRedux,
+  withConnectFormik
 )(SignFormComponent);
