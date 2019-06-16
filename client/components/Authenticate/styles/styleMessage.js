@@ -23,13 +23,13 @@ export const styleMessage = {
   BoxError: {
     width: 'auto',
     height: 34,
-    backgroundColor: color.charade,
+    backgroundColor: color.black,
     bottom: '-10%',
   },
   BoxSuccess: {
     width: 'auto',
     height: 34,
-    backgroundColor: color.white,
+    backgroundColor: color.black,
     bottom: '-10%',
   },
   TextSuccess: {
