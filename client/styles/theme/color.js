@@ -7,7 +7,7 @@ export const color = {
   black: '#000000',
   illusion: '#F59EE6',
   frenchRose: '#ef5777',
-  redOrange: '#ff3838',
+  unmellowYellow: '#fffa65',
   lightGreenishBlue: '#55efc4',
   cherub: '#EBF1F9',
   cityLight: '#636e72',

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { KeyboardAvoidingView, View, Platform, Text } from 'react-native';
+import { LinearGradient } from 'expo';
 
 import { commonStyle } from './styles';
 import { SignForm } from './signForm';
@@ -19,9 +20,7 @@ export const AuthenticateComponent = (props: Props) => {
   const dataAnimation = isSignIn ? inputSignInData : inputSignUpData;
 
   return (
-    <View
-      style={commonStyle.backgroundImg}
-    >
+    <LinearGradient colors={['#43cea2', '#185a9d']} style={commonStyle.backgroundImg}>
       <Text style={commonStyle.title}>{t('title')}</Text>
       <View style={commonStyle.line} />
       <Text style={commonStyle.subTitle}>{t('sub title')}</Text>
@@ -33,6 +32,6 @@ export const AuthenticateComponent = (props: Props) => {
         <SignForm {...{ t, setIsSignIn, isSignIn, navigation }} dataAnimation={dataAnimation['placeholder']} />
         {!isSignIn && <BackButton handlePress={() => setIsSignIn(true)} />}
       </KeyboardAvoidingView>
-    </View>
+    </LinearGradient>
   );
 };

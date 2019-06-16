@@ -5,7 +5,6 @@ export const commonStyle = ({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: color.black,
   },
   styleContainer: {
     flex: 1,
@@ -28,11 +27,10 @@ export const commonStyle = ({
     backgroundColor: color.lightGreenishBlue,
   },
   subTitle: {
-    color: color.white,
-    fontSize: 27,
+    color: color.charade,
+    fontSize: 25,
     top: '12%',
-    left: '17%',
+    left: '22%',
     fontWeight: 'bold',
-    fontStyle: 'italic',
   },
 });

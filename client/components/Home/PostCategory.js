@@ -1,33 +1,27 @@
 // @flow
 import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
-import { Container, Body, Content, Text } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import { Text } from 'native-base';
 
 import { PostCategoryStyle } from './styles';
 
 type Props = {
   name: String,
-  style: Object,
-  imageUri: String,
+  index: Number,
 }
 
 export const PostCategory = (props: Props) => {
   const {
     name,
-    style: { content: StyleContent, text: StyleText },
-    imageUri,
+    index,
   } = props;
 
+  const additionStyle = index === 0 ? PostCategoryStyle.firstButton : null;
   return (
-    <Body style={PostCategoryStyle.body}>
-      <TouchableOpacity>
-        <Content>
-          <Image source={{ uri: imageUri }} style={PostCategoryStyle.image} resizeMode="stretch" />
-          <Container style={StyleContent}>
-            <Text style={StyleText}>{name.toUpperCase()}</Text>
-          </Container>
-        </Content>
+    <>
+      <TouchableOpacity style={[PostCategoryStyle.button, additionStyle]}>
+        <Text style={PostCategoryStyle.text}>{name.toUpperCase()}</Text>
       </TouchableOpacity>
-    </Body>
+    </>
   );
 };

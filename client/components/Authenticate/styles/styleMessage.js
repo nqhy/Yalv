@@ -3,14 +3,14 @@ import { color } from '../../../styles/theme';
 export const styleMessage = {
   container: {
     width: 'auto',
-    height: 15,
+    height: 22,
     marginBottom: 10,
   },
   textError: {
-    color: color.redOrange,
-    fontSize: 14,
+    color: color.unmellowYellow,
+    fontSize: 15,
     fontWeight: 'bold',
-    fontStyle: 'italic',
+    fontStyle: 'normal',
     textAlign: 'center',
   },
   TextError: {
