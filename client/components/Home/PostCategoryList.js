@@ -16,7 +16,7 @@ type Props = {
 export const PostCategoryList = (props: Props) => {
   const { categoryData, loading = true } = props;
 
-  const displayPostCategory = () => {
+  const displayPostCategoryLoading = () => {
     if (loading) {
       return (
         <Body style={loadingSpineStyle.body}>
@@ -24,22 +24,34 @@ export const PostCategoryList = (props: Props) => {
         </Body>
       );
     }
-    return categoryData.map((value, index) => {
-      const { name, style, image } = value;
-      return (
-        <PostCategory
-          key={index}
-          {...{ name, style }}
-          imageUri={image}
-        />
-      );
+    return null;
+  };
+
+  const displayPostCategoryData = () => {
+    if (!loading) {
+      return categoryData.map((value, index) => {
+        const { name, style, image } = value;
+        return (
+          <PostCategory
+            key={index}
+            index={index}
+            {...{ name, style }}
+            imageUri={image}
+          />
+        );
+      });
     }
-    );
+    return null;
   };
 
   return (
-    <ScrollView style={PostCategoryListStyle.scroll}>
-      {displayPostCategory()}
-    </ScrollView>
+    <>
+      <ScrollView horizontal={true} style={PostCategoryListStyle.scrollHeader}>
+        {displayPostCategoryData()}
+      </ScrollView>
+      <ScrollView style={PostCategoryListStyle.scroll}>
+        {displayPostCategoryLoading()}
+      </ScrollView>
+    </>
   );
 };
