@@ -12,17 +12,15 @@ export const HomeScreenNavigation = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
-      navigationOptions: (props) => ({
-        headerTitle: <HeaderConfig {...props} />,
-      }),
     },
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
+    defaultNavigationOptions: (props) => ({
       headerStyle: {
         height: ScreenHeight * 0.10,
       },
-    },
+      headerTitle: (<HeaderConfig {...props} />),
+    }),
   },
 );
