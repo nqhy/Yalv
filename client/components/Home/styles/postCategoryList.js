@@ -1,17 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 import { color } from '../../../styles/theme';
+import { ScreenHeight } from '../../../constants/Dimensions';
 
 export const PostCategoryListStyle = StyleSheet.create({
-  scrollHeader: {
-    height: '3%',
+  scroll: {
+    height: ScreenHeight * 0.1,
     backgroundColor: color.black,
     borderWidth: 0,
-  },
-  scroll: {
-    height: '90%',
-    flexDirection: 'column',
-    backgroundColor: color.black,
   },
   header: {
     height: 30,

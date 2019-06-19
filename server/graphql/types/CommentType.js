@@ -10,7 +10,7 @@ export const CommentType = new GraphQLObjectType({
     author: {
       type: UserType,
       resolve(parent) {
-        Commnent.findAuthor(parent.id);
+        return Commnent.findAuthor(parent.id);
       },
     },
     content: { type: GraphQLString },

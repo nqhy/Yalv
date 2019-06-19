@@ -4,20 +4,21 @@ import { color } from '../../../styles/theme';
 
 export const PostCategoryStyle = StyleSheet.create({
   firstButton: {
-    marginLeft: 30,
+    marginLeft: 25,
   },
   button: {
-    width: 'auto',
-    marginRight: 70,
+    width: 70,
+    marginRight: 25,
     marginTop: 20,
-    height: 'auto',
-    backgroundColor: 'transparent',
+    height: 35,
+    padding: '2%',
+    borderRadius: 25,
+    backgroundColor: color.white,
   },
   text: {
-    fontSize: 17,
+    fontSize: 14,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontStyle: 'italic',
-    color: color.white,
+    color: color.black,
   },
 });

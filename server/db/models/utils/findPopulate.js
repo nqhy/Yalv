@@ -1,3 +1,4 @@
+
 /* eslint-disable func-names */
 
 export const findPopulate = (type) => async function(id) {
@@ -5,7 +6,7 @@ export const findPopulate = (type) => async function(id) {
     const object = await this
       .findById(id)
       .populate(type);
-    return object.author;
+    return object[type];
   } catch (error) {
     return { error: error.message };
   }

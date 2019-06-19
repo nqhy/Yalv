@@ -2,18 +2,13 @@
 import React from 'react';
 
 type Props = {
-  data: Object,
+  getPostCategoryQuery: Object,
 }
 
 export const withParseCategoryData = (Component: Node) => (props: Props) => {
-  const { data: { loading, postCategories = [] } } = props;
-
-  const categoryData = postCategories.map(element => {
-    element.style = JSON.parse(element.style);
-    return element;
-  });
+  const { getPostCategoryQuery: { loading: loadingCategory, postCategories: categoriesData = [] } } = props;
 
   return (
-    <Component {...{ ...props, loading, categoryData }} />
+    <Component {...{ ...props, loadingCategory, categoriesData }} />
   );
 };

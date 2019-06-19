@@ -4,12 +4,15 @@ import jwtDecode from 'jwt-decode';
 import { authenticate } from '../actions/authenticateActions';
 
 const initialState = {
-  username: null,
-  email: null,
-  bio: null,
-  image: null,
-  gender: null,
-  phone: null,
+  user: {
+    username: null,
+    email: null,
+    bio: null,
+    image: null,
+    gender: null,
+    phone: null,
+    isAuth: false,
+  },
 };
 
 export default handleActions({
@@ -24,12 +27,15 @@ export default handleActions({
     } = jwtDecode(token);
     return {
       ...state,
-      username,
-      email,
-      bio,
-      image,
-      gender,
-      phone,
+      user: {
+        username,
+        email,
+        bio,
+        image,
+        gender,
+        phone,
+      },
+      isAuth: true,
     };
   },
 }, initialState);

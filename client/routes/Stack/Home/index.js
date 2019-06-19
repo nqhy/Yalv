@@ -1,12 +1,7 @@
-import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from '../../../containers/Home';
-import { HeaderComponenent } from '../../../components/NavigationOptions/HeaderTab';
-import { ScreenHeight } from '../../../constants/Dimensions';
-
-// Config Header Componenet with i18n namespace is the first paramater
-const HeaderConfig = HeaderComponenent();
+import { defaultNavigationOptions } from '../commonOptions';
 
 export const HomeScreenNavigation = createStackNavigator(
   {
@@ -16,11 +11,6 @@ export const HomeScreenNavigation = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: (props) => ({
-      headerStyle: {
-        height: ScreenHeight * 0.10,
-      },
-      headerTitle: (<HeaderConfig {...props} />),
-    }),
+    defaultNavigationOptions,
   },
 );

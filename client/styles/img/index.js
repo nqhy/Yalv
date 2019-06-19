@@ -1,6 +1,14 @@
+// Root Background
+import RootBackgroundImage from './rootBackground.png';
+
+// Background Image
 import AuthenticateBackgroundImage from './AuthenticateBackground.png';
 import AuthenticateBackgroundImageGif from './AuthenticateBackground.gif';
-import logoDrawerImage from './logoDrawer.gif';
+
+// Logo Image
+import LogoDrawerImage from './logoDrawer.gif';
+
+// MenuIcon
 import MenuIcon from './menuIcon.png';
 import HomeIcon from './homeIcon.png';
 
@@ -13,13 +21,18 @@ import MusicIconTabUnActive from './MusicIconTabUnActive.png';
 // Loading Spine
 import LoadingSpineCategory from './loadingSpineCategory.png';
 
+// Avatar Icon
+import IconAvatar from './iconAvatar.png';
+
 export {
+  RootBackgroundImage,
   AuthenticateBackgroundImage,
   AuthenticateBackgroundImageGif,
-  logoDrawerImage,
+  LogoDrawerImage,
   MenuIcon,
   HomeIcon,
-  LoadingSpineCategory
+  LoadingSpineCategory,
+  IconAvatar
 };
 
 export const TabBarIcons = {
