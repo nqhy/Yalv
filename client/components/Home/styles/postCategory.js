@@ -7,13 +7,17 @@ export const PostCategoryStyle = StyleSheet.create({
     marginLeft: 25,
   },
   button: {
-    width: 70,
     marginRight: 25,
     marginTop: 20,
-    height: 35,
-    padding: '2%',
     borderRadius: 25,
+    height: 30,
+    width: 70,
     backgroundColor: color.white,
+  },
+  containerText: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   text: {
     fontSize: 14,

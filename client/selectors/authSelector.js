@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const authSelector = (state) => ({ user: state.auth });
+const authSelector = (state) => ({ auth: state.auth });
 
-export const userSelector = createSelector(authSelector, (auth) => ({
-  auth,
+export const userSelector = createSelector(authSelector, (selector) => ({
+  user: selector.auth.user,
 }));

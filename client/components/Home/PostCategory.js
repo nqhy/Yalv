@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Text } from 'native-base';
 
 import { PostCategoryStyle } from './styles';
@@ -20,7 +20,9 @@ export const PostCategory = (props: Props) => {
   return (
     <>
       <TouchableOpacity style={[PostCategoryStyle.button, additionStyle]}>
-        <Text style={PostCategoryStyle.text}>{name.toUpperCase()}</Text>
+        <View style={PostCategoryStyle.containerText}>
+          <Text style={PostCategoryStyle.text}>{name.toUpperCase()}</Text>
+        </View>
       </TouchableOpacity>
     </>
   );

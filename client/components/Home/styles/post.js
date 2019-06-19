@@ -15,9 +15,9 @@ export const PostStyle = StyleSheet.create({
   },
   text: {
     color: color.white,
-    fontSize: 27,
+    fontSize: 25,
     top: '70%',
-    left: '50%',
+    left: '40%',
     fontStyle: 'italic',
     fontWeight: 'bold',
   },

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { AsyncStorage } from 'react-native';
 import { withFormik } from 'formik';
 
 import { defaultValuesSignIn, defaultValuesSignUp } from '../../constants/formik';
@@ -60,6 +61,7 @@ export const withConnectFormik = (Component: Node) => (props: Props) => {
       if (error) return setFieldError('apiError', t(error));
       setFieldValue('apiSuccess', t('success sign up'));
       AuthenticateUser(token);
+      AsyncStorage.setItem('auth_token', token);
       return setTimeout(() => {
         navigation.navigate('DrawerNavigation');
       }, 4000);

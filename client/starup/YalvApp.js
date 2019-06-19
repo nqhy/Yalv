@@ -3,13 +3,12 @@ import { KeepAwake, registerRootComponent } from 'expo';
 import { compose } from 'react-apollo';
 
 import '../locales/i18n';
-import { withApolloProvider, withProviderRedux, withHandleAppState } from '../utils/hoc';
+import { withApolloProvider, withProviderRedux } from '../utils/hoc';
 import { RootRouter } from '../routes';
 
 const YalvApp = compose(
   withApolloProvider,
   withProviderRedux,
-  withHandleAppState,
   createAppContainer,
 )(RootRouter);
 
