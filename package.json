@@ -1,9 +1,9 @@
 {
   "main": "client/starup/YalvApp.js",
   "scripts": {
-    "start": "sudo expo start",
-    "android": "sudo expo start --android",
-    "ios": "sudo expo start --ios",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
     "eject": "sudo expo eject",
     "webpackDev": "rm -rf dist && webpack --mode development --config webpack.config.js --watch=true",
     "webpackDocker": "rm -rf dist && webpack --mode development --config webpack.config.js",
