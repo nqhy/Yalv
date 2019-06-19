@@ -12,10 +12,10 @@
  * yarn android (expo start android)
 
 ### Run WebPack
-##### Mode Developemnt: 
- * yarn buildDev
-### Start Server
- * yarn server
-### Eslint Check
- * yarn lint
- * yarn lint --fix (auto fix)
+ ##### Mode Developemnt: 
+  * yarn buildDev
+ ##### Start Server
+  * yarn server
+ ##### Eslint Check
+  * yarn lint
+  * yarn lint --fix (auto fix)
