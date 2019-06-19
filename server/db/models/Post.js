@@ -11,11 +11,13 @@ const PostSchema = new Schema({
     unique: true,
     required: true,
   },
-  author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  author: { type: String, lowercase: true, required: true },
   content: {
     type: String,
     required: true,
   },
+  categories: [{ type: Schema.Types.ObjectId, ref: 'PostCategory', required: true }],
+  images: [{ type: String, required: true }],
   likers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
   tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
@@ -26,11 +28,13 @@ uniqueValidatorPlugin(PostSchema);
 
 // Static Methods
 PostSchema.statics.createPost = async function(data) {
-  const { title, author, content } = data;
+  const { title, author, content, images, categories } = data;
   const post = new this({
     title,
     author,
     content,
+    images,
+    categories,
   });
 
   try {
@@ -45,7 +49,7 @@ PostSchema.statics.deletePost = deleteRecord();
 
 PostSchema.statics.updatePostInfo = updateFieldDb();
 
-PostSchema.statics.findAuthor = findPopulate('author');
+PostSchema.statics.findCategories = findPopulate('categories');
 PostSchema.statics.findLikers = findPopulate('likers');
 PostSchema.statics.findComments = findPopulate('comments');
 PostSchema.static.findTags = findPopulate('tags');

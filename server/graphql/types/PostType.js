@@ -3,35 +3,38 @@ import { GraphQLID, GraphQLString, GraphQLList, GraphQLObjectType } from 'graphq
 import { UserType } from './UserType';
 import { CommentType } from './CommentType';
 import { Post } from '../../db/models/Post';
+import { PostCategoryType } from './PostCategoryType';
 
 export const PostType = new GraphQLObjectType({
   name: 'Post',
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
-    author: {
-      type: UserType,
+    author: { type: GraphQLString },
+    images: { type: GraphQLList(GraphQLString) },
+    content: { type: GraphQLString },
+    categories: {
+      type: new GraphQLList(PostCategoryType),
       resolve(parent) {
-        return Post.findAuthor(parent.id);
+        return Post.findCategories(parent.id);
       },
     },
-    content: { type: GraphQLString },
     likers: {
       type: new GraphQLList(UserType),
       resolve(parent) {
-        Post.findLikers(parent.id);
+        return Post.findLikers(parent.id);
       },
     },
     comments: {
       type: new GraphQLList(CommentType),
       resolve(parent) {
-        Post.findComments(parent.id);
+        return Post.findComments(parent.id);
       },
     },
     tags: {
       type: new GraphQLList(CommentType),
       resolve(parent) {
-        Post.findTags(parent.id);
+        return Post.findTags(parent.id);
       },
     },
     error: { type: GraphQLString },

@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString, GraphQLID } from 'graphql';
+import { GraphQLNonNull, GraphQLString, GraphQLID, GraphQLList } from 'graphql';
 
 import { PostType } from '../types';
 import { logger } from '../../db/config/logger';
@@ -11,8 +11,10 @@ const createPost = {
   type: PostType,
   args: {
     title: { type: new GraphQLNonNull(GraphQLString) },
-    author: { type: new GraphQLNonNull(GraphQLID) },
+    author: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
+    images: { type: new GraphQLNonNull(GraphQLList(GraphQLString)) },
+    categories: { type: new GraphQLNonNull(GraphQLList(GraphQLID)) },
   },
   resolve: async (parent, args) => Post.createPost(args),
 };
@@ -20,6 +22,7 @@ const createPost = {
 // Update
 const updatePostTitle = updatePost('title');
 const updatePostAuthor = updatePost('author');
+const updatePostImages = updatePost('images');
 const updatePostContent = updatePost('content');
 
 // Delete
@@ -44,6 +47,7 @@ export const mutationPost = {
   updatePostTitle,
   updatePostAuthor,
   updatePostContent,
+  updatePostImages,
   deletePost,
   deleteManyUser,
 };

@@ -22,5 +22,6 @@ export const DrawerNavigation = createDrawerNavigator(
     drawerPosition: 'right',
     initialRouteName: 'Home',
     contentComponent: customDrawerComponent,
+    drawerLockMode: 'locked-closed',
   }
 );

@@ -1,15 +1,22 @@
 // @flow
 import React from 'react';
+
 import { PostCategoryList } from './PostCategoryList';
+import { PostList } from './PostList';
 
 type Props = {
-  categoryData: Array,
-  loading: Boolean,
+  categoriesData: Array,
+  postsData: Array,
+  loadingCategory: Boolean,
+  loadingPost: Boolean,
 }
 
 export const HomeScreenComponent = (props: Props) => {
-  const { categoryData, loading } = props;
+  const { categoriesData, loadingCategory, postsData, loadingPost } = props;
   return (
-    <PostCategoryList {...{ categoryData, loading }} />
+    <>
+      <PostCategoryList {...{ categoriesData, loadingCategory }} />
+      <PostList {...{ postsData, loadingPost }} />
+    </>
   );
 };

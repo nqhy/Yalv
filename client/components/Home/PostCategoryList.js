@@ -1,42 +1,27 @@
 // @flow
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { Body } from 'native-base';
 
 import { PostCategory } from './PostCategory';
-import { PostCategoryListStyle, loadingSpineStyle } from './styles';
-import { LoadingSpine } from '../common';
-import { LoadingSpineCategory } from '../../styles/img';
+import { PostCategoryListStyle } from './styles';
 
 type Props = {
-  categoryData: Array,
-  loading: Boolean,
+  categoriesData: Array,
+  loadingCategory: Boolean,
 }
 
 export const PostCategoryList = (props: Props) => {
-  const { categoryData, loading = true } = props;
-
-  const displayPostCategoryLoading = () => {
-    if (loading) {
-      return (
-        <Body style={loadingSpineStyle.body}>
-          <LoadingSpine sourceImg={LoadingSpineCategory} />
-        </Body>
-      );
-    }
-    return null;
-  };
+  const { categoriesData = [], loadingCategory } = props;
 
   const displayPostCategoryData = () => {
-    if (!loading) {
-      return categoryData.map((value, index) => {
-        const { name, style, image } = value;
+    if (!loadingCategory) {
+      return categoriesData.map((value, index) => {
+        const { name } = value;
         return (
           <PostCategory
             key={index}
             index={index}
-            {...{ name, style }}
-            imageUri={image}
+            {...{ name }}
           />
         );
       });
@@ -46,11 +31,8 @@ export const PostCategoryList = (props: Props) => {
 
   return (
     <>
-      <ScrollView horizontal={true} style={PostCategoryListStyle.scrollHeader}>
+      <ScrollView horizontal={true} style={PostCategoryListStyle.scroll} showsHorizontalScrollIndicator={false}>
         {displayPostCategoryData()}
-      </ScrollView>
-      <ScrollView style={PostCategoryListStyle.scroll}>
-        {displayPostCategoryLoading()}
       </ScrollView>
     </>
   );

@@ -1,14 +1,15 @@
 {
   "main": "client/starup/YalvApp.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject",
+    "start": "sudo expo start",
+    "android": "sudo expo start --android",
+    "ios": "sudo expo start --ios",
+    "eject": "sudo expo eject",
     "webpackDev": "rm -rf dist && webpack --mode development --config webpack.config.js --watch=true",
     "webpackDocker": "rm -rf dist && webpack --mode development --config webpack.config.js",
-    "dockerBuild": "sudo docker build -t huyd/yalvserver .",
-    "dockerRun": "sudo docker run -p 8000:8000 -d huyd/yalvserver",
+    "dockerBuild": "sudo docker build -t huyd/yalvservice .",
+    "dockerRun": "sudo docker run -p 8000:8000 -d huyd/yalvservice",
+    "kubernetesBuild": "sudo kubectl create -f deployment.yml",
     "server": "nodemon ./dist/server.js",
     "lint": "eslint --ext=js --ext=jsx client server"
   },
