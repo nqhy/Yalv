@@ -7,11 +7,9 @@ export const TabNavigation = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreenNavigation,
-      navigationOptions: BottomTabIcon,
     },
     Music: {
       screen: MusicScreenNavigation,
-      navigationOptions: BottomTabIcon,
     },
   },
   {
@@ -19,5 +17,6 @@ export const TabNavigation = createBottomTabNavigator(
     tabBarOptions: {
       showLabel: false,
     },
+    defaultNavigationOptions: BottomTabIcon,
   },
 );

@@ -1,40 +1,40 @@
 // @flow
 import React from 'react';
-import { ImageBackground, View, Text } from 'react-native';
+import { ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
 
 import { TravelDetailStyle } from './style';
-import { BackButton } from '../common';
+import { FirstAllWords } from '../../utils/function';
 
 type Props = {
-  background: String,
-  content: String,
-  title: String,
+  navigation: Object,
 }
 
 export const TravelDetail = (props: Props) => {
-  const { background, content, title } = props;
-  const backbuttonText = '<';
+  const { navigation } = props;
+  const data = navigation.getParam('data', {});
+  const { background, content = '', title = '' } = data;
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <>
-      <ImageBackground source={{ uri: background }} style={{ width: '100%', height: '100%' }}>
-        <BackButton
-          style={
-            {
-              styleButton: TravelDetailStyle.buttonBack,
-              styleText: TravelDetailStyle.buttonBackText,
-            }
-          }
-        >
-          {backbuttonText}
-        </BackButton>
-        <View style={TravelDetailStyle.titleView}>
-          <Text style={TravelDetailStyle.titleText}>
-            {title}
-          </Text>
-        </View>
+      <ImageBackground
+        source={{ uri: background }}
+        style={TravelDetailStyle.image}
+        imageStyle={{ borderBottomRightRadius: TravelDetailStyle.image.borderBottomRightRadius }}
+      >
+        <TouchableOpacity style={TravelDetailStyle.iconContainer} onPress={() => handleGoBack()}>
+          <Icon name="ios-arrow-back" style={TravelDetailStyle.icon} />
+        </TouchableOpacity>
         <View style={TravelDetailStyle.contentView}>
           <Text style={TravelDetailStyle.contentText}>
-            {content}
+            {FirstAllWords(content)}
+          </Text>
+          <Text style={TravelDetailStyle.titleText}>
+            {FirstAllWords(title)}
           </Text>
         </View>
       </ImageBackground>

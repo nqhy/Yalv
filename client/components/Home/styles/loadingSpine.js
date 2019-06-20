@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { WindowHeight } from '../../../constants/Dimensions';
+import { WindowWidth } from '../../../constants/Dimensions';
 
 export const loadingSpineStyle = StyleSheet.create({
   body: {
     flex: 1,
-    marginTop: WindowHeight * 0.25,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginLeft: WindowWidth * 0.45,
   },
 });

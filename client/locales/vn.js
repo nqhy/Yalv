@@ -25,4 +25,8 @@ export default {
   'drawer navigation': {
     main: 'Màn Hình Chính',
   },
+  'home screen': {
+    title: 'Yalv',
+    'sub title': 'Tận hưởng cuộc sống của bạn !',
+  },
 };

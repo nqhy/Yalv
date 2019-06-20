@@ -11,10 +11,11 @@ import { Post } from './Post';
 type Props = {
   postsData: Array,
   loadingPost: Boolean,
+  navigation: Object,
 }
 
 export const PostList = (props: Props) => {
-  const { postsData, loadingPost = true } = props;
+  const { postsData, navigation, loadingPost = true } = props;
 
   const displayPost = () => {
     if (loadingPost) {
@@ -24,14 +25,17 @@ export const PostList = (props: Props) => {
         </Body>
       );
     }
-    return postsData.map((value, index) => (
-      <Post key={index} title={value.title} background={value.images[0]} />
-    ));
+    return postsData.map((value, index) => {
+      const { title, content } = value;
+      return (
+        <Post key={index} background={value.images[0]} {...{ index, navigation, title, content }} />
+      );
+    });
   };
 
   return (
     <>
-      <ScrollView style={PostListStyle.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView style={PostListStyle.scroll} showsHorizontalScrollIndicator={false} horizontal={true}>
         <Body style={PostListStyle.body}>
           {displayPost()}
         </Body>

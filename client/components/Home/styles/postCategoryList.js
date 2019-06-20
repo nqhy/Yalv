@@ -6,7 +6,7 @@ import { ScreenHeight } from '../../../constants/Dimensions';
 export const PostCategoryListStyle = StyleSheet.create({
   scroll: {
     height: ScreenHeight * 0.1,
-    backgroundColor: color.black,
+    backgroundColor: color.white,
     borderWidth: 0,
   },
   header: {

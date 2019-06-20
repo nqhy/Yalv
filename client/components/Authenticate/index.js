@@ -30,7 +30,7 @@ export const AuthenticateComponent = (props: Props) => {
         enabled
       >
         <SignForm {...{ t, setIsSignIn, isSignIn, navigation }} dataAnimation={dataAnimation['placeholder']} />
-        {!isSignIn && <BackButton handlePress={() => setIsSignIn(true)}>X</BackButton>}
+        {!isSignIn && <BackButton handlePress={() => setIsSignIn(true)} />}
       </KeyboardAvoidingView>
     </LinearGradient>
   );
