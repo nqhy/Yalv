@@ -20,7 +20,7 @@ export const PostCategoryStyle = StyleSheet.create({
     alignContent: 'center',
   },
   text: {
-    fontSize: 14,
+    fontSize: 17,
     textAlign: 'center',
     fontWeight: 'bold',
     color: color.black,

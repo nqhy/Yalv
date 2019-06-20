@@ -9,6 +9,7 @@ type Props = {
   handlePress: Function,
   style: Object,
   animation: Object,
+  children: String,
 }
 
 const BackButtonComponent = (props: Props) => {
@@ -22,12 +23,13 @@ const BackButtonComponent = (props: Props) => {
       type = 'opacity',
       value = 1,
     },
+    children,
   } = props;
 
   return (
-    <TouchableOpacity style={[styleButton, backButtonStyle.button]} onPress={() => handlePress()}>
-      <Animated.Text style={[styleText, backButtonStyle.text, { [type]: value }]}>
-        X
+    <TouchableOpacity style={[backButtonStyle.button, styleButton]} onPress={() => handlePress()}>
+      <Animated.Text style={[backButtonStyle.text, styleText, { [type]: value }]}>
+        {children}
       </Animated.Text>
     </TouchableOpacity>
   );
