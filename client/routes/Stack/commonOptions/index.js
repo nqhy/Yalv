@@ -9,6 +9,7 @@ export const defaultNavigationOptions = (props) => ({
   headerStyle: {
     height: ScreenHeight * 0.10,
     elevation: 0,
+    borderBottomWidth: 0,
   },
   headerTitle: (<HeaderConfig {...props} />),
 });
