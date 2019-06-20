@@ -11,4 +11,5 @@ export const color = {
   lightGreenishBlue: '#55efc4',
   cherub: '#EBF1F9',
   cityLight: '#636e72',
+  americanLevel: '#b2bec3',
 };

@@ -4,12 +4,11 @@ import { color } from '../../../styles/theme';
 
 export const PostListStyle = StyleSheet.create({
   scroll: {
-    height: '93%',
-    backgroundColor: color.black,
+    height: '70%',
+    backgroundColor: color.white,
     borderWidth: 0,
   },
   body: {
-    justifyContent: 'center',
-    alignContent: 'center',
+    flexDirection: 'row',
   },
 });

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { Animated, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
 
 import { backButtonStyle } from './styles';
 import { withFadeAnimation } from '../Animated/withFadeAnimation';
@@ -9,7 +10,6 @@ type Props = {
   handlePress: Function,
   style: Object,
   animation: Object,
-  children: String,
 }
 
 const BackButtonComponent = (props: Props) => {
@@ -23,13 +23,12 @@ const BackButtonComponent = (props: Props) => {
       type = 'opacity',
       value = 1,
     },
-    children,
   } = props;
 
   return (
     <TouchableOpacity style={[backButtonStyle.button, styleButton]} onPress={() => handlePress()}>
-      <Animated.Text style={[backButtonStyle.text, styleText, { [type]: value }]}>
-        {children}
+      <Animated.Text style={{ [type]: value }}>
+        <Icon name="ios-backspace" style={[backButtonStyle.text, styleText]} />
       </Animated.Text>
     </TouchableOpacity>
   );

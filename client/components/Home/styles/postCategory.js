@@ -12,7 +12,7 @@ export const PostCategoryStyle = StyleSheet.create({
     borderRadius: 25,
     height: 30,
     width: 70,
-    backgroundColor: color.white,
+    backgroundColor: color.black,
   },
   containerText: {
     flex: 1,
@@ -20,9 +20,9 @@ export const PostCategoryStyle = StyleSheet.create({
     alignContent: 'center',
   },
   text: {
-    fontSize: 17,
+    fontSize: 14,
     textAlign: 'center',
     fontWeight: 'bold',
-    color: color.black,
+    color: color.white,
   },
 });

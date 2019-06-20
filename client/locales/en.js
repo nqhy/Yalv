@@ -25,4 +25,8 @@ export default {
   'drawer navigation': {
     main: 'Main',
   },
+  'home screen': {
+    title: 'Yalvtraleva',
+    'sub title': 'Enjoy your Life!',
+  },
 };
