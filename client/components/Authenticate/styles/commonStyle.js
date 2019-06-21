@@ -13,8 +13,9 @@ export const commonStyle = ({
   },
   title: {
     color: color.white,
-    fontSize: 70,
-    top: '10%',
+    width: '100%',
+    fontSize: 75,
+    top: '-5%',
     left: '5%',
     fontWeight: 'bold',
     fontStyle: 'italic',
@@ -22,15 +23,15 @@ export const commonStyle = ({
   line: {
     width: '75%',
     height: 5,
-    top: '11%',
-    left: '7%',
+    top: '-4%',
+    left: '-5%',
     backgroundColor: color.lightGreenishBlue,
   },
   subTitle: {
     color: color.charade,
     fontSize: 25,
-    top: '12%',
-    left: '22%',
+    top: '-3%',
+    left: '10%',
     fontWeight: 'bold',
   },
 });

@@ -19,13 +19,14 @@ export const TravelDetailStyle = StyleSheet.create({
   contentView: {
     top: ScreenHeight * 0.33,
     height: '100%',
-    backgroundColor: color.white,
+    backgroundColor: color.black,
     borderTopLeftRadius: 350,
   },
   titleText: {
     top: '10%',
     fontSize: 27,
     left: ScreenWidth * 0.37,
+    color: color.white,
   },
   contentText: {
     top: '20%',

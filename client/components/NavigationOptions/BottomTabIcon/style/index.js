@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const BottomTabStyle =  StyleSheet.create({
   image: {
-    width: 36,
-    height: 36,
+    width: 30,
+    height: 30,
   },
 });

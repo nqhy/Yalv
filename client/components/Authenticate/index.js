@@ -21,14 +21,14 @@ export const AuthenticateComponent = (props: Props) => {
 
   return (
     <LinearGradient colors={['#43cea2', '#185a9d']} style={commonStyle.backgroundImg}>
-      <Text style={commonStyle.title}>{t('title')}</Text>
-      <View style={commonStyle.line} />
-      <Text style={commonStyle.subTitle}>{t('sub title')}</Text>
       <KeyboardAvoidingView
         style={commonStyle.styleContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
+        <Text style={commonStyle.title}>{t('title')}</Text>
+        <View style={commonStyle.line} />
+        <Text style={commonStyle.subTitle}>{t('sub title')}</Text>
         <SignForm {...{ t, setIsSignIn, isSignIn, navigation }} dataAnimation={dataAnimation['placeholder']} />
         {!isSignIn && <BackButton handlePress={() => setIsSignIn(true)} />}
       </KeyboardAvoidingView>
