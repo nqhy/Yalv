@@ -31,7 +31,6 @@ export const AunthenticateInput = (props: Props) => {
     t,
     isFirst = false,
     secureTextEntry,
-    editable,
     autoCapitalize,
     keyboardType,
     errors,
@@ -62,7 +61,6 @@ export const AunthenticateInput = (props: Props) => {
       handleBlur={handleBlur(type)}
       handleChange={handleChange(type)}
       secureTextEntry={secureTextEntry}
-      editable={editable}
       autoCapitalize={autoCapitalize}
       keyboardType={keyboardType}
       errors={errors}

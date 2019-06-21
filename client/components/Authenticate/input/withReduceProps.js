@@ -7,7 +7,6 @@ type Props = {
   values: Object,
   handleBlur: Function,
   handleChange: Function,
-  isSubmitting: Boolean,
   touched: Object,
   errors: Object,
 }
@@ -17,18 +16,16 @@ export const withReduceProps = (Component) => (props: Props) => {
     t,
     animatedInputValue,
     values,
-    isSubmitting,
     touched,
     errors,
     handleBlur,
     handleChange,
   } = props;
-  const editable = !isSubmitting;
+
   const commonProps = {
     t,
     animatedInputValue,
     values,
-    editable,
     touched,
     errors,
     handleBlur,

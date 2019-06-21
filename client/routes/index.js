@@ -11,7 +11,7 @@ export const RootRouter = createStackNavigator(
     DrawerNavigation: { screen: DrawerNavigation },
   },
   {
-    initialRouteName: 'RootBackground',
+    initialRouteName: 'Authenticate',
     defaultNavigationOptions: {
       header: null,
       headerLeft: null,
