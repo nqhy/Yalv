@@ -20,15 +20,17 @@ export const AuthenticateComponent = (props: Props) => {
   const dataAnimation = isSignIn ? inputSignInData : inputSignUpData;
 
   return (
-    <LinearGradient colors={['#43cea2', '#185a9d']} style={commonStyle.backgroundImg}>
+    <LinearGradient colors={['#000000', '#000000']} style={commonStyle.backgroundImg}>
       <KeyboardAvoidingView
         style={commonStyle.styleContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
-        <Text style={commonStyle.title}>{t('title')}</Text>
-        <View style={commonStyle.line} />
-        <Text style={commonStyle.subTitle}>{t('sub title')}</Text>
+        <View style={commonStyle.containerLogo}>
+          <Text style={commonStyle.title}>{t('title')}</Text>
+          <View style={commonStyle.line} />
+          <Text style={commonStyle.subTitle}>{t('sub title')}</Text>
+        </View>
         <SignForm {...{ t, setIsSignIn, isSignIn, navigation }} dataAnimation={dataAnimation['placeholder']} />
         {!isSignIn && <BackButton handlePress={() => setIsSignIn(true)} />}
       </KeyboardAvoidingView>

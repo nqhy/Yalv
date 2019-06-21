@@ -6,7 +6,7 @@ export const backButtonStyle = StyleSheet.create({
   button: {
   },
   text: {
-    fontSize: 37,
+    fontSize: 45,
     color: color.white,
     fontWeight: 'bold',
   },

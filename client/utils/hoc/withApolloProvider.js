@@ -6,7 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
 
 const client = new ApolloClient({
-  link: createHttpLink({ uri: 'http://192.168.0.104:8000/graphql' }),
+  link: createHttpLink({ uri: 'http://localhost:8000/graphql' }),
   cache: new InMemoryCache(),
 });
 
